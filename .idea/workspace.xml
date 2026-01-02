@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5f9a1f04-2658-465d-81cf-e59f01e2b773" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/3.데이터 입력 프롬프트.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/3.데이터 입력 프롬프트.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/3.아키텍트 프롬프트.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/3.아키텍트 프롬프트.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/prompt1.md" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/prompt1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/prompt1.mdZone.Identifier" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/prompt2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/prompt2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/total.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/total.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진1/사진1txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진1/사진1txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진2/사진2txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진2/사진2txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진3/사진3txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진3/사진3txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진4/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진4/test2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진4/사진4txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진4/사진4txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진5/사진5txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진5/사진5txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진6/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진6/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진6/사진6txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진6/사진6txt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진7/사진7txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/프롬포트용 이미지, 텍스트/사진7/사진7txt.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "myoungrel"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/myoungrel/Final-Project.git",
+    "accountId": "33a1e2b2-25bc-4fde-81fc-b287cc80eb83"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="37gFRP23X5iZMpFH9hYze6q4PwQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "myounglae",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-e0ed3721d81e-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.159" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5f9a1f04-2658-465d-81cf-e59f01e2b773" name="Changes" comment="" />
+      <created>1767316799390</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767316799390</updated>
+    </task>
+    <servers />
+  </component>
+</project>
