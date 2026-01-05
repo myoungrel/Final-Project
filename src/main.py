@@ -6,6 +6,7 @@ from src.state import MagazineState
 from src.agents.router import run_router
 from src.agents.safety import run_safety
 from src.agents.vision import run_vision
+from src.agents.planner import run_planner
 from src.agents.editor import run_editor
 from src.agents.director import run_director
 from src.agents.publisher import run_publisher
@@ -20,7 +21,8 @@ def build_graph():
     workflow.add_node("router", run_router)
     workflow.add_node("safety", run_safety)
     workflow.add_node("vision", run_vision)
-    
+    workflow.add_node("planner", run_planner)
+
     workflow.add_node("editor", run_editor)
     workflow.add_node("director", run_director)
     
@@ -42,9 +44,10 @@ def build_graph():
         {"vision": "vision", END: END}
     )
 
-    # 병렬 실행 흐름 (Vision -> Editor & Director)
-    workflow.add_edge("vision", "editor")
-    workflow.add_edge("vision", "director")
+    # [3. 흐름 수정] Vision -> Planner -> (병렬 시작)
+    workflow.add_edge("vision", "planner")
+    workflow.add_edge("planner", "editor")
+    workflow.add_edge("planner", "director")
     
     # 병렬 흐름 합류 (Editor & Director -> Publisher)
     workflow.add_edge("editor", "publisher")
@@ -63,6 +66,8 @@ def build_graph():
             return "editor"
         elif decision == "RETRY_DIRECTOR":
             return "director"
+        elif decision == "RETRY_PLANNER": # 👈 [4. Planner로 돌아가는 경우 추가]
+            return "planner"
         elif decision == "RETRY_PUBLISHER":
             return "publisher"
         else:
@@ -76,6 +81,7 @@ def build_graph():
         {
             "editor": "editor",       # 글/Mood 문제
             "director": "director",   # 디자인 문제
+            "planner": "planner",
             "publisher": "publisher", # 코드 문제
             "formatter": "formatter"  # 통과
         }

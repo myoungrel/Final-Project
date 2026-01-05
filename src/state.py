@@ -11,6 +11,7 @@ class MagazineState(TypedDict):
     intent: Optional[str]      # Router 돌기 전엔 없음
     safety_check: Optional[str]
     vision_result: Optional[Dict[str, Any]] # Vision 결과는 JSON(Dict)임!
+    plan: Optional[Dict[str, Any]]
     
     # --- [3. 생성 데이터 (병렬 구간)] ---
     manuscript: Optional[Dict[str, Any]]   
