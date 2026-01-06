@@ -1,4 +1,4 @@
-# src/agents/publisher.py
+# /home/sauser/final/Final-Project/src/agents/publisher.py
 import os
 import base64
 import io
@@ -31,20 +31,16 @@ class PublisherAgent:
 
     def _optimize_image(self, image_data, max_width=1024):
         """
-        [내부 메서드] 이미지 리사이징 및 압축
+        [내부 메서드] 이미지 리사이징 및 압축 (과부하 방지)
+        - image_data: Base64 문자열 또는 이미지 파일 경로
         """
         try:
-            if not image_data: return None
-            
             # 입력이 파일 경로인 경우와 Base64인 경우를 모두 처리
             if os.path.exists(image_data):
                 img = Image.open(image_data)
             else:
-                try:
-                    img_bytes = base64.b64decode(image_data)
-                    img = Image.open(io.BytesIO(img_bytes))
-                except:
-                    return image_data # 디코딩 실패 시 원본 반환
+                img_bytes = base64.b64decode(image_data)
+                img = Image.open(io.BytesIO(img_bytes))
 
             if img.width > max_width:
                 ratio = max_width / float(img.width)
@@ -54,10 +50,7 @@ class PublisherAgent:
             img = img.convert("RGB")
             buffer = io.BytesIO()
             img.save(buffer, format="JPEG", quality=75)
-            # Base64로 다시 인코딩해서 HTML에 임베딩할 수 있게 함 (선택사항)
-            # 여기서는 파일 경로를 유지하거나 Base64로 변환할 수 있음. 
-            # 템플릿 호환성을 위해 Base64 문자열 반환
-            return "data:image/jpeg;base64," + base64.b64encode(buffer.getvalue()).decode('utf-8')
+            return base64.b64encode(buffer.getvalue()).decode('utf-8')
         except Exception as e:
             # print(f"⚠️ 이미지 최적화 실패: {e}") # 로그가 너무 많으면 주석 처리
             return image_data # 실패 시 원본 반환
@@ -85,6 +78,8 @@ class PublisherAgent:
     def run_process(self, state, enable_hitl=True):
         """
         에이전트 실행 메인 메서드
+        :param state: Director/Editor로부터 전달받은 상태 데이터 (dict)
+        :param enable_hitl: 사용자 검수 활성화 여부
         """
         print("--- [Node 7] Publisher Agent 작동 시작 ---")
 
@@ -103,7 +98,7 @@ class PublisherAgent:
             template = self.env.get_template(self.template_name)
             html_output = template.render(data=state, images=state.get('images', {}))
             
-            # 4. 결과 저장
+            # 4. 결과 저장 (상태 객체에 추가)
             state['final_html'] = html_output
             
             # 테스트를 위해 파일로도 저장 (선택 사항)
@@ -112,7 +107,7 @@ class PublisherAgent:
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(html_output)
             
-            print(f"✅ 매거진 조립 완료! 결과 파일: {output_path}")
+            print(f"✅ 매거진 조립 완료: {output_path}")
             return state
 
         except Exception as e:
