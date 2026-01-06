@@ -5,7 +5,7 @@ from src.state import MagazineState
 # 에이전트들
 from src.agents.router import run_router
 from src.agents.safety import run_safety
-from src.agents.vision import run_vision
+from src.agents.vision import run_vision_analysis
 from src.agents.planner import run_planner
 from src.agents.editor import run_editor
 from src.agents.director import run_director
@@ -15,31 +15,37 @@ from src.agents.formatter import run_formatter
 
 from src.tools.paginator import organize_articles_into_pages
 
-# ---------------------------------------------------------
-# [New] Paginator 노드 함수를 여기서 바로 정의 (Inline)
-# ---------------------------------------------------------
-def run_paginator_node(state: MagazineState) -> dict:
-    """
-    Editor가 쓴 글을 받아서 src/tools/paginator.py의 로직을 돌려주는 함수
-    """
-    print("--- [Step 4.5] Paginator: Organizing Articles (Inline) ---")
-    
-    # 1. 원고 가져오기
-    manuscript = state.get("manuscript", {})
-    
-    # 리스트 변환 (안전장치)
-    if isinstance(manuscript, dict):
-        articles = [manuscript]
-    else:
-        articles = manuscript
+# src/main.py (run_paginator_node 함수만 수정하면 됨)
 
-    # 2. 도구 실행 (툴 폴더에 있는 함수 호출)
-    pages = organize_articles_into_pages(articles)
+def run_paginator_node(state: MagazineState) -> dict:
+    print("--- [Step 4.5] Paginator: Organizing Articles ---")
     
+    manuscript = state.get("manuscript", {})
+    articles = [manuscript] if isinstance(manuscript, dict) else manuscript
+
+    # 도구 실행
+    pages = organize_articles_into_pages(articles)
     print(f"📄 Paginator Result: Split into {len(pages)} page(s).")
     
-    # 3. 결과 반환
-    return {"pages": pages}
+    # ---------------------------------------------------------
+    # [데이터 브릿지] Publisher가 이해하는 형태로 변환
+    # ---------------------------------------------------------
+    publisher_content = {"blocks": []}
+    
+    # 첫 번째 페이지의 기사들을 Publisher의 메인 콘텐츠로 전달
+    if pages and len(pages) > 0:
+        publisher_content["blocks"] = pages[0]["articles"]
+        
+    # 이미지 경로도 Publisher에게 전달 (state에 있는 image_path 활용)
+    publisher_images = {}
+    if state.get("image_path"):
+        publisher_images["main_img"] = state.get("image_path")
+
+    return {
+        "pages": pages,          # 나중을 위해 원본 보존
+        "content": publisher_content, # Publisher용
+        "images": publisher_images    # Publisher용
+    }
 
 def build_graph():
     workflow = StateGraph(MagazineState)
@@ -47,7 +53,7 @@ def build_graph():
     # 1. 노드 등록
     workflow.add_node("router", run_router)
     workflow.add_node("safety", run_safety)
-    workflow.add_node("vision", run_vision)
+    workflow.add_node("vision", run_vision_analysis)
     workflow.add_node("planner", run_planner)
     
     workflow.add_node("editor", run_editor)

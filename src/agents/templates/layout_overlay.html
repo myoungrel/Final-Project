@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Magazine - Overlay</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* 폰트가 없을 때를 대비한 fallback */
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            /* Director 색상 적용 (없으면 기본값) */
+            --bg-color: {{ data.design_spec.theme.colors.primary | default('#000000') }};
+            --text-main: {{ data.design_spec.theme.colors.text_main | default('#ffffff') }};
+            --text-sub: {{ data.design_spec.theme.colors.text_sub | default('#cccccc') }};
+        }
+
+        /* ... (나머지 CSS는 기존과 동일하게 유지하되, font-family가 제대로 먹히는지 확인) ... */
+        h1 {
+            font-family: var(--font-title); /* 이제 Playfair Display가 적용됨 */
+            /* ... */
+        }
+    </style>
+</head>

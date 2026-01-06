@@ -8,9 +8,18 @@ from src.config import config
 def run_planner(state: MagazineState) -> dict:
     print("--- [Planner] 매거진 컨셉 기획 중... ---")
     
-    user_script = state["user_script"]
-    vision_result = state.get("vision_result")
+    user_input = state.get("user_input")
+    user_script = state.get("user_script", {}) # 딕셔너리 (Dict)
     
+    # 제목 결정 로직: 
+    # 입력(user_input)이 있으면 그걸 제목으로 쓰고(String), 
+    # 없으면 user_script 딕셔너리에서 title을 꺼내 쓴다.
+    if user_input and isinstance(user_input, str):
+        final_title = user_input
+    else:
+        final_title = user_script.get("title", "Untitled Project")
+
+    vision_result = state.get("vision_result") or {}
     # 1. Vision 데이터 검증 및 기본값 설정
     if not vision_result:
         print("❌ [Critical] Vision 데이터 누락. 기본값으로 진행합니다.")
@@ -70,7 +79,7 @@ def run_planner(state: MagazineState) -> dict:
 
     try:
         plan = chain.invoke({
-            "title": user_script.get("title"),
+            "title": final_title,
             "img_mood": vision_result.get("img_mood"),
             "strategy": strategy,
             "safe_zone": vision_result.get("safe_zone")
@@ -79,7 +88,8 @@ def run_planner(state: MagazineState) -> dict:
         print(f"🧠 기획 확정: {plan.get('selected_type')} (전략: {strategy})")
         
         return {
-            "plan": plan,
+            "planner_result": plan,
+            "intent": plan.get("selected_type"),
             "vision_result": vision_result,
             "logs": [f"Planner: {plan.get('selected_type')} 선정"]
         }

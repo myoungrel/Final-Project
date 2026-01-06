@@ -9,24 +9,20 @@ def run_editor(state: MagazineState) -> dict:
     llm = config.get_llm()
     parser = JsonOutputParser()
     
-    # 1. 데이터 추출
-    user_request = state["user_input"]
-    
-    vision_data = state.get("vision_result", {})
-    if isinstance(vision_data, str):
-        image_mood = vision_data 
-        image_desc = "No visual description provided."
-    else:
-        image_mood = vision_data.get("mood", "General")
-        image_desc = vision_data.get("description", "No visual description provided.")
-
-    # planner 들어오면 활성화
-    # B. Planner Data (기획 의도/전략) -> 톤 매칭 & 구조용
+    # 1. 데이터 추출 (Planner와 연결)
     planner_data = state.get("planner_result", {})
-    # Planner가 정해준 톤을 가져오고, 없으면 기본값 'Elegant'
+    
+    # [핵심] Planner가 정해준 'target_tone' 가져오기 (없으면 기본값)
     target_tone = planner_data.get("target_tone", "Elegant & Lyrical")
+    
+    # [핵심] Planner가 정해준 'intent'(Layout Type) 가져오기
+    planner_intent = state.get("intent") or planner_data.get("selected_type", "General Article")
 
-    planner_intent = state.get("intent", "General Magazine Article")
+    # Vision & User Input
+    user_request = state.get("user_input", "Write a magazine article.")
+    vision_data = state.get("vision_result", {})
+    image_mood = vision_data.get("img_mood", "General") if isinstance(vision_data, dict) else "General"
+    image_desc = "Visual context provided." # 필요 시 vision_data에서 추출
 
     # ------------------------------------------------------------------
     # [프롬프트 설계 의도 - 개발자 참고용]

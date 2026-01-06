@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Magazine</title>
+    <style>
+        body { 
+            background-color: {{ data.design_spec.theme.colors.primary if data.design_spec else '#ffffff' }}; 
+            font-family: sans-serif; padding: 20px; 
+        }
+        .content { background: rgba(255,255,255,0.9); padding: 30px; border-radius: 10px; max-width: 800px; margin: 0 auto; }
+        img { max-width: 100%; height: auto; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% if images and images.main_img %}
+        <img src="{{ images.main_img }}" alt="Hero Image">
+        {% endif %}
+
+        {% if data.content and data.content.blocks %}
+            <h1>{{ data.content.blocks[0].headline }}</h1>
+            <h3>{{ data.content.blocks[0].subhead }}</h3>
+            <p>{{ data.content.blocks[0].body }}</p>
+        {% else %}
+            <h1>No Content Generated</h1>
+        {% endif %}
+    </div>
+    <div style="text-align:center; margin-top:20px; opacity:0.5; font-size:12px;">
+        Designed by AI Director ({{ data.design_spec.theme.mood if data.design_spec else 'Default' }})
+    </div>
+</body>
+</html>
+                
