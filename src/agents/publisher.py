@@ -149,6 +149,23 @@ class PublisherAgent:
 
             print(f"🖨️ Publisher: Intent='{intent_str}' -> Template='{current_template_name}' 선택됨")
 
+            # ✅ manuscript -> content.blocks 호환 레이어
+            if "manuscript" in state and isinstance(state["manuscript"], dict):
+                state.setdefault("content", {})
+                state["content"].setdefault("blocks", [])
+
+                # blocks[0]을 manuscript 기반으로 채움
+                if len(state["content"]["blocks"]) == 0:
+                    state["content"]["blocks"].append({})
+
+                b0 = state["content"]["blocks"][0]
+                m = state["manuscript"]
+
+                b0["headline"] = m.get("headline", b0.get("headline", "Untitled"))
+                b0["subhead"]  = m.get("subhead",  b0.get("subhead",  ""))
+                b0["body"]     = m.get("body",     b0.get("body",     ""))
+                b0["caption"]  = m.get("caption",  b0.get("caption",  ""))
+
             # C. 렌더링
             template = self.env.get_template(current_template_name)
             html_output = template.render(data=state, images=state.get('images', {}))

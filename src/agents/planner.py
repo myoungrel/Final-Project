@@ -96,12 +96,13 @@ def run_planner(state: MagazineState) -> dict:
     try:
         # [수정] 위에서 정제한 title_text와 request_text를 넘겨줍니다.
         # 이제 .get() 에러가 발생하지 않습니다.
+        safe_zone = vision_result.get("safe_zone") or safe_areas or "Center"
         plan = chain.invoke({
             "title": title_text,
             "user_request": request_text,
-            "img_mood": vision_result.get("img_mood"),
+            "img_mood": img_mood, 
             "strategy": strategy,
-            "safe_zone": vision_result.get("safe_zone")
+            "safe_zone": safe_zone
         })
         
         plan["layout_mode"] = strategy  # "Overlay" or "Separated"
@@ -109,7 +110,7 @@ def run_planner(state: MagazineState) -> dict:
         print(f"🧠 기획 확정: {plan.get('selected_type')} (전략: {strategy})")
         
         return {
-            "plan": plan,
+            "planner_result": plan,
             "vision_result": vision_result,
             "logs": [f"Planner: {plan.get('selected_type')} 선정"]
         }
@@ -118,4 +119,4 @@ def run_planner(state: MagazineState) -> dict:
         print(f"❌ Planner Error: {e}")
         # 에러 시 안전한 기본값 반환
         fallback_type = "TYPE_EDITORIAL_SPLIT" if strategy == "Separated" else "TYPE_FASHION_COVER"
-        return {"plan": {"selected_type": fallback_type}, "logs": ["Error"]}
+        return {"planner_result": {"selected_type": fallback_type}, "logs": ["Error"]}
