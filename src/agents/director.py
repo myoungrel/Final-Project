@@ -11,18 +11,24 @@ def run_director(state: MagazineState) -> dict:
     parser = JsonOutputParser()
     
     # 1. Input Data Extraction
-    planner_data = state.get("planner_result", {})
-    vision_data = state.get("vision_result", {})
-    
+    planner_data = state.get("planner_result", {}) or {}
+    plan_details = planner_data.get("plan") if isinstance(planner_data, dict) else None
+    plan_details = plan_details if isinstance(plan_details, dict) else planner_data
+
     # [중요] Planner가 결정한 큰 틀 가져오기
-    # plan 딕셔너리 구조에 따라 접근 경로 주의 (planner_data['plan']['layout_mode'] 일 수도 있음)
-    plan_details = planner_data.get("plan", {}) 
+    # plan 딕셔너리 구조에 따라 접근 경로 주의 (planner_data['plan']['layout_mode'] 일 수도 있음)    
     target_tone = plan_details.get("selected_type", "Elegant Style")
     layout_mode = plan_details.get("layout_mode", "Overlay") # "Overlay" or "Separated"
     
+    vision_data = state.get("vision_result", {})
+    
     # Vision Data
-    extracted_colors = vision_data.get("dominant_colors", ["#000000", "#FFFFFF"]) 
-    safe_areas = vision_data.get("safe_areas", "Center")
+    extracted_colors = (
+        vision_data.get("dominant_colors")
+        or vision_data.get("metadata", {}).get("hex_colors")
+        or ["#000000", "#FFFFFF"]
+        )
+    safe_areas = vision_data.get("safe_areas") or vision_data.get("space_analysis") or "Center"
 
     # ------------------------------------------------------------------
     # [프롬프트 설계 의도]
