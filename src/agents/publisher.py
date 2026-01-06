@@ -77,6 +77,138 @@ class PublisherAgent:
         except Exception:
             # ✅ 실패 시 원본을 그대로 반환하지 말고 None
             return None
+    
+    # -----------------------------
+    # Layout Params Builder (NEW)
+    # -----------------------------
+    def _extract_main_image_src(self, state: dict):
+        images = state.get("images") or {}
+        if not isinstance(images, dict) or not images:
+            return None
+        return images.get("main_img") or next(iter(images.values()), None)
+
+    def _open_pil_from_image_src(self, image_src: str):
+        if not image_src or not isinstance(image_src, str):
+            return None
+
+        payload = image_src
+        if payload.startswith("data:image"):
+            payload = payload.split(",", 1)[-1]
+
+        try:
+            if self._looks_like_path(payload) and os.path.exists(payload):
+                return Image.open(payload)
+            img_bytes = base64.b64decode(payload)
+            return Image.open(io.BytesIO(img_bytes))
+        except Exception:
+            return None
+
+    def _compute_image_meta(self, state: dict) -> dict:
+        img_src = self._extract_main_image_src(state)
+        img = self._open_pil_from_image_src(img_src) if img_src else None
+        if not img:
+            return {"width": 0, "height": 0, "aspect_ratio": 1.0}
+
+        w, h = img.size
+        ar = float(w) / float(h if h else 1)
+        return {"width": w, "height": h, "aspect_ratio": ar}
+
+    def _pick_largest_box(self, boxes: list):
+        best, best_area = None, -1
+        for b in boxes:
+            if not (isinstance(b, (list, tuple)) and len(b) == 4):
+                continue
+            ymin, xmin, ymax, xmax = b
+            try:
+                area = max(0, (xmax - xmin)) * max(0, (ymax - ymin))
+            except Exception:
+                continue
+            if area > best_area:
+                best_area = area
+                best = [ymin, xmin, ymax, xmax]
+        return best
+
+    def _compute_split_params(self, state: dict) -> dict:
+        planner = state.get("planner_result") or {}
+        selected_type = str(planner.get("selected_type", "")).upper()
+
+        vision = state.get("vision_result") or {}
+        vw = (((vision.get("metadata") or {}).get("composition_analysis") or {}).get("visual_weight") or "")
+        vw = str(vw)
+
+        meta = state.get("image_meta") or {"aspect_ratio": 1.0}
+        ar = float(meta.get("aspect_ratio", 1.0))
+
+        # 방향: 가로면 row, 세로면 column
+        direction = "row" if ar >= 1.25 else "column"
+
+        # reverse: right-heavy면 텍스트를 왼쪽으로 (order 뒤집기)
+        reverse = ("right-heavy" in vw.lower()) or (vw.strip().lower() == "right")
+
+        # ratio: image-section 비중 (타입별)
+        if "TYPE_LUXURY_PRODUCT" in selected_type:
+            ratio = 0.45  # 텍스트 크게(이미지 작게)
+        elif "TYPE_EDITORIAL_SPLIT" in selected_type:
+            ratio = 0.55  # 55:45
+        elif "TYPE_STREET_VIBE" in selected_type:
+            ratio = 0.70  # 이미지 크게
+        else:
+            ratio = 0.55
+
+        if direction == "column":
+            ratio = min(0.65, max(0.50, ratio))
+
+        return {"direction": direction, "ratio": float(ratio), "reverse": bool(reverse)}
+
+    def _compute_overlay_params(self, state: dict) -> dict:
+        vision = state.get("vision_result") or {}
+        meta = state.get("image_meta") or {"width": 0, "height": 0}
+        W, H = int(meta.get("width", 0)), int(meta.get("height", 0))
+
+        boxes = vision.get("space_analysis") or vision.get("safe_areas")
+
+        # safe_areas가 "Center" 같은 문자열이면 fallback
+        if not isinstance(boxes, list) or W <= 0 or H <= 0:
+            return {"box": {"left_pct": 8, "top_pct": 10, "width_pct": 60, "align": "left"}}
+
+        best = self._pick_largest_box(boxes)
+        if not best:
+            return {"box": {"left_pct": 8, "top_pct": 10, "width_pct": 60, "align": "left"}}
+
+        ymin, xmin, ymax, xmax = best
+
+        # normalized(0~1) 가능성 판별
+        is_norm = max(abs(ymin), abs(xmin), abs(ymax), abs(xmax)) <= 1.2
+        if is_norm:
+            ymin, ymax = ymin * H, ymax * H
+            xmin, xmax = xmin * W, xmax * W
+
+        left_pct = (xmin / W) * 100
+        top_pct = (ymin / H) * 100
+        width_pct = ((xmax - xmin) / W) * 100
+
+        pad = 2.0
+        left_pct = max(0.0, min(95.0, left_pct + pad))
+        top_pct = max(0.0, min(90.0, top_pct + pad))
+        width_pct = max(20.0, min(85.0, width_pct - (pad * 2)))
+
+        cx = (xmin + xmax) / 2.0
+        align = "right" if cx > (0.55 * W) else "left"
+
+        return {"box": {"left_pct": round(left_pct, 2), "top_pct": round(top_pct, 2), "width_pct": round(width_pct, 2), "align": align}}
+
+    def _build_layout_params(self, state: dict) -> None:
+        print("🧩 main_img head:", (state.get("images", {}).get("main_img") or "")[:40])
+        state["image_meta"] = self._compute_image_meta(state)
+        state.setdefault("layout_params", {})
+        state["layout_params"]["split"] = self._compute_split_params(state)
+        state["layout_params"]["overlay"] = self._compute_overlay_params(state)
+
+        # (옵션) vision alias: downstream 호환용
+        vision = state.get("vision_result")
+        if isinstance(vision, dict):
+            vision.setdefault("safe_areas", vision.get("space_analysis") or vision.get("safe_areas") or "Center")
+
 
 
     def _human_in_the_loop(self, state):
@@ -110,6 +242,14 @@ class PublisherAgent:
         # 1. 사용자 검수 (HITL)
         if enable_hitl:
             state = self._human_in_the_loop(state)
+            
+        # ✅ images.main_img 보정 (state에 image_data만 있는 케이스 대응)
+        state.setdefault("images", {})
+        if not state["images"].get("main_img"):
+            raw_b64 = state.get("image_data")  # <- 너희 파이프라인에서 종종 여기로 들어옴
+            if isinstance(raw_b64, str) and raw_b64.strip():
+                # mime을 모르면 일단 png로 붙이고, 뒤에서 _optimize_image가 jpeg로 바꿔줌
+                state["images"]["main_img"] = f"data:image/png;base64,{raw_b64.strip()}"
 
         # 2. 이미지 최적화 처리
         if "images" in state and isinstance(state["images"], dict):
@@ -133,6 +273,11 @@ class PublisherAgent:
                     # 여기서는 '원본이 data URI인 경우만 유지'하도록 더 엄격하게 할 수도 있음.
                     state["images"][img_id] = img_data
 
+        # ✅ (추가) 이미지 특징/비전 기반 layout_params 생성
+        self._build_layout_params(state)
+        print("🧩 image_meta:", state.get("image_meta"))
+        print("🧩 layout_params:", state.get("layout_params"))
+
 
         # 3. 템플릿 자동 선택 & HTML 조립 (핵심 수정!)
         try:
@@ -141,11 +286,22 @@ class PublisherAgent:
             intent = state.get("intent") or planner_data.get("selected_type", "TYPE_FASHION_COVER")
             intent_str = str(intent) if intent else ""
 
-            # B. 템플릿 파일 결정 ('Separated' 등 키워드 체크)
-            if ("SPLIT" in intent_str) or ("PRODUCT" in intent_str) or ("Separated" in intent_str):
-                current_template_name = 'layout_split.html'
+            # B. 템플릿 파일 결정 (전략 우선)
+            vision = state.get("vision_result") or {}
+            strategy = (vision.get("layout_strategy") or {}).get("recommendation") \
+                    or planner_data.get("layout_mode") \
+                    or ""
+            strategy = str(strategy)
+
+            if strategy.lower() == "separated":
+                current_template_name = "layout_separated.html"
             else:
-                current_template_name = 'layout_overlay.html'
+                # fallback: selected_type 문자열 기반
+                upper = intent_str.upper()
+                if ("SPLIT" in upper) or ("PRODUCT" in upper) or ("SEPARATED" in upper):
+                    current_template_name = "layout_separated.html"
+                else:
+                    current_template_name = "layout_overlay.html"
 
             print(f"🖨️ Publisher: Intent='{intent_str}' -> Template='{current_template_name}' 선택됨")
 
@@ -167,6 +323,10 @@ class PublisherAgent:
                 b0["caption"]  = m.get("caption",  b0.get("caption",  ""))
 
             # C. 렌더링
+            state.setdefault("planner_result", {})
+            state["planner_result"].setdefault("selected_type", "EDITORIAL")
+            state.setdefault("layout_params", {})
+            state["layout_params"].setdefault("overlay", {"box": {"left_pct": 8, "top_pct": 10, "width_pct": 60, "align": "left"}})
             template = self.env.get_template(current_template_name)
             html_output = template.render(data=state, images=state.get('images', {}))
             
