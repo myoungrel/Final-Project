@@ -20,6 +20,10 @@ def run_director(state: MagazineState) -> dict:
     target_tone = plan_details.get("selected_type", "Elegant Style")
     layout_mode = plan_details.get("layout_mode", "Overlay") # "Overlay" or "Separated"
     
+    instructions = plan_details.get("director_instructions", {})
+    color_suggestion = instructions.get("color_palette_suggestion", "Contrast")
+    font_vibe = instructions.get("font_vibe", "Clean Sans-serif")
+
     vision_data = state.get("vision_result", {})
     
     # Vision Data
@@ -44,11 +48,13 @@ def run_director(state: MagazineState) -> dict:
         Your task is to create a **JSON Design Specification (SDUI Blueprint)** based on the Strategy and Visual Analysis.
         
         [Input Data]
-        - **Layout Mode**: {layout_mode}
+        - **Layout Mode**: {layout_mode} (FIXED)
         - **Design Strategy (Type)**: {target_tone}
         - **Extracted Colors (from Image)**: {extracted_colors}
         - **Safe Text Areas (from Image)**: {safe_areas}
-        
+        - Planner's Color Idea: {color_suggestion}
+        - Planner's Font Idea: {font_vibe}
+
         [Design Rules by Type (Few-Shot Logic)]
         Apply the following rules strictly based on the [Design Strategy]:
         
@@ -122,10 +128,12 @@ def run_director(state: MagazineState) -> dict:
         
     try:
         design_spec = chain.invoke({
-            "target_tone": target_tone,
             "layout_mode": layout_mode,
+            "target_tone": target_tone,
+            "color_suggestion": color_suggestion,
+            "font_vibe": font_vibe,
             "extracted_colors": str(extracted_colors),
-            "safe_areas": str(safe_areas)
+            "safe_areas": safe_areas
         })
         
         # [안전장치] LLM이 실수할 수 있으니 강제로 동기화

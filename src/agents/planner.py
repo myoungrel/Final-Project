@@ -32,7 +32,7 @@ def run_planner(state: MagazineState) -> dict:
         vision_result = {
             "layout_strategy": {"recommendation": "Overlay"}, # 기본은 덮어쓰기
             "img_mood": "Modern",
-            "safe_zone": "center"
+            "safe_areas": "center"
         }
     
     # Vision이 제안한 전략 (Overlay vs Separated) 가져오기
@@ -62,7 +62,7 @@ def run_planner(state: MagazineState) -> dict:
         - Image Mood: {img_mood}
         - Title: {title}
         - User Request: {user_request}
-        - Safe Zone: {safe_zone}
+        - Safe Zone: {safe_areas}
 
         [LAYOUT MENU - Choose ONE based on Strategy]
         
@@ -83,7 +83,7 @@ def run_planner(state: MagazineState) -> dict:
             "selected_type": "String (One of the types above)",
             "concept_rationale": "Why you chose this type...",
             "layout_guide": {{ 
-                "text_position": "{safe_zone}", 
+                "text_position": "{safe_areas}", 
                 "font_theme": "Serif (Luxury) or Sans-serif (Modern)",
                 "background_color": "#HexCode (Only for Separated types, otherwise null)"
             }}
@@ -96,13 +96,12 @@ def run_planner(state: MagazineState) -> dict:
     try:
         # [수정] 위에서 정제한 title_text와 request_text를 넘겨줍니다.
         # 이제 .get() 에러가 발생하지 않습니다.
-        safe_zone = vision_result.get("safe_zone") or safe_areas or "Center"
         plan = chain.invoke({
             "title": title_text,
             "user_request": request_text,
             "img_mood": img_mood, 
             "strategy": strategy,
-            "safe_zone": safe_zone
+            "safe_areas": safe_areas
         })
         
         plan["layout_mode"] = strategy  # "Overlay" or "Separated"
