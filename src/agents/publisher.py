@@ -98,7 +98,20 @@ class PublisherAgent:
             template = self.env.get_template(self.template_name)
             html_output = template.render(data=state, images=state.get('images', {}))
             
-            # 4. 결과 저장 (상태 객체에 추가)
+            # [A4 규격 강제 적용 코드 추가]
+            # 인쇄 및 PDF 변환 시 정확한 A4 사이즈(210mm x 297mm)를 유지하도록 CSS 주입
+            a4_style = """
+<style>
+    @page { size: A4; margin: 0; }
+    html, body { width: 210mm; height: 297mm; margin: 0; padding: 0; overflow: hidden; }
+</style>
+"""
+            if "</head>" in html_output:
+                html_output = html_output.replace("</head>", f"{a4_style}</head>")
+            else:
+                html_output = a4_style + html_output
+
+            # 4. 결과 저장
             state['final_html'] = html_output
             
             # 테스트를 위해 파일로도 저장 (선택 사항)
