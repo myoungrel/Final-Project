@@ -73,9 +73,9 @@ def run_vision(state):
         - recommendation: "Overlay" or "Separated"
         - reason: "Central portrait requires separation despite clean background."
     3. metadata: 
-        - mood, hex_colors, lighting
+        - mood, dominant_colors, lighting
         - design_guide: text_contrast, font_recommendation
-    4. space_analysis: [[ymin, xmin, ymax, xmax], ...] (Return [] if Separated)
+    4. safe_areas: [[ymin, xmin, ymax, xmax], ...] (Return [] if Separated)
 
     RETURN ONLY RAW JSON. NO MARKDOWN.
 
@@ -94,7 +94,7 @@ def run_vision(state):
         }},
         "metadata": {{
             "mood": "Oceanic, Luxury",
-            "hex_colors": ["#F5F5F5", "#003366", "#111111"],
+            "dominant_colors": ["#F5F5F5", "#003366", "#111111"],
             "lighting": "Soft studio light",
             "design_guide": {{
                 "text_contrast": "Dark",
@@ -109,7 +109,7 @@ def run_vision(state):
                 "seasonal_vibe": "Summer"
             }}
         }},
-        "space_analysis": [[100, 50, 800, 500]]
+        "safe_areas": [[100, 50, 800, 500]]
     }}
     
     RETURN ONLY RAW JSON. DO NOT USE MARKDOWN.

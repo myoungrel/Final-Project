@@ -32,12 +32,20 @@ def run_planner(state: MagazineState) -> dict:
         vision_result = {
             "layout_strategy": {"recommendation": "Overlay"}, # 기본은 덮어쓰기
             "img_mood": "Modern",
-            "safe_zone": "center"
+            "safe_areas": "center"
         }
     
     # Vision이 제안한 전략 (Overlay vs Separated) 가져오기
     strategy = vision_result.get("layout_strategy", {}).get("recommendation", "Overlay")
-    print(f"✅ Vision 제안 전략: {strategy}")
+    
+    # Mood (metadata 안에 있을 수 있음)
+    img_mood = vision_result.get("metadata", {}).get("mood", "Modern")
+    if not img_mood: img_mood = "Modern"
+        
+    # Safe Areas (Vision이 'safe_areas'로 줌)
+    safe_areas = vision_result.get("safe_areas", "Center")
+    
+    print(f"✅ Vision 제안: {strategy} / Mood: {img_mood} / Area: {safe_areas}")
 
     llm = config.get_llm()
     parser = JsonOutputParser()
@@ -54,7 +62,7 @@ def run_planner(state: MagazineState) -> dict:
         - Image Mood: {img_mood}
         - Title: {title}
         - User Request: {user_request}
-        - Safe Zone: {safe_zone}
+        - Safe Zone: {safe_areas}
 
         [LAYOUT MENU - Choose ONE based on Strategy]
         
@@ -75,7 +83,7 @@ def run_planner(state: MagazineState) -> dict:
             "selected_type": "String (One of the types above)",
             "concept_rationale": "Why you chose this type...",
             "layout_guide": {{ 
-                "text_position": "{safe_zone}", 
+                "text_position": "{safe_areas}", 
                 "font_theme": "Serif (Luxury) or Sans-serif (Modern)",
                 "background_color": "#HexCode (Only for Separated types, otherwise null)"
             }}
@@ -91,15 +99,17 @@ def run_planner(state: MagazineState) -> dict:
         plan = chain.invoke({
             "title": title_text,
             "user_request": request_text,
-            "img_mood": vision_result.get("img_mood"),
+            "img_mood": img_mood, 
             "strategy": strategy,
-            "safe_zone": vision_result.get("safe_zone")
+            "safe_areas": safe_areas
         })
         
+        plan["layout_mode"] = strategy  # "Overlay" or "Separated"
+
         print(f"🧠 기획 확정: {plan.get('selected_type')} (전략: {strategy})")
         
         return {
-            "plan": plan,
+            "planner_result": plan,
             "vision_result": vision_result,
             "logs": [f"Planner: {plan.get('selected_type')} 선정"]
         }
@@ -108,4 +118,4 @@ def run_planner(state: MagazineState) -> dict:
         print(f"❌ Planner Error: {e}")
         # 에러 시 안전한 기본값 반환
         fallback_type = "TYPE_EDITORIAL_SPLIT" if strategy == "Separated" else "TYPE_FASHION_COVER"
-        return {"plan": {"selected_type": fallback_type}, "logs": ["Error"]}
+        return {"planner_result": {"selected_type": fallback_type}, "logs": ["Error"]}
