@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Magazine Output</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Merriweather:wght@300;700&family=Nunito:wght@400;700&family=Courier+Prime&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        body { margin: 0; padding: 0; background: #e5e5e5; }
+        .page {
+            width: 210mm; height: 297mm;
+            background: white; margin: 20px auto;
+            position: relative; overflow: hidden; display: flex;
+            page-break-after: always; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        @media print { body { background: none; } .page { margin: 0; box-shadow: none; } }
+        .whitespace-pre-line { white-space: pre-line; }
+    </style>
+</head>
+<body>
+    {% for page in pages %}
+    <div class="page" id="page-{{ loop.index }}">
+        
+        {% if page.layout_type == 'full_page' or page.layout_type == 'hero_single' %}
+            {% set art = page.articles[0] %}
+            {% set design = art.design|default({}) %}
+            {% set strategy = design.layout_strategy|default('TYPE_FASHION_COVER') %}
+            {% set theme = design.theme|default({}) %}
+            {% set comps = design.components_style|default({}) %}
+            {% set config = design.layout_config|default({}) %}
+
+            {% if 'SPLIT' in strategy or 'SEPARATED' in strategy or 'PRODUCT' in strategy or 'ANALYTICAL' in strategy %}
+                <div class="w-full h-full flex flex-col">
+                    <div class="h-[55%] w-full relative overflow-hidden bg-gray-50 flex items-center justify-center">
+                        {% if art.image %}
+                            <img src="data:image/jpeg;base64,{{ art.image }}" class="w-full h-full object-contain">
+                        {% else %}
+                            <div class="text-gray-400">No Image</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="h-[45%] w-full p-12 flex flex-col justify-center relative"
+                         style="background-color: #ffffff; color: #000000;">
+                        
+                        <div class="w-16 h-1 mb-6" style="background-color: {{ theme.colors.accent|default('#000000') }}"></div>
+
+                        <h1 class="{{ comps.headline.size|default('text-5xl') }} {{ comps.headline.weight|default('font-bold') }} mb-4 leading-tight"
+                            style="font-family: '{{ theme.fonts.title|default('serif') }}', serif; color: #000000;">
+                            {{ art.content.headline }}
+                        </h1>
+                        
+                        <div class="{{ comps.body.size|default('text-base') }} opacity-90 whitespace-pre-line overflow-hidden"
+                             style="font-family: '{{ theme.fonts.body|default('sans-serif') }}', sans-serif; color: #333333; display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical;">
+                            {{ art.content.body }}
+                        </div>
+                        
+                        <div class="mt-auto pt-6 flex justify-between items-center text-xs opacity-60 uppercase tracking-widest border-t border-gray-300"
+                             style="color: #000000;">
+                            <span>{{ strategy }}</span>
+                            <span>{{ art.content.tags|join(' • ') }}</span>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="absolute inset-0 z-0 bg-black">
+                    {% if art.image %}
+                        <img src="data:image/jpeg;base64,{{ art.image }}" class="w-full h-full object-contain">
+                    {% endif %}
+                    
+                    <div class="absolute inset-0" 
+                         style="background-color: {{ theme.colors.primary|default('#000') }}; opacity: {{ config.overlay_opacity|default(0.3) }};">
+                    </div>
+                </div>
+
+                <div class="relative z-10 w-full h-full p-8 md:p-16 flex flex-col {{ config.text_position_x|default('justify-center') }}"
+                     style="text-align: {{ config.text_alignment|default('left') }};">
+                    
+                    <div class="{{ comps.content_box.bg_color|default('bg-black/50') }} {{ comps.content_box.padding|default('p-8') }} {{ comps.content_box.border_radius|default('rounded-xl') }} {{ comps.content_box.shadow|default('') }} {{ comps.content_box.backdrop_blur|default('backdrop-blur-sm') }} max-w-4xl mx-auto">
+                        
+                        <h1 class="{{ comps.headline.size|default('text-6xl') }} {{ comps.headline.weight|default('font-bold') }} {{ comps.headline.letter_spacing|default('') }} mb-4"
+                            style="font-family: '{{ theme.fonts.title|default('serif') }}', serif; color: {{ theme.colors.text_main|default('#ffffff') }};">
+                            {{ art.content.headline }}
+                        </h1>
+
+                        {% if art.content.subhead %}
+                        <h2 class="{{ comps.subhead.size|default('text-xl') }} {{ comps.subhead.weight|default('font-medium') }} mb-6 opacity-90"
+                            style="font-family: '{{ theme.fonts.body|default('sans-serif') }}', sans-serif; color: {{ theme.colors.text_main|default('#ffffff') }};">
+                            {{ art.content.subhead }}
+                        </h2>
+                        {% endif %}
+
+                        <div class="{{ comps.body.size|default('text-base') }} {{ comps.body.leading|default('leading-relaxed') }} whitespace-pre-line mb-8"
+                             style="font-family: '{{ theme.fonts.body|default('sans-serif') }}', sans-serif; color: {{ theme.colors.text_main|default('#ffffff') }};">
+                            {{ art.content.body }}
+                        </div>
+
+                        {% if art.content.caption %}
+                        <p class="{{ comps.caption.size|default('text-xs') }} {{ comps.caption.style|default('italic') }} mt-4 border-t pt-2 opacity-75"
+                           style="color: {{ theme.colors.text_main|default('#ffffff') }}; border-color: {{ theme.colors.text_main|default('#ffffff') }};">
+                            {{ art.content.caption }}
+                        </p>
+                        {% endif %}
+                        
+                        {% if art.content.tags %}
+                        <div class="mt-6 flex gap-2 justify-center">
+                            {% for tag in art.content.tags %}
+                            <span class="px-3 py-1 text-xs border uppercase tracking-widest"
+                                  style="color: {{ theme.colors.text_main|default('#ffffff') }}; border-color: {{ theme.colors.text_main|default('#ffffff') }};">
+                                {{ tag }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+        {% elif page.layout_type == 'split_half' %}
+            <div class="w-full h-full flex flex-col">
+                {% for art in page.articles %}
+                    {% set design = art.design|default({}) %}
+                    {% set theme = design.theme|default({}) %}
+                    <div class="flex-1 relative overflow-hidden group bg-gray-100">
+                        {% if art.image %}
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <img src="data:image/jpeg;base64,{{ art.image }}" class="w-full h-full object-contain">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        {% endif %}
+                        <div class="relative z-10 h-full flex flex-col justify-center p-12 text-white">
+                            <h2 class="text-4xl font-bold mb-4" style="font-family: '{{ theme.fonts.title|default('serif') }}'">{{ art.content.headline }}</h2>
+                            <p class="line-clamp-4 text-sm" style="font-family: '{{ theme.fonts.body|default('sans-serif') }}'">{{ art.content.body }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <div class="w-full h-full p-12 bg-white flex flex-col">
+                <h1 class="text-3xl font-bold mb-8 border-b pb-4">Magazine Page</h1>
+                {% for art in page.articles %}
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold">{{ art.content.headline }}</h2>
+                        <p class="text-gray-600 mt-2 text-sm">{{ art.content.body }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</body>
+</html>
