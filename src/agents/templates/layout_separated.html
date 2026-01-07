@@ -163,18 +163,20 @@
     }
 
     p {
-      font-size: 15px; 
+      font-size: 15px;
       line-height: 1.75;
       margin: 0;
       color: var(--text-main);
       opacity: 0.9;
-      
+
       display: -webkit-box;
-      -webkit-line-clamp: 15;
+      -webkit-line-clamp: 15;   /* 15줄 */
+      line-clamp: 15;           /* ✅ 표준 속성(린트용/호환성 개선) */
       -webkit-box-orient: vertical;
       overflow: hidden;
-      text-align: justify; 
+      text-align: justify;
     }
+
 
     .caption {
       margin-top: 30px;

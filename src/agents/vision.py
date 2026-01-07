@@ -93,9 +93,9 @@ def run_vision(state):
                 - dominant_colors: ["#Hex1", "#Hex2", "#Hex3"]
                 - lighting: "Lighting description"
                 - dominant_position: "Left", "Right", or "Center"
-                - design_guide: { "text_contrast": "Dark/Light", "font_recommendation": "Serif/Sans-serif" }
-                - composition_analysis: { "visual_weight": "...", "gaze_direction": "..." }
-                - texture_context: { "dominant_texture": "...", "seasonal_vibe": "..." }
+                - design_guide: {{ "text_contrast": "Dark/Light", "font_recommendation": "Serif/Sans-serif" }}
+                - composition_analysis: {{ "visual_weight": "...", "gaze_direction": "..." }}
+                - texture_context: {{ "dominant_texture": "...", "seasonal_vibe": "..." }}
             4. safe_areas: [[ymin, xmin, ymax, xmax], ...] (Return [] if 'Separated')
 
             RETURN ONLY RAW JSON. NO MARKDOWN.

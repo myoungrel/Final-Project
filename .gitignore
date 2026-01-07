@@ -208,7 +208,7 @@ __marimo__/
 
 # generated outputs
 output/universal_result.html
-output/
+output/*
 # Windows Zone.Identifier files
 *:Zone.Identifier
 

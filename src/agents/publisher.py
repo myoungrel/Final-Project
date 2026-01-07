@@ -318,7 +318,19 @@ class PublisherAgent:
             items_to_process = user_input
             plans_map = state.get("planner_result") or {}
             visions_map = state.get("vision_results") or state.get("vision_result") or {}
-            manuscripts_map = state.get("manuscript") or {}
+            # 수정: list -> {id: article_dict} 로 변환
+            raw_manuscript = state.get("manuscript") or {}
+
+            if isinstance(raw_manuscript, list):
+                manuscripts_map = {}
+                for idx, m in enumerate(raw_manuscript):
+                    if isinstance(m, dict):
+                        mid = str(m.get("id", idx))
+                        manuscripts_map[mid] = m
+            elif isinstance(raw_manuscript, dict):
+                manuscripts_map = raw_manuscript
+            else:
+                manuscripts_map = {}
             designs_map = state.get("design_spec") or {}
             
             # 🚨 [안전장치] image_data가 리스트로 올 경우 Dict로 변환하여 에러 방지
