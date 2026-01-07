@@ -10,6 +10,7 @@ class MagazineState(TypedDict):
     # --- [2. 분석 및 보안] ---
     intent: Optional[str]      # Router 돌기 전엔 없음
     safety_check: Optional[str]
+    safety_detail: Optional[Dict[str, Any]]
     vision_result: Optional[Dict[str, Any]] # Vision 결과는 JSON(Dict)임!
     planner_result: Optional[Dict[str, Any]]
     
