@@ -4,16 +4,23 @@ from src.state import MagazineState
 from src.config import config
 from pydantic import BaseModel, Field
 from langchain_core.output_parsers import PydanticOutputParser
+
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from src.state import MagazineState
+from src.config import config
+from pydantic import BaseModel, Field
+from langchain_core.output_parsers import PydanticOutputParser
 import re
 
-# [추가] 출력 구조 정의
+# [수정 1] 출력 구조의 설명(Description)을 구체화하여 LLM의 판단 기준 완화
 class SafetyCheck(BaseModel):
-    is_safe: bool = Field(description="유해성 여부 (True: 안전, False: 위험)")
-    reason: str = Field(description="위험 판단 이유 (안전할 경우 'None')")
-    pii_detected: list = Field(description="검출된 개인정보 항목들")
+    is_safe: bool = Field(description="유해성 여부 (True: 잡지 발행, False: 발행 불가)")
+    reason: str = Field(description="판단 이유. 안전하다면 'Safe content' 등으로 기재.")
+    pii_detected: list = Field(description="실제 개인정보(주민번호, 개인 전화번호 등)만 포함. 브랜드명이나 모델명, 이름은 제외.")
 
 def run_safety(state: MagazineState) -> dict:
-    print("--- [2] Safety Filter: 유해성 검사 중... ---")
+    print("--- [2] Safety Filter: 매거진 정책 기반 검수 중... ---")
     llm = config.get_llm()
 
     # 1. Pydantic Parser 설정: LLM이 JSON 형식을 지키도록 강제합니다.
@@ -25,16 +32,32 @@ def run_safety(state: MagazineState) -> dict:
     email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
     found_emails = re.findall(email_pattern, user_input)
 
-    # 3. 프롬프트 수정 
-    # - {format_instructions}를 추가하여 LLM에게 정확한 JSON 구조를 전달
-    # - 단순 "SAFE" 반환이 아닌, 상세한 분석을 요구하도록 페르소나 강화
+    # [수정 2] 프롬프트 엔지니어링: 페르소나 변경 및 예외 상황(면책) 명시
+    # - 프롬프트 수정: 잡지사 편집장(Chief Editor) 페르소나 적용
+    # - 상업적 정보(브랜드, 제품명)는 PII가 아님을 명시
     prompt = ChatPromptTemplate.from_template(
         """
-        You are a strict Security Officer for a publishing company. 
-        Analyze the text for PII (names, addresses, IDs), hate speech, Sexual content, Dangerous activities, or inappropriate content.
-        
-        Text to analyze: {user_input}
-        
+        You are the Chief Editor of a lifestyle magazine.
+        Your goal is to approve content that is creative and engaging, while blocking illegal or harmful material.
+
+        Analyze the text: "{user_input}"
+
+        ### Guidelines for Approval:
+
+        1. **PII (Personal Info):**
+           - **ALLOW (Safe):** Names of public figures, interviewees, celebrities, brand names (e.g., Calvin Klein, Chanel), and models.
+           - **BLOCK (Unsafe):** Private home addresses, SSNs, personal phone numbers, passwords.
+
+        2. **Sexual Content:**
+           - **ALLOW (Safe):** Fashion photography, artistic nudity, romance, swimsuit trends, or health-related topics.
+           - **BLOCK (Unsafe):** Explicit pornography, non-consensual sexual content, or graphic sexual acts.
+
+        3. **Hate & Violence (STRICT):**
+           - **BLOCK (Unsafe):** Hate speech, promotion of terrorism, self-harm, or graphic violence.
+
+        4. **Commercial Content:**
+           - **ALLOW:** Product descriptions, prices, and marketing copies are 100% SAFE.
+
         {format_instructions}
         """
     ).partial(format_instructions=parser.get_format_instructions()) # Parser가 생성한 지침 삽입
@@ -50,13 +73,16 @@ def run_safety(state: MagazineState) -> dict:
         # 5. 정규표현식 결과와 LLM 결과 병합
         # 변경 사항: LLM이 놓칠 수 있는 정규식 패턴(이메일 등)을 최종 결과에 강제로 추가합니다.
         if found_emails:
+            # 단, 이메일이 회사 대표 메일(예: contact@samsung.com)인 경우 등은 
+            # 추후 로직에서 제외할 수도 있으나, 일단 안전하게 차단 혹은 경고로 유지
             result.is_safe = False
             result.pii_detected = list(set(result.pii_detected + found_emails))
-            result.reason += " [System] Email pattern detected via Regex."
+            result.reason += " [System] Email pattern detected."
 
     except Exception as e:
-        # 🚨 [폴백] LLM 호출 실패 시 가장 보수적인(안전한) 판단을 내림
         print(f"❌ Safety Filter Error: {e}")
+        # 폴백 시에도 너무 공격적으로 차단하지 않도록 기본값을 조정할 수 있으나,
+        # 시스템 에러 상황이므로 False로 두는 것이 안전함.
         result = SafetyCheck(
             is_safe=False, 
             reason="Safety check failed due to system error. (Fallback activated)",

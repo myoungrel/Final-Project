@@ -23,9 +23,11 @@ else:
 def run_vision(state):
     print("--- [Vision Agent] 이미지 정밀 분석 시작 (Gemini) ---")
     
-    # State에서 이미지 경로와 사용자 텍스트 가져오기
-    image_data = state.get("image_data")
-    user_text = state.get("user_input", "")
+    # [New Code] 다중 이미지 처리 로직
+    image_map = state.get("image_data", {}) # Dict[id, base64]
+    user_inputs = state.get("user_input", []) # List[Dict]
+
+    vision_results = {} # 결과를 담을 Dict {id: result}
 
     # 모델 설정 (Gemini 1.5 Flash 권장, 없으면 Pro 사용)
     # user_text에 언급된 2.5 모델은 아직 정식 사용이 어려울 수 있어 1.5로 설정합니다.
@@ -34,102 +36,130 @@ def run_vision(state):
     except:
         model = genai.GenerativeModel('gemini-2.5-flash')
 
-    # 👇 [수정됨] 요청하신 프롬프트를 영어로 번역하여 적용했습니다.
-    prompt = f"""
-    You are the 'Chief Art Director'. 
-    
-    **[TASK: Step-by-Step Layout Decision]**
-    Follow this exact order of thinking to decide "Overlay" vs "Separated".
+    # 이미지가 없으면 빈 결과 반환
+    if not image_map:
+        print("⚠️ 분석할 이미지가 없습니다.")
+        return {"vision_result": {}}
 
-    **STEP 1: Identify the 'HERO SUBJECT' (The Star)**
-    - Read request: "{user_text}".
-    - Find the Main Subject (Person, Watch, Bag).
-    - **IGNORE** the background cleanliness for a moment. Focus ONLY on the Hero.
+    # 각 이미지 별로 반복 분석
+    for article_id, b64_data in image_map.items():
+        print(f"📸 이미지 분석 중... (ID: {article_id})")
+        
+        # 해당 ID에 맞는 사용자 텍스트 찾기 (프롬프트 반영용)
+        # user_inputs 리스트에서 id가 일치하는 항목 찾기
+        relevant_text = ""
 
-    **STEP 2: Analyze Hero's Dominance (The FATAL Check)**
-    - **Is it a Person?** If yes, does the person occupy the **Center** of the image? -> If YES, STOP. Choose **'SEPARATED'**. (Never overlay text on a central portrait).
-    - **Is it a Product?** Is it a "Macro Shot" (zoomed in extremely close)? -> If YES, STOP. Choose **'SEPARATED'**.
-    - **Size Check:** Does the Hero Subject take up more than 50% of the image width/height? -> If YES, mostly **'SEPARATED'**.
+        for item in user_inputs:
+            if str(item.get("id")) == str(article_id):
+                # request가 있으면 쓰고 없으면 title이라도 사용
+                relevant_text = item.get("request") or item.get("title", "")
+                break
 
-    **STEP 3: Evaluate Background/Props (Only if Step 2 didn't stop you)**
-    - Now look at the background.
-    - **Case A (Prop as Canvas):** Is the Hero small, sitting on a huge uniform object (like a watch on a big white shell)? -> Choose **'OVERLAY'**.
-    - **Case B (Clean Space):** Is the Hero off-center (Left/Right), leaving a huge empty sky/wall? -> Choose **'OVERLAY'**.
+        # 👇 [수정됨] 요청하신 프롬프트를 영어로 번역하여 적용했습니다.
+        prompt = f"""
+            You are the 'Chief Art Director'. 
+            Request: "{relevant_text}"
 
-    **[Decision Logic Summary]**
-    1. **Portrait/Central Human** = **SEPARATED** (Priority 1)
-    2. **Zoomed-in Product** = **SEPARATED** (Priority 2)
-    3. **Small Hero + Big Uniform Prop** = **OVERLAY** (Priority 3)
-    4. **Small Hero + Clean Sky/Wall** = **OVERLAY** (Priority 4)
+            **[TASK: Step-by-Step Layout Decision]**
+            Follow this exact order of thinking to decide "Overlay" vs "Separated".
 
-    **[JSON Data Structure]**
-    1. thought_process: [
-        "Step 1: Hero is 'Man'...",
-        "Step 2: The Man is located in the center and fills 70% of the frame...",
-        "Step 3: Background is white, BUT Step 2 (Central Portrait) overrides it...",
-        "Step 4: Decision 'Separated' to protect the subject."
-       ]
-    2. layout_strategy:
-        - recommendation: "Overlay" or "Separated"
-        - reason: "Central portrait requires separation despite clean background."
-    3. metadata: 
-        - mood, dominant_colors, lighting
-        - design_guide: text_contrast, font_recommendation
-    4. safe_areas: [[ymin, xmin, ymax, xmax], ...] (Return [] if Separated)
+            **STEP 1: Identify the 'HERO SUBJECT' (The Star)**
+            - Find the Main Subject (Person, Watch, Bag).
+            - **IGNORE** the background cleanliness for a moment. Focus ONLY on the Hero.
 
-    RETURN ONLY RAW JSON. NO MARKDOWN.
+            **STEP 2: Analyze Hero's Dominance (The FATAL Check)**
+            - **Is it a Person?** If yes, does the person occupy the **Center** of the image? -> If YES, STOP. Choose **'SEPARATED'**. (Never overlay text on a central portrait).
+            - **Is it a Product?** Is it a "Macro Shot" (zoomed in extremely close)? -> If YES, STOP. Choose **'SEPARATED'**.
+            - **Size Check:** Does the Hero Subject take up more than 50% of the image width/height? -> If YES, mostly **'SEPARATED'**.
 
-    **[JSON Response Example]**
-    {{
-        "thought_process": [
-            "Step 1: User request is about a 'Watch'.",
-            "Step 2: Found the Watch on the right side.",
-            "Step 3: The large object on the left is a white Seashell (Prop).",
-            "Step 4: The shell's surface is white and smooth.",
-            "Step 5: Choosing 'Overlay' to place text on the shell."
-        ],
-        "layout_strategy": {{
-            "recommendation": "Overlay",
-            "reason": "Although the shell is large, it serves as a smooth, uniform background prop for the watch (Hero)."
-        }},
-        "metadata": {{
-            "mood": "Oceanic, Luxury",
-            "dominant_colors": ["#F5F5F5", "#003366", "#111111"],
-            "lighting": "Soft studio light",
-            "design_guide": {{
-                "text_contrast": "Dark",
-                "font_recommendation": "Sans-serif"
-            }},
-            "composition_analysis": {{
-                "visual_weight": "Right-heavy (Watch)",
-                "gaze_direction": "Left"
-            }},
-            "texture_context": {{
-                "dominant_texture": "Smooth Shell Surface",
-                "seasonal_vibe": "Summer"
+            **STEP 3: Evaluate Background/Props (Only if Step 2 didn't stop you)**
+            - Now look at the background.
+            - **Case A (Prop as Canvas):** Is the Hero small, sitting on a huge uniform object (like a watch on a big white shell)? -> Choose **'OVERLAY'**.
+            - **Case B (Clean Space):** Is the Hero off-center (Left/Right), leaving a huge empty sky/wall? -> Choose **'OVERLAY'**.
+
+            **[Decision Logic Summary]**
+            1. **Portrait/Central Human** = **SEPARATED** (Priority 1)
+            2. **Zoomed-in Product** = **SEPARATED** (Priority 2)
+            3. **Small Hero + Big Uniform Prop** = **OVERLAY** (Priority 3)
+            4. **Small Hero + Clean Sky/Wall** = **OVERLAY** (Priority 4)
+
+            **[JSON Data Structure]**
+            1. thought_process: [
+                "Step 1: Hero is 'Man'...",
+                "Step 2: The Man is located in the center and fills 70% of the frame...",
+                "Step 3: Background is white, BUT Step 2 (Central Portrait) overrides it...",
+                "Step 4: Decision 'Separated' to protect the subject."
+            ]
+            2. layout_strategy:
+                - recommendation: "Overlay" or "Separated"
+                - reason: "Central portrait requires separation despite clean background."
+            3. metadata: 
+                - mood, dominant_colors, lighting
+                - design_guide: text_contrast, font_recommendation
+                - dominant_position: "Left", "Right", "Center" 
+            4. safe_areas: [[ymin, xmin, ymax, xmax], ...] (Return [] if Separated)
+
+            RETURN ONLY RAW JSON. NO MARKDOWN.
+
+            **[JSON Response Example]**
+            {{
+                "thought_process": [
+                    "Step 1: User request is about a 'Watch'.",
+                    "Step 2: Found the Watch on the right side.",
+                    "Step 3: The large object on the left is a white Seashell (Prop).",
+                    "Step 4: The shell's surface is white and smooth.",
+                    "Step 5: Choosing 'Overlay' to place text on the shell."
+                ],
+                "layout_strategy": {{
+                    "recommendation": "Overlay",
+                    "reason": "Although the shell is large, it serves as a smooth, uniform background prop for the watch (Hero)."
+                }},
+                "metadata": {{
+                    "mood": "Oceanic, Luxury",
+                    "dominant_colors": ["#F5F5F5", "#003366", "#111111"],
+                    "lighting": "Soft studio light",
+                    "design_guide": {{
+                        "text_contrast": "Dark",
+                        "font_recommendation": "Sans-serif"
+                    }},
+                    "composition_analysis": {{
+                        "visual_weight": "Right-heavy (Watch)",
+                        "gaze_direction": "Left"
+                    }},
+                    "texture_context": {{
+                        "dominant_texture": "Smooth Shell Surface",
+                        "seasonal_vibe": "Summer"
+                    }}
+                }},
+                "safe_areas": [[100, 50, 800, 500]],
             }}
-        }},
-        "safe_areas": [[100, 50, 800, 500]]
-    }}
-    
-    RETURN ONLY RAW JSON. DO NOT USE MARKDOWN.
-    """
+            
+            RETURN ONLY RAW JSON. DO NOT USE MARKDOWN.
+            """
+        
+        try:
+            # [New Code]
+            image_bytes = base64.b64decode(b64_data)
+            # 2. Bytes를 메모리 파일(IO)로 변환 후 PIL로 열기
+            img = Image.open(io.BytesIO(image_bytes))
+            
+            # 3. Gemini에게 전송
+            response = model.generate_content([prompt, img])
+            
+            # JSON 정제
+            json_res = response.text.replace("```json", "").replace("```", "").strip()
 
-    try:
-        # 👇 [핵심 수정] Base64 문자열을 이미지로 변환하는 로직
-        # 1. Base64 디코딩
-        image_bytes = base64.b64decode(image_data)
-        
-        # 2. Bytes를 메모리 파일(IO)로 변환 후 PIL로 열기
-        img = Image.open(io.BytesIO(image_bytes))
-        
-        # 3. Gemini에게 전송
-        response = model.generate_content([prompt, img])
-        
-        # JSON 정제
-        json_res = response.text.replace("```json", "").replace("```", "").strip()
-        return {"vision_result": json.loads(json_res)}
-        
-    except Exception as e:
-        print(f"❌ Vision Analysis Error: {e}")
-        return {"vision_result": None}
+            # [New Code]
+            vision_results[article_id] = json.loads(json_res)
+
+        except Exception as e:
+            print(f"❌ Vision Error (ID: {article_id}): {e}")
+            # 실패 시 기본값 저장
+            vision_results[article_id] = {
+                "layout_strategy": {"recommendation": "Separated"},
+                "metadata": {"mood": "General"},
+                "safe_areas": [],
+                "dominant_colors": ["#FFFFFF", "#000000"]
+            }
+
+    return {"vision_result": vision_results}

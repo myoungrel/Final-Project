@@ -5,50 +5,16 @@ from src.config import config
 
 def run_planner(state: MagazineState) -> dict:
     print("--- [Planner] 매거진 컨셉 기획 중... ---")
-    
-    # 1. user_input 데이터 안전하게 가져오기 (타입 체크 및 데이터 정제)
-    raw_input = state["user_input"]
-    
-    # 기본값 설정
-    title_text = "Untitled"
-    request_text = ""
 
-    # (A) 입력이 딕셔너리인 경우 (Streamlit 등에서 구조화해서 보냄)
-    if isinstance(raw_input, dict):
-        title_text = raw_input.get("title", "Untitled")
-        # request 키가 없으면 전체를 문자열로 변환하거나 topic 사용
-        request_text = raw_input.get("request", raw_input.get("topic", str(raw_input)))
-        
-    # (B) 입력이 문자열인 경우 (단순 텍스트 입력)
-    elif isinstance(raw_input, str):
-        title_text = "Untitled" # 문자열만 왔을 땐 제목을 알 수 없음
-        request_text = raw_input
-        
-    # 2. Vision 데이터 검증 및 기본값 설정
-    vision_result = state.get("vision_result")
+    user_inputs = state.get("user_input", []) # List[Dict]
+    vision_results = state.get("vision_result", {}) # Dict[id, result]
     
-    if not vision_result:
-        print("❌ [Critical] Vision 데이터 누락. 기본값으로 진행합니다.")
-        vision_result = {
-            "layout_strategy": {"recommendation": "Overlay"}, # 기본은 덮어쓰기
-            "img_mood": "Modern",
-            "safe_areas": "center"
-        }
-    
-    # Vision이 제안한 전략 (Overlay vs Separated) 가져오기
-    strategy = vision_result.get("layout_strategy", {}).get("recommendation", "Overlay")
-    
-    # Mood (metadata 안에 있을 수 있음)
-    img_mood = vision_result.get("metadata", {}).get("mood", "Modern")
-    if not img_mood: img_mood = "Modern"
-        
-    # Safe Areas (Vision이 'safe_areas'로 줌)
-    safe_areas = vision_result.get("safe_areas", "Center")
-    
-    print(f"✅ Vision 제안: {strategy} / Mood: {img_mood} / Area: {safe_areas}")
-
     llm = config.get_llm()
     parser = JsonOutputParser()
+    
+    # [New Code]
+    # 결과를 담을 딕셔너리
+    plans = {}
 
     # 3. 기획 프롬프트 (메뉴판 제공)
     # [수정] {title} 외에 {user_request}를 추가하여 문맥 파악 능력 향상
@@ -62,7 +28,8 @@ def run_planner(state: MagazineState) -> dict:
         - Image Mood: {img_mood}
         - Title: {title}
         - User Request: {user_request}
-        - Safe Zone: {safe_areas}
+        - Style Preference: {user_style}
+        - Safe Aareas / Subject Position: {safe_areas}
 
         [LAYOUT MENU - Choose ONE based on Strategy]
         
@@ -77,6 +44,7 @@ def run_planner(state: MagazineState) -> dict:
         [TASK]
         1. Analyze the inputs and select the best Type from the menu above.
         2. If 'Separated', choose a background color that matches the image mood.
+        3. Respect the [Style Preference] if provided by the user.
 
         Return JSON:
         {{
@@ -93,29 +61,48 @@ def run_planner(state: MagazineState) -> dict:
 
     chain = prompt | llm | parser
 
-    try:
-        # [수정] 위에서 정제한 title_text와 request_text를 넘겨줍니다.
-        # 이제 .get() 에러가 발생하지 않습니다.
-        plan = chain.invoke({
-            "title": title_text,
-            "user_request": request_text,
-            "img_mood": img_mood, 
-            "strategy": strategy,
-            "safe_areas": safe_areas
-        })
+    for item in user_inputs:
+        a_id = str(item.get("id"))
+        title_text = item.get("title", "Untitled")
+        request_text = item.get("request", "")
+        style_pref = item.get("style", "Modern")
         
-        plan["layout_mode"] = strategy  # "Overlay" or "Separated"
+        # 해당 ID의 Vision 결과 가져오기 (없으면 기본값)
+        v_res = vision_results.get(a_id, {})
+        
+        # Vision 결과 파싱
+        strategy = v_res.get("layout_strategy", {}).get("recommendation", "Separated")
+        metadata = v_res.get("metadata", {})
+        img_mood = metadata.get("mood", "General")
+        safe_areas = metadata.get("dominant_position", "Center")
 
-        print(f"🧠 기획 확정: {plan.get('selected_type')} (전략: {strategy})")
-        
-        return {
-            "planner_result": plan,
-            "vision_result": vision_result,
-            "logs": [f"Planner: {plan.get('selected_type')} 선정"]
+        print(f"🧠 기획 중... ID:{a_id} | 전략:{strategy} | 스타일:{style_pref} | 위치:{safe_areas}")
+
+        try:
+            # 👇 [수정됨] chain.invoke 안에 "safe_areas" 키 추가 (에러 해결)
+            plan = chain.invoke({
+                "title": title_text,
+                "user_request": request_text,
+                "user_style": style_pref,
+                "img_mood": img_mood,
+                "strategy": strategy,
+                "safe_areas": safe_areas  # <--- [여기 추가 필수!] 이게 없어서 에러가 났습니다.
+            })
+            
+            # ID별로 계획 저장
+            plans[a_id] = plan
+            
+        except Exception as e:
+            print(f"❌ Planner Error (ID: {a_id}): {e}")
+            # 에러 시 안전한 기본값
+            fallback_type = "TYPE_EDITORIAL_SPLIT" if strategy == "Separated" else "TYPE_FASHION_COVER"
+            plans[a_id] = {
+                "selected_type": fallback_type,
+                "concept_rationale": "Error Fallback",
+                "layout_guide": {"font_theme": "Sans-serif"}
+            }
+
+    return {
+            "planner_result": plans, # Dict[id, plan_json]
+            "logs": [f"Planner: {len(plans)}개 기사 기획 완료"]
         }
-
-    except Exception as e:
-        print(f"❌ Planner Error: {e}")
-        # 에러 시 안전한 기본값 반환
-        fallback_type = "TYPE_EDITORIAL_SPLIT" if strategy == "Separated" else "TYPE_FASHION_COVER"
-        return {"planner_result": {"selected_type": fallback_type}, "logs": ["Error"]}

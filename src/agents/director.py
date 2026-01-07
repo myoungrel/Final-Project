@@ -9,30 +9,6 @@ def run_director(state: MagazineState) -> dict:
     print("--- [5] Art Director: Generating SDUI Design Spec ---")
     llm = config.get_llm()
     parser = JsonOutputParser()
-    
-    # 1. Input Data Extraction
-    planner_data = state.get("planner_result", {}) or {}
-    plan_details = planner_data.get("plan") if isinstance(planner_data, dict) else None
-    plan_details = plan_details if isinstance(plan_details, dict) else planner_data
-
-    # [중요] Planner가 결정한 큰 틀 가져오기
-    # plan 딕셔너리 구조에 따라 접근 경로 주의 (planner_data['plan']['layout_mode'] 일 수도 있음)    
-    target_tone = plan_details.get("selected_type", "Elegant Style")
-    layout_mode = plan_details.get("layout_mode", "Overlay") # "Overlay" or "Separated"
-    
-    instructions = plan_details.get("director_instructions", {})
-    color_suggestion = instructions.get("color_palette_suggestion", "Contrast")
-    font_vibe = instructions.get("font_vibe", "Clean Sans-serif")
-
-    vision_data = state.get("vision_result", {})
-    
-    # Vision Data
-    extracted_colors = (
-        vision_data.get("dominant_colors")
-        or vision_data.get("metadata", {}).get("hex_colors")
-        or ["#000000", "#FFFFFF"]
-        )
-    safe_areas = vision_data.get("safe_areas") or vision_data.get("space_analysis") or "Center"
 
     # ------------------------------------------------------------------
     # [프롬프트 설계 의도]
@@ -125,33 +101,116 @@ def run_director(state: MagazineState) -> dict:
     )
     
     chain = prompt | llm | parser
-        
-    try:
-        design_spec = chain.invoke({
-            "layout_mode": layout_mode,
-            "target_tone": target_tone,
-            "color_suggestion": color_suggestion,
-            "font_vibe": font_vibe,
-            "extracted_colors": str(extracted_colors),
-            "safe_areas": safe_areas
-        })
-        
-        # [안전장치] LLM이 실수할 수 있으니 강제로 동기화
-        design_spec['is_overlay'] = (layout_mode.lower() == 'overlay')
 
-    except Exception as e:
-        print(f"❌ Director Error: {e}")
-        # Fail-Safe
-        is_overlay = (layout_mode.lower() == 'overlay')
-        design_spec = {
-            "is_overlay": is_overlay,
-            "layout_config": {"container_bg": "#FFFFFF", "text_alignment": "center"},
-            "theme": {"primary_color": "#000000"}
+    # ------------------------------------------------------------------
+    # 2. 실행 분기 (Strict Type Check)
+    # ------------------------------------------------------------------
+    user_input = state.get("user_input")
+
+    # [Case A] 다중 입력 (List) -> 반복문 실행
+    if isinstance(user_input, list):
+        print(f"🔄 다중 처리 모드 감지: {len(user_input)}건 처리 시작")
+        design_specs = {}
+        
+        # 다중 모드일 때는 plan과 vision_result가 ID를 키로 하는 Dict여야 함
+        plans = state.get("planner_result", {})
+        vision_results = state.get("vision_result", {})
+
+        for item in user_input:
+            a_id = str(item.get("id"))
+            
+            # 해당 ID의 데이터 로드
+            plan_details = plans.get(a_id, {})
+            vis_data = vision_results.get(a_id, {})
+            metadata = vis_data.get("metadata", {})
+            
+            # --- 변수 매핑 (기존 Director 변수명 준수) ---
+            target_tone = plan_details.get("selected_type", "Elegant Style")
+            layout_mode = plan_details.get("layout_mode", "Overlay")
+            
+            # Planner의 layout_guide -> Director 변수
+            layout_guide = plan_details.get("layout_guide", {})
+            bg_color = layout_guide.get("background_color")
+            color_suggestion = f"Match with {bg_color}" if bg_color else "Contrast"
+            font_vibe = layout_guide.get("font_theme", "Clean Sans-serif")
+            
+            # Vision Data
+            extracted_colors = (
+                metadata.get("dominant_colors") 
+                or vis_data.get("dominant_colors") 
+                or ["#000000", "#FFFFFF"]
+            )
+            safe_areas = metadata.get("dominant_position") or vis_data.get("safe_areas") or "Center"
+
+            print(f"🎨 [ID:{a_id}] Designing... Tone:{target_tone} | Mode:{layout_mode}")
+
+            try:
+                spec = chain.invoke({
+                    "layout_mode": layout_mode,
+                    "target_tone": target_tone,
+                    "color_suggestion": color_suggestion,
+                    "font_vibe": font_vibe,
+                    "extracted_colors": str(extracted_colors),
+                    "safe_areas": safe_areas
+                })
+                design_specs[a_id] = spec
+            except Exception as e:
+                print(f"❌ Error [ID:{a_id}]: {e}")
+                design_specs[a_id] = {
+                    "layout_strategy": str(layout_mode),
+                    "theme": {"mood": "Error Fallback"}
+                }
+
+        return {
+            "design_spec": design_specs, 
+            "logs": [f"Director: Batch generated {len(design_specs)} specs"]
         }
 
-    print(f"🎨 디자인 스펙 생성 완료 (Mode: {layout_mode})")
-    
-    return {
-        "design_spec": design_spec,
-        "logs": [f"Director: Spec generated for {layout_mode}"]
-    }
+    # [Case B] 단일 입력 (Dict) -> 단일 실행
+    else:
+        print("👤 단일 처리 모드 감지")
+        
+        # 단일 모드용 데이터 로드
+        plan_details = state.get("planner_result", {})
+        vision_data = state.get("vision_result", {})
+        
+        # --- 변수 매핑 (기존 Director 변수명 준수) ---
+        target_tone = plan_details.get("selected_type", "Elegant Style")
+        layout_mode = plan_details.get("layout_mode", "Overlay")
+        
+        layout_guide = plan_details.get("layout_guide", {})
+        bg_color = layout_guide.get("background_color")
+        color_suggestion = f"Match with {bg_color}" if bg_color else "Contrast"
+        font_vibe = layout_guide.get("font_theme", "Clean Sans-serif")
+        
+        extracted_colors = (
+            vision_data.get("dominant_colors")
+            or vision_data.get("metadata", {}).get("dominant_colors")
+            or ["#000000", "#FFFFFF"]
+        )
+        safe_areas = vision_data.get("safe_areas") or vision_data.get("space_analysis") or "Center"
+
+        try:
+            design_spec = chain.invoke({
+                "layout_mode": layout_mode,
+                "target_tone": target_tone,
+                "color_suggestion": color_suggestion,
+                "font_vibe": font_vibe,
+                "extracted_colors": str(extracted_colors),
+                "safe_areas": safe_areas
+            })
+            
+            # 안전장치
+            design_spec['is_overlay'] = (str(layout_mode).lower() == 'overlay')
+
+        except Exception as e:
+            print(f"❌ Director Error: {e}")
+            design_spec = {
+                "layout_strategy": str(layout_mode),
+                "theme": {"mood": "Error Fallback"}
+            }
+
+        return {
+            "design_spec": design_spec,
+            "logs": [f"Director: Spec generated for {layout_mode}"]
+        }
