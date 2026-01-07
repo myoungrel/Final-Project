@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# generated outputs
+output/universal_result.html
+output/
+# Windows Zone.Identifier files
+*:Zone.Identifier
+

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Magazine - Separated</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Oswald:wght@400;700&family=Roboto:wght@400;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+
+  {# ▼▼▼ [수정 1] Python에서 보낸 'styles'와 'split params' 가져오기 ▼▼▼ #}
+  {% set s = data.styles if data.styles else {} %}
+  
+  {# Split 레이아웃 전용 파라미터 (방향, 비율 등) #}
+  {% set lp = (data.layout_params if data.layout_params is defined and data.layout_params else {}) %}
+  {% set sp = (lp.split if lp.split is defined and lp.split else {}) %}
+  
+  {% set direction = (sp.direction | default('row')) %}
+  {% set ratio = (sp.ratio | default(0.55)) %}
+  {% set reverse = (sp.reverse | default(false)) %}
+
+  {# CSS Flex 클래스 설정 #}
+  {% set dir_class = 'dir-col' if direction == 'column' else 'dir-row' %}
+  {% set rev_class = 'is-reverse' if reverse else 'is-normal' %}
+  {# ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ #}
+
+  <style>
+    :root {
+      /* ▼▼▼ [수정 2] Director가 정해준 스타일(s) 변수 연결 ▼▼▼ */
+      
+      /* 기본 배경 및 텍스트 색상 */
+      --page-bg: #ffffff;
+      --text-bg: #ffffff; 
+      
+      /* 텍스트 색상은 Director가 준 값 (없으면 기본 검정) */
+      --text-main: {{ s.color_text_main | default('#111111') }};
+      --text-sub: {{ s.color_text_sub | default('#555555') }};
+      
+      /* 🎨 포인트 컬러 (Director의 Primary Color) */
+      /* publisher.py에서 colors.primary를 s.color_bg로 매핑해서 보냈으므로 그걸 씀 */
+      --accent: {{ s.color_bg | default('#000000') }};
+
+      /* 폰트 적용 */
+      --font-title: {{ s.font_title | default("serif") | safe }};
+      --font-body: {{ s.font_body | default("sans-serif") | safe }};
+      
+      /* 레이아웃 비율 (Publisher가 계산한 값) */
+      --img-flex: {{ ratio }};
+      --txt-flex: {{ 1.0 - ratio }};
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--page-bg);
+      font-family: var(--font-body); /* 본문 폰트 적용 */
+      overflow: hidden; 
+    }
+
+    /* A4 규격 컨테이너 */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background: var(--page-bg);
+      display: flex; /* Flex 레이아웃 */
+    }
+
+    /* 방향 및 순서 설정 */
+    .page.dir-row { flex-direction: row; }
+    .page.dir-col { flex-direction: column; }
+    .page.is-reverse { flex-direction: row-reverse; }
+    .page.dir-col.is-reverse { flex-direction: column-reverse; }
+
+    /* 🖼️ 이미지 섹션 */
+    .image-section {
+      flex: var(--img-flex);
+      position: relative;
+      overflow: hidden;
+      height: 100%; 
+      background-color: #e5e5e5; 
+    }
+
+    .image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      display: block;
+    }
+
+    /* 이미지 라벨 (무드 표시) */
+    .img-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #000;
+      z-index: 5;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    /* 📝 텍스트 섹션 */
+    .text-section {
+      flex: var(--txt-flex);
+      background: var(--text-bg);
+      color: var(--text-main);
+      padding: 14mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    /* 카테고리 (Kicker) */
+    .kicker {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      
+      /* 🎨 포인트 컬러 적용 */
+      color: var(--accent);
+      margin-bottom: 20px;
+      border-top: 4px solid var(--accent); /* 상단 포인트 라인 */
+      
+      padding-top: 10px;
+      display: inline-block;
+      width: 40px;
+    }
+
+    h1 {
+      font-family: var(--font-title); /* 제목 폰트 적용 */
+      font-size: 42px;
+      line-height: 1.1;
+      margin: 0 0 24px 0;
+      color: var(--text-main);
+      word-break: keep-all; 
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      margin: 0 0 24px 0;
+      
+      /* 🎨 소제목 포인트 컬러 */
+      color: var(--accent);
+      
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 15px; 
+      line-height: 1.75;
+      margin: 0;
+      color: var(--text-main);
+      opacity: 0.9;
+      
+      display: -webkit-box;
+      -webkit-line-clamp: 15;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-align: justify; 
+    }
+
+    .caption {
+      margin-top: 30px;
+      font-size: 11px;
+      color: #888;
+      border-left: 2px solid var(--accent); /* 캡션 라인 포인트 */
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body class="page-body">
+  <div class="page {{ dir_class }} {{ rev_class }}">
+    
+    <div class="image-section">
+      {% if images and images.main_img %}
+        <img src="{{ images.main_img }}" alt="Editorial Image" />
+      {% else %}
+        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#eee; color:#999;">
+          NO IMAGE
+        </div>
+      {% endif %}
+      
+      {% set mood = data.vision_result.metadata.mood if data.vision_result and data.vision_result.metadata else 'Collection' %}
+      <div class="img-label">{{ mood }}</div>
+    </div>
+
+    <div class="text-section">
+      {# Kicker #}
+      {% set pr = data.get('planner_result', {}) %}
+      <div class="kicker">{{ pr.get('selected_type', 'EDITORIAL') | replace('TYPE_', '') | replace('_', ' ') }}</div>
+
+      {# Editor 원고 #}
+      {% set m = (data.manuscript if data.manuscript is defined and data.manuscript else None) %}
+      
+      {% if m %}
+        <h1>{{ m.headline | default('Untitled Story') }}</h1>
+        <h3>{{ m.subhead | default('') }}</h3>
+        <p>{{ m.body | replace('\n', '<br>') | default('') }}</p>
+        {% if m.caption %}
+          <div class="caption">{{ m.caption }}</div>
+        {% endif %}
+      
+      {% elif data.content and data.content.blocks %}
+        <h1>{{ data.content.blocks[0].headline | default('Untitled') }}</h1>
+        <h3>{{ data.content.blocks[0].subhead | default('') }}</h3>
+        <p>{{ data.content.blocks[0].body | replace('\n', '<br>') | default('') }}</p>
+      
+      {% else %}
+        <h1>Generating Content...</h1>
+        <p>Wait a moment for the AI to write your story.</p>
+      {% endif %}
+    </div>
+
+  </div>
+</body>
+</html>

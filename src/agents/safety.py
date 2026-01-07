@@ -26,7 +26,22 @@ def run_safety(state: MagazineState) -> dict:
     # 1. Pydantic Parser 설정: LLM이 JSON 형식을 지키도록 강제합니다.
     parser = PydanticOutputParser(pydantic_object=SafetyCheck)
     
+<<<<<<< HEAD
     user_input = state.get("user_input", "") 
+=======
+    # [수정 후] 입력값 타입 안전 처리
+    raw_input = state.get("user_input") 
+
+    # 1. None이거나 값이 비어있으면 빈 문자열로 처리
+    if raw_input is None:
+        user_input = ""
+    # 2. 문자열이 아닌 경우(리스트, 객체 등) 강제로 문자열로 변환
+    elif not isinstance(raw_input, str):
+        user_input = str(raw_input)
+    # 3. 정상 문자열인 경우
+    else:
+        user_input = raw_input
+>>>>>>> main
 
     # 2. 정규표현식을 이용한 사전 PII 검사 (Email, Phone 등)
     email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'

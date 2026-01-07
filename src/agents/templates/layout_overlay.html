@@ -1,30 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Magazine - Overlay</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Magazine - Overlay</title>
 
-    <style>
-        :root {
-            /* 폰트가 없을 때를 대비한 fallback */
-            --font-title: 'Playfair Display', serif;
-            --font-body: 'Lato', sans-serif;
-            
-            /* Director 색상 적용 (없으면 기본값) */
-            --bg-color: {{ data.design_spec.theme.colors.primary | default('#000000') }};
-            --text-main: {{ data.design_spec.theme.colors.text_main | default('#ffffff') }};
-            --text-sub: {{ data.design_spec.theme.colors.text_sub | default('#cccccc') }};
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Oswald:wght@400;700&family=Roboto:wght@400;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
 
-        /* ... (나머지 CSS는 기존과 동일하게 유지하되, font-family가 제대로 먹히는지 확인) ... */
-        h1 {
-            font-family: var(--font-title); /* 이제 Playfair Display가 적용됨 */
-            /* ... */
-        }
-    </style>
+  {# ▼▼▼ [수정 1] Python에서 보낸 'styles'와 'layout_params'를 심플하게 변수에 담기 ▼▼▼ #}
+  {% set s = data.styles if data.styles else {} %}
+  {% set lp = data.layout_params.overlay.box if data.layout_params and data.layout_params.overlay else {} %}
+  {# ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ #}
+
+  <style>
+    :root {
+      /* ▼▼▼ [수정 2] Director가 정해준 스타일(s) 변수 연결 ▼▼▼ */
+      
+      /* 텍스트 색상 (Director가 지정한 값 우선, 없으면 흰색) */
+      --text-main: {{ s.color_text_main | default('#ffffff') }};
+      --text-sub: {{ s.color_text_sub | default('#eeeeee') }};
+      
+      /* 포인트 컬러 (Director가 지정한 Primary Color) */
+      --accent: {{ s.color_bg | default('#ffffff') }};
+      
+      /* 폰트 (Director가 지정한 폰트 패밀리) */
+      --font-title: {{ s.font_title | default("'Playfair Display', serif") | safe }};
+      --font-body: {{ s.font_body | default("'Lato', sans-serif") | safe }};
+
+      /* 레이아웃 (Director가 지정한 위치 및 정렬) */
+      --box-left: {{ lp.left_pct | default(8) }}%;
+      --box-top: {{ lp.top_pct | default(10) }}%;
+      --box-width: {{ lp.width_pct | default(60) }}%;
+      --text-align: {{ lp.align | default('left') }};
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: var(--font-body); /* Director가 정한 본문 폰트 적용 */
+      overflow: hidden;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+      background: #000;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* 🌟 오버레이 박스 스타일 */
+    .overlay-box {
+      position: absolute;
+      z-index: 10;
+      
+      /* 위에서 설정한 변수들이 여기서 작동함 */
+      left: var(--box-left);
+      top: var(--box-top);
+      width: var(--box-width);
+      text-align: var(--text-align);
+      
+      color: var(--text-main);
+      padding: 12mm 10mm;
+      border-radius: 2px;
+      
+      /* 배경: 기본은 반투명 검정 (나중에 s.box_classes를 활용해 바꿀 수도 있음) */
+      background: rgba(0, 0, 0, 0.75); 
+      
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      
+      /* 🎨 Director의 Primary Color가 여기서 왼쪽 줄로 나타남 */
+      border-left: 6px solid var(--accent);
+      
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-right: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .kicker {
+      font-family: 'Oswald', sans-serif; /* 키커는 Oswald 고정 (스타일 유지) */
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 14px;
+      
+      color: var(--accent); /* 포인트 컬러 적용 */
+      margin-bottom: 16px;
+      
+      border-bottom: 1px solid var(--accent); /* 밑줄 포인트 컬러 */
+      
+      display: inline-block;
+      padding-bottom: 4px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    h1 {
+      font-family: var(--font-title); /* Director 폰트 적용 */
+      font-size: 52px;
+      line-height: 1.1;
+      margin: 0 0 16px 0;
+      color: var(--text-main);
+      text-shadow: 0 2px 10px rgba(0,0,0,1.0);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      margin: 0 0 20px 0;
+      color: var(--text-sub);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 0;
+      color: var(--text-main);
+      opacity: 0.95;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    }
+
+    .caption {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #cccccc;
+      border-left: 2px solid var(--accent); /* 캡션 라인 포인트 컬러 */
+      padding-left: 10px;
+    }
+  </style>
 </head>
+
+<body>
+  <div class="page">
+    {# 배경 이미지 #}
+    {% if images and images.main_img %}
+      <img class="bg" src="{{ images.main_img }}" alt="Cover" />
+    {% else %}
+      <div class="bg" style="background: #222;"></div>
+    {% endif %}
+
+    <div class="overlay-box">
+      {# Kicker #}
+      {% set pr = data.get('planner_result', {}) %}
+      <div class="kicker">{{ pr.get('selected_type', 'EDITORIAL') | replace('TYPE_', '') }}</div>    
+
+      {# 본문 내용 #}
+      {% set m = (data.manuscript if data.manuscript is defined and data.manuscript else None) %}
+      {% if m %}
+        <h1>{{ m.headline | default('Untitled') }}</h1>
+        <h3>{{ m.subhead | default('') }}</h3>
+        <p>{{ m.body | replace('\n', '<br>') | default('') }}</p>
+        {% if m.caption %}
+          <div class="caption">{{ m.caption }}</div>
+        {% endif %}
+      
+      {% elif data.content and data.content.blocks %}
+        <h1>{{ data.content.blocks[0].headline | default('Untitled') }}</h1>
+        <h3>{{ data.content.blocks[0].subhead | default('') }}</h3>
+        <p>{{ data.content.blocks[0].body | replace('\n', '<br>') | default('') }}</p>
+        {% if data.content.blocks[0].caption %}
+          <div class="caption">{{ data.content.blocks[0].caption }}</div>
+        {% endif %}
+      
+      {% else %}
+        <h1>Generating Content...</h1>
+        <p>Please wait while the AI writes your article.</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

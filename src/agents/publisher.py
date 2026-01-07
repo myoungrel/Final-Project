@@ -162,6 +162,35 @@ class PublisherAgent:
         return {"direction": direction, "ratio": float(ratio), "reverse": bool(reverse)}
 
     def _compute_overlay_params(self, state: dict) -> dict:
+<<<<<<< HEAD
+=======
+        """
+        [수정됨] Director의 layout_config가 있으면 우선 적용, 없으면 Vision AI fallback
+        """
+        # 1. [NEW] Director의 지시사항 확인 (Design Spec)
+        design_spec = state.get("design_spec") or {}
+        layout_config = design_spec.get("layout_config") or {}
+        
+        # Director가 정한 정렬 값 (예: 'left', 'right', 'center')
+        director_align = layout_config.get("text_alignment")
+        
+        # 2. [NEW] Director가 명확히 지시했다면 강제 적용 (Vision 무시)
+        if director_align:
+            # (디버깅용 로그)
+            print(f"🎨 Director Override: Force Alignment -> {director_align}")
+            
+            # Director 지시에 따른 좌표 하드코딩 (필요하면 비율 조정 가능)
+            if director_align == "right":
+                return {"box": {"left_pct": 45, "top_pct": 10, "width_pct": 50, "align": "right"}}
+            elif director_align == "center":
+                return {"box": {"left_pct": 15, "top_pct": 20, "width_pct": 70, "align": "center"}}
+            else: # left (default)
+                return {"box": {"left_pct": 5, "top_pct": 10, "width_pct": 50, "align": "left"}}
+
+        # ---------------------------------------------------------
+        # 3. [OLD] Director 의견 없으면 기존 Vision 로직 실행 (Fallback)
+        # ---------------------------------------------------------
+>>>>>>> main
         vision = state.get("vision_result") or {}
         meta = state.get("image_meta") or {"width": 0, "height": 0}
         W, H = int(meta.get("width", 0)), int(meta.get("height", 0))
@@ -200,16 +229,72 @@ class PublisherAgent:
 
     def _build_layout_params(self, state: dict) -> None:
         print("🧩 main_img head:", (state.get("images", {}).get("main_img") or "")[:40])
+<<<<<<< HEAD
         state["image_meta"] = self._compute_image_meta(state)
         state.setdefault("layout_params", {})
         state["layout_params"]["split"] = self._compute_split_params(state)
         state["layout_params"]["overlay"] = self._compute_overlay_params(state)
 
         # (옵션) vision alias: downstream 호환용
+=======
+        
+        # 1. 기본 메타 및 레이아웃 계산
+        state["image_meta"] = self._compute_image_meta(state)
+        state.setdefault("layout_params", {})
+        state["layout_params"]["split"] = self._compute_split_params(state)
+        state["layout_params"]["overlay"] = self._compute_overlay_params(state) # 위에서 수정한 함수 호출
+
+        # (옵션) vision alias
+>>>>>>> main
         vision = state.get("vision_result")
         if isinstance(vision, dict):
             vision.setdefault("safe_areas", vision.get("space_analysis") or vision.get("safe_areas") or "Center")
 
+<<<<<<< HEAD
+=======
+        # ---------------------------------------------------------
+        # 2. [NEW] Director 디자인 스타일(CSS 변수화) 주입
+        # ---------------------------------------------------------
+        design = state.get("design_spec") or {}
+        theme = design.get("theme") or {}
+        colors = theme.get("colors") or {}
+        fonts = theme.get("fonts") or {}
+        comp_style = design.get("components_style") or {}
+
+        # 템플릿(HTML)에서 {{ styles.bg_color }} 등으로 쓰기 쉽게 정리
+        state["styles"] = {
+            # 폰트 패밀리 (없으면 기본값)
+            "font_title": fonts.get("title", "serif"),
+            "font_body": fonts.get("body", "sans-serif"),
+            
+            # 색상 코드
+            "color_bg": colors.get("primary", "#000000"),
+            "color_text_main": colors.get("text_main", "#ffffff"),
+            "color_text_sub": colors.get("text_sub", "#cccccc"),
+            
+            # 박스 스타일 (Director가 준 Tailwind 클래스 혹은 CSS 값 조립)
+            "box_classes": self._parse_box_style(comp_style.get("content_box", {}))
+        }
+    
+    # [NEW] 헬퍼 함수: Director의 Dict 스타일을 Tailwind 클래스 문자열로 변환
+    def _parse_box_style(self, box_spec: dict) -> str:
+        """
+        Director가 준 content_box 스타일을 HTML class 문자열로 합침
+        """
+        if not box_spec:
+            # 기본값: 흰 배경, 반투명, 패딩, 둥근 모서리
+            return "bg-white/80 p-8 rounded-xl shadow-lg backdrop-blur-sm"
+            
+        classes = []
+        # Director가 "bg_color": "bg-white/90" 처럼 Tailwind 클래스로 줬다고 가정
+        if box_spec.get("bg_color"): classes.append(box_spec["bg_color"])
+        if box_spec.get("padding"): classes.append(box_spec["padding"])
+        if box_spec.get("shadow"): classes.append(box_spec["shadow"])
+        if box_spec.get("border_radius"): classes.append(box_spec["border_radius"])
+        if box_spec.get("backdrop_blur"): classes.append(box_spec["backdrop_blur"])
+        
+        return " ".join(classes)
+>>>>>>> main
 
 
     def _human_in_the_loop(self, state):
@@ -232,6 +317,7 @@ class PublisherAgent:
         print("="*50 + "\n")
         return state
 
+<<<<<<< HEAD
 
     # ------------------------------------------------------------------
     # [DEBUG + FIX VERSION] run_process (함수 호출 없이 내부 해결)
@@ -409,6 +495,156 @@ class PublisherAgent:
             print(f"에러 메시지: {e}")
             traceback.print_exc()
             return state
+=======
+    def run_process(self, state, enable_hitl=False):
+        """
+        에이전트 실행 메인 메서드 (Multi-Page Loop 지원)
+        """
+        print("--- [Node 7] Publisher Agent 작동 시작 ---")
+
+        # ------------------------------------------------------------------
+        # 1. 데이터 모드 확인 (Single vs Multi)
+        # ------------------------------------------------------------------
+        user_input = state.get("user_input")
+        is_multi_mode = isinstance(user_input, list)
+        
+        # 처리할 아이템 리스트 생성
+        if is_multi_mode:
+            items_to_process = user_input
+            plans_map = state.get("planner_result") or {}
+            visions_map = state.get("vision_results") or state.get("vision_result") or {}
+            manuscripts_map = state.get("manuscript") or {}
+            designs_map = state.get("design_spec") or {}
+            
+            # 🚨 [안전장치] image_data가 리스트로 올 경우 Dict로 변환하여 에러 방지
+            raw_imgs = state.get("image_data") or state.get("images")
+            if isinstance(raw_imgs, list):
+                # 리스트라면 user_input의 순서에 맞춰서 임시 매핑
+                images_map = {}
+                for idx, img in enumerate(raw_imgs):
+                    if idx < len(items_to_process):
+                        u_id = str(items_to_process[idx].get("id", f"img_{idx}"))
+                        images_map[u_id] = img
+            elif isinstance(raw_imgs, dict):
+                images_map = raw_imgs
+            else:
+                images_map = {}
+        else:
+            # 단일 모드: 가짜 ID 'main' 사용
+            items_to_process = [{"id": "main"}]
+            plans_map = {"main": state.get("planner_result", {})}
+            visions_map = {"main": state.get("vision_result", {})}
+            manuscripts_map = {"main": state.get("manuscript", {})}
+            designs_map = {"main": state.get("design_spec", {})}
+            # 단일 이미지 처리
+            single_img = state.get("image_data") or (state.get("images", {}).get("main_img") if isinstance(state.get("images"), dict) else None)
+            images_map = {"main": single_img}
+
+        accumulated_html = []
+
+        # ------------------------------------------------------------------
+        # 2. 반복문 실행 (페이지별 렌더링)
+        # ------------------------------------------------------------------
+        for item in items_to_process:
+            a_id = str(item.get("id", "main"))
+            print(f"🖨️ Publishing Page [ID:{a_id}]...")
+
+            # (A) Local State 생성
+            local_state = {
+                "user_input": item,
+                "planner_result": plans_map.get(a_id, {}),
+                "vision_result": visions_map.get(a_id, {}),
+                "manuscript": manuscripts_map.get(a_id, {}),
+                "design_spec": designs_map.get(a_id, {}),
+                "intent": state.get("intent"),
+                "images": {} 
+            }
+
+            # (B) 이미지 처리 및 최적화
+            raw_img = images_map.get(a_id)
+            if raw_img:
+                # data URI 처리
+                payload = raw_img
+                if isinstance(payload, str) and payload.startswith("data:image"):
+                    payload = payload.split(",", 1)[-1]
+                
+                # 최적화 실행
+                optimized = self._optimize_image(payload)
+                if optimized:
+                    local_state["images"]["main_img"] = f"data:image/jpeg;base64,{optimized}"
+                else:
+                    # 실패 시 원본 사용
+                    if isinstance(raw_img, str) and raw_img.startswith("data:image"):
+                        local_state["images"]["main_img"] = raw_img
+                    elif optimized is None and payload:
+                        local_state["images"]["main_img"] = f"data:image/jpeg;base64,{payload}"
+
+            # (C) 레이아웃 파라미터 계산
+            self._build_layout_params(local_state)
+
+            # (D) 템플릿 선택
+            try:
+                planner_data = local_state.get("planner_result", {})
+                intent = local_state.get("intent") or planner_data.get("selected_type", "")
+                intent_str = str(intent).upper()
+                
+                vision = local_state.get("vision_result", {})
+                strategy = str((vision.get("layout_strategy") or {}).get("recommendation") or planner_data.get("layout_mode") or "")
+                
+                if strategy.lower() == "separated":
+                    current_template_name = "layout_separated.html"
+                elif ("SPLIT" in intent_str) or ("PRODUCT" in intent_str) or ("SEPARATED" in intent_str):
+                    current_template_name = "layout_separated.html"
+                else:
+                    current_template_name = "layout_overlay.html"
+
+                # (E) 데이터 호환성 보정
+                m = local_state.get("manuscript")
+                if m and isinstance(m, dict):
+                    local_state.setdefault("content", {"blocks": [{}]})
+                    b0 = local_state["content"]["blocks"][0]
+                    b0["headline"] = m.get("headline", "Untitled")
+                    b0["subhead"] = m.get("subhead", "")
+                    b0["body"] = m.get("body", "")
+                    b0["caption"] = m.get("caption", "")
+
+                # (F) 단일 페이지 렌더링
+                template = self.env.get_template(current_template_name)
+                page_html = template.render(data=local_state, images=local_state.get('images', {}))
+                
+                accumulated_html.append(page_html)
+
+            except Exception as e:
+                print(f"❌ Page Render Error [ID:{a_id}]: {e}")
+                accumulated_html.append(f"<div class='page'><h3>Error Rendering Page {a_id}: {e}</h3></div>")
+
+        # ------------------------------------------------------------------
+        # 3. 최종 결과 합치기
+        # ------------------------------------------------------------------
+        final_output = "\n".join(accumulated_html)
+        
+        # A4 스타일 및 페이지 넘김 강제 적용
+        global_style = """
+            <style>
+                @media print {
+                    .page { break-after: always; page-break-after: always; }
+                    body { margin: 0; padding: 0; }
+                }
+            </style>
+        """
+        final_output = global_style + final_output
+
+        # 4. 결과 저장
+        state["html_code"] = final_output
+        
+        output_path = os.path.join(self.project_root, "output", "final_magazine.html")
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(final_output)
+        
+        print(f"✅ 매거진 조립 완료: {output_path} (총 {len(accumulated_html)} 페이지)")
+        return state
+>>>>>>> main
 
 # ---------------------------------------------------------
 # [중요] 외부 파일(main.py)에서 import 할 수 있도록 함수 노출
