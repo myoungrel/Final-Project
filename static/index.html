@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Magazine Generator</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f0f2f6; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background-color: #ff4b4b; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #ff3333; }
+        #result-area { margin-top: 30px; border: 1px solid #ddd; padding: 10px; background: white; min-height: 400px; }
+        iframe { width: 100%; height: 800px; border: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 AI Magazine Maker</h1>
+        
+        <div class="form-group">
+            <label>제목 (Headline)</label>
+            <input type="text" id="title" value="Summer Vibes">
+        </div>
+
+        <div class="form-group">
+            <label>스타일 (Style)</label>
+            <select id="style">
+                <option value="Modern">Modern</option>
+                <option value="Elegant">Elegant</option>
+                <option value="Retro">Retro</option>
+                <option value="Bold">Bold</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>요청사항 (Prompt)</label>
+            <textarea id="request" rows="3">이 사진에 어울리는 감성적인 에세이 써줘</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>사진 업로드</label>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <button onclick="generateMagazine()">매거진 생성 시작! 🚀</button>
+
+        <div id="loading" style="display:none; text-align:center; margin-top:20px;">
+            ⏳ AI 에이전트 팀이 작업 중입니다... (약 10~20초 소요)
+        </div>
+    </div>
+
+    <div id="result-area" style="display:none;">
+        <h3>✨ 생성 결과</h3>
+        <div id="output-frame"></div>
+    </div>
+
+    <script>
+        // 이미지를 Base64로 변환하는 함수
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
+        async function generateMagazine() {
+            const title = document.getElementById('title').value;
+            const style = document.getElementById('style').value;
+            const request = document.getElementById('request').value;
+            const fileInput = document.getElementById('imageInput');
+
+            if (fileInput.files.length === 0) {
+                alert("사진을 업로드해주세요!");
+                return;
+            }
+
+            // UI 상태 변경
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result-area').style.display = 'none';
+
+            try {
+                // 1. 이미지 변환
+                const base64Img = await toBase64(fileInput.files[0]);
+
+                // 2. 서버로 보낼 데이터 구성 (server.py의 Pydantic 모델과 일치해야 함)
+                const payload = {
+                    articles: [{
+                        id: "0",
+                        title: title,
+                        request: request,
+                        style: style,
+                        is_generated: true,
+                        image_base64: base64Img
+                    }]
+                };
+
+                // 3. FastAPI 서버로 요청 전송
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error("Server Error");
+
+                // 4. 결과 HTML 받아서 표시
+                const htmlContent = await response.text();
+                const frameContainer = document.getElementById('output-frame');
+                frameContainer.innerHTML = `<iframe srcdoc='${htmlContent.replace(/'/g, "&apos;")}' sandbox="allow-scripts allow-same-origin"></iframe>`;
+                
+                document.getElementById('result-area').style.display = 'block';
+
+            } catch (error) {
+                alert("에러 발생: " + error.message);
+                console.error(error);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
