@@ -202,9 +202,12 @@ def run_editor(state: MagazineState) -> dict:
         metadata = vis_data.get("metadata", {})
         
         # 🎯 [톤 결정 로직] Planner 우선 -> 사용자 입력 style 순
-        planned_tone = plan_data.get("target_tone") or plan_data.get("tone")
+        planned_tone = plan_data.get("selected_type") or plan_data.get("tone")
         user_pref_style = item.get("style", "Elegant")
-        target_layout = plan_data.get("layout", "overlay") # Layout 정보
+
+        vision_strategy_data = vis_data.get("layout_strategy", {})
+        target_layout = vision_strategy_data.get("recommendation", "Overlay")
+        
 
         if planned_tone:
             target_tone = planned_tone

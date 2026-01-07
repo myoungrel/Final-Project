@@ -126,7 +126,8 @@ def run_director(state: MagazineState) -> dict:
             
             # --- 변수 매핑 (기존 Director 변수명 준수) ---
             target_tone = plan_details.get("selected_type", "Elegant Style")
-            layout_mode = plan_details.get("layout_mode", "Overlay")
+            vision_strategy = vis_data.get("layout_strategy", {})
+            layout_mode = vision_strategy.get("recommendation", "Overlay")
             
             # Planner의 layout_guide -> Director 변수
             layout_guide = plan_details.get("layout_guide", {})
@@ -176,7 +177,8 @@ def run_director(state: MagazineState) -> dict:
         
         # --- 변수 매핑 (기존 Director 변수명 준수) ---
         target_tone = plan_details.get("selected_type", "Elegant Style")
-        layout_mode = plan_details.get("layout_mode", "Overlay")
+        vision_strategy = vision_data.get("layout_strategy", {})
+        layout_mode = vision_strategy.get("recommendation", "Overlay")
         
         layout_guide = plan_details.get("layout_guide", {})
         bg_color = layout_guide.get("background_color")
