@@ -38,7 +38,7 @@ def run_editor(state: MagazineState) -> dict:
 
     # ✨ [New Logic] 다중 입력 데이터 로드
     user_inputs = state.get("user_input", [])       # List[Dict]
-    plans = state.get("plan", {})                  # Dict[id, plan_json]
+    plans = state.get("planner_result", {})                  # Dict[id, plan_json]
     vision_results = state.get("vision_result", {}) # Dict[id, vision_json]
     
     manuscripts = [] # ✨ 최종 결과물 리스트
@@ -104,8 +104,11 @@ def run_editor(state: MagazineState) -> dict:
         - The final output must be in **ENGLISH**.
         - Do NOT invent new fictional stories. Keep the facts intact.
         - Do not add any new entities, places, dates, or numbers not present in the source.
-        - ONLY change the 'Tone', 'Style', and 'Vocabulary' to match the [Target Tone].
-        
+        - **Primary Task**: Correct spelling, grammar, punctuation, and spacing errors.
+        - **Tone Policy**: Preserve the user's original voice and style as much as possible.
+        - **Exception**: ONLY modify the tone if the current text is **critically mismatched** with the [Target Tone] (e.g., Slang in a Medical article). Otherwise, keep it as is.
+
+
         [Input Data]
         - User Request (Source): {user_request}
         - Planner Intent: {planner_intent}
@@ -115,16 +118,16 @@ def run_editor(state: MagazineState) -> dict:
         - **Visual Context**: {image_desc} (Use ONLY for Caption generation)
         
         [Directives]
-        1. **Tone Matching Strategy (The 8 Archetypes)**: 
-           Apply the [{target_tone}] style strictly. Use the definitions below as your writing guide:
-           - **(A) Elegant & Lyrical**: Use poetic, flowing sentences and sophisticated vocabulary. (e.g., Fashion, Art)
-           - **(B) Bold & Energetic**: Use punchy, active voice, strong verbs, and short sentences. (e.g., Sports, Trends)
-           - **(C) Analytical & Professional**: Use precise, objective language. Focus on logic and clarity. No contractions. (e.g., Tech, Biz)
-           - **(D) Friendly & Conversational**: Use warm, inviting language. Address the reader ("You"). Use contractions. (e.g., Travel)
-           - **(E) Witty & Satirical**: Use clever wordplay, irony, and a sharp, humorous voice. (e.g., Culture, Opinion)
-           - **(F) Dramatic & Cinematic**: Build suspense and emotion. Use sensory details to create a scene. (e.g., Documentary)
-           - **(G) Minimalist & Clean**: Use very concise, dry, and direct sentences. Remove all fluff. (e.g., Design, Modern)
-           - **(H) Nostalgic & Warm**: Use evocative language referencing the past. Create a cozy atmosphere. (e.g., Retro, History)
+        1. **Tone Reference (For Consistency Check)**: 
+           Use the definitions below to check for "Critical Mismatches". Do not force this style if the original text is already acceptable.
+           - **(A) Elegant & Lyrical**: Poetic, flowing, sophisticated.
+           - **(B) Bold & Energetic**: Punchy, active voice, strong verbs.
+           - **(C) Analytical & Professional**: Precise, objective, logic-focused.
+           - **(D) Friendly & Conversational**: Warm, inviting, uses "You".
+           - **(E) Witty & Satirical**: Clever wordplay, sharp humor.
+           - **(F) Dramatic & Cinematic**: Suspenseful, emotional, sensory.
+           - **(G) Minimalist & Clean**: Concise, dry, direct.
+           - **(H) Nostalgic & Warm**: Evocative, cozy, retro.
            
         2. **Smart Captioning (The Bridge)**: 
            - Do NOT mention the image in the 'Body'.
@@ -201,7 +204,8 @@ def run_editor(state: MagazineState) -> dict:
         # 🎯 [톤 결정 로직] Planner 우선 -> 사용자 입력 style 순
         planned_tone = plan_data.get("target_tone") or plan_data.get("tone")
         user_pref_style = item.get("style", "Elegant")
-        
+        target_layout = plan_data.get("layout", "overlay") # Layout 정보
+
         if planned_tone:
             target_tone = planned_tone
             print(f"   -> 💡 Planner 전략 적용: {target_tone}")
@@ -239,11 +243,12 @@ def run_editor(state: MagazineState) -> dict:
             is_polish_mode = len(req_text.strip()) > 50
             
             if is_polish_mode:
+                # 📝 [수정] 교정 모드: "쓰기"가 아니라 "고치기"에 집중
                 mode_instruction = """
-                MODE: Polish & Format (User provided a draft)
-                - The user has provided a full draft. DO NOT change the core facts or story.
-                - Your job is to improve the grammar, flow, and vocabulary to match the [Target Tone].
-                - Ensure it reads like a high-end magazine article while keeping the original meaning.
+                MODE: Proofreading & Minor Fixes (User provided a draft)
+                - The user has provided a full draft. **Preserve the original meaning and nuances.**
+                - Focus strictly on correcting grammar, spelling, and awkward phrasing.
+                - Only adjust the tone if it is completely inappropriate for the [Target Tone].
                 """
             else:
                 mode_instruction = """
@@ -286,6 +291,8 @@ def run_editor(state: MagazineState) -> dict:
                     "caption": "Image context missing",
                     "tags": ["Error"]
                 }
+        # ✨ Layout 정보 주입
+        article_content["layout"] = target_layout
         
         # ✅ 결과 리스트 적재
         manuscripts.append(article_content)
