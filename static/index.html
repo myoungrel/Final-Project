@@ -5,66 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Magazine Generator</title>
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f0f2f6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f0f2f6; }
         .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #333; }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; }
+        
+        /* --- [1. 카드 및 삭제 버튼 스타일 추가] --- */
+        .article-card { 
+            background: #fff; 
+            border: 1px solid #ddd; 
+            border-left: 5px solid #ff4b4b; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 8px; 
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .article-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .article-number { font-weight: bold; color: #ff4b4b; font-size: 1.1em; }
+        .remove-btn { background: #666; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .remove-btn:hover { background: #444; }
+
         .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
         input[type="text"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background-color: #ff4b4b; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
-        button:hover { background-color: #ff3333; }
+        
+        /* --- [2. 버튼 그룹 스타일 추가] --- */
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        button { flex: 1; padding: 15px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-add { background-color: #4CAF50; color: white; } /* 초록색 */
+        .btn-add:hover { background-color: #45a049; }
+        .btn-generate { background-color: #ff4b4b; color: white; } /* 빨간색 */
+        .btn-generate:hover { background-color: #d43f3f; }
+
         #result-area { margin-top: 30px; border: 1px solid #ddd; padding: 10px; background: white; min-height: 400px; }
         iframe { width: 100%; height: 800px; border: none; }
 
-        /* --- [토글 스위치 CSS 추가됨] --- */
-        .switch-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; background: #eef1f5; padding: 10px; border-radius: 5px; }
-        .switch-label { font-weight: bold; color: #333; }
-        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        /* --- [토글 스위치 스타일] --- */
+        .switch-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
+        .switch-label { font-weight: bold; color: #333; font-size: 0.9em; }
+        .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: #ff4b4b; }
-        input:checked + .slider:before { transform: translateX(24px); }
+        input:checked + .slider:before { transform: translateX(18px); }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📚 AI Magazine Maker</h1>
         
-        <div class="form-group">
-            <label>제목 (Headline)</label>
-            <input type="text" id="title" value="Summer Vibes">
+        <div id="articles-container"></div>
+
+        <div class="btn-group">
+            <button class="btn-add" onclick="addPage()">+ 페이지 추가 (Add Page)</button>
+            <button class="btn-generate" onclick="generateMagazine()">매거진 생성 시작! 🚀</button>
         </div>
 
-        <div class="form-group">
-            <label>스타일 (Style)</label>
-            <select id="style">
-                <option value="Modern">Modern</option>
-                <option value="Elegant">Elegant</option>
-                <option value="Retro">Retro</option>
-                <option value="Bold">Bold</option>
-            </select>
-        </div>
-        <div class="switch-container">
-            <span class="switch-label">🤖 AI가 글 다시 쓰기 (AI Rewrite)</span>
-            <label class="switch">
-                <input type="checkbox" id="aiToggle" checked> <span class="slider"></span>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>본문 (Body Text)</label>
-            <textarea id="request" rows="4" placeholder="잡지에 들어갈 내용을 입력하세요.">이 사진은 즐거운 여름 휴가의 추억을 담고 있습니다.</textarea>
-        </div>
-
-        <div class="form-group">
-            <label>사진 업로드</label>
-            <input type="file" id="imageInput" accept="image/*">
-        </div>
-
-        <button onclick="generateMagazine()">매거진 생성 시작! 🚀</button>
-
-        <div id="loading" style="display:none; text-align:center; margin-top:20px;">
-            ⏳ AI 에이전트 팀이 작업 중입니다... (약 10~20초 소요)
+        <div id="loading" style="display:none; text-align:center; margin-top:20px; color: #ff4b4b; font-weight: bold;">
+            ⏳ AI 에이전트 팀이 작업 중입니다... <br> (페이지가 많으면 시간이 더 걸립니다)
         </div>
     </div>
 
@@ -74,8 +73,71 @@
     </div>
 
     <script>
-        
-        // 이미지를 Base64로 변환하는 함수
+        let pageCount = 0;
+
+        // [5. 페이지 로드 시 자동으로 1개 추가]
+        window.onload = function() {
+            addPage();
+        };
+
+        // [6. 페이지(카드) 추가 함수 구현]
+        function addPage() {
+            pageCount++;
+            const container = document.getElementById('articles-container');
+            
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            card.id = `card-${pageCount}`;
+            
+            // 기존 HTML 폼을 템플릿 문자열로 넣음 (ID대신 class 사용 중요!)
+            card.innerHTML = `
+                <div class="article-header">
+                    <span class="article-number">Page #${pageCount}</span>
+                    ${pageCount > 1 ? `<button class="remove-btn" onclick="removePage('card-${pageCount}')">삭제 ❌</button>` : ''}
+                </div>
+
+                <div class="form-group">
+                    <label>제목 (Headline)</label>
+                    <input type="text" class="input-title" placeholder="예: Summer Vibes" value="Summer Vibes">
+                </div>
+
+                <div class="form-group">
+                    <label>스타일 (Style)</label>
+                    <select class="input-style">
+                        <option value="Modern">Modern</option>
+                        <option value="Elegant">Elegant</option>
+                        <option value="Retro">Retro</option>
+                        <option value="Bold">Bold</option>
+                    </select>
+                </div>
+
+                <div class="switch-container">
+                    <span class="switch-label">🤖 AI가 글 다시 쓰기 (AI Rewrite)</span>
+                    <label class="switch">
+                        <input type="checkbox" class="input-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>본문 (Body Text)</label>
+                    <textarea class="input-body" rows="3" placeholder="내용을 입력하세요.">이 사진은 즐거운 여름 휴가의 추억을 담고 있습니다.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>사진 업로드</label>
+                    <input type="file" class="input-file" accept="image/*">
+                </div>
+            `;
+            container.appendChild(card);
+        }
+
+        // [7. 페이지 삭제 함수]
+        function removePage(cardId) {
+            const card = document.getElementById(cardId);
+            if(card) card.remove();
+        }
+
         const toBase64 = file => new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -83,50 +145,61 @@
             reader.onerror = error => reject(error);
         });
 
+        // [8. 생성 함수 전체 수정 (다중 처리 로직)]
         async function generateMagazine() {
-            const title = document.getElementById('title').value;
-            const style = document.getElementById('style').value;
-            const request = document.getElementById('request').value;
-            const fileInput = document.getElementById('imageInput');
-            
-            // [토글 값 가져오기 추가]
-            const isGenerated = document.getElementById('aiToggle').checked;
-            
-            if (fileInput.files.length === 0) {
-                alert("사진을 업로드해주세요!");
-                return;
-            }
+            // 모든 카드를 찾음
+            const cards = document.querySelectorAll('.article-card');
+            let hasError = false;
 
-            // UI 상태 변경
             document.getElementById('loading').style.display = 'block';
             document.getElementById('result-area').style.display = 'none';
 
-            try {
-                // 1. 이미지 변환
+            // 각 카드를 돌면서 데이터를 수집
+            const promises = Array.from(cards).map(async (card, index) => {
+                // ID가 아닌 class로 내부 요소 찾기
+                const title = card.querySelector('.input-title').value;
+                const style = card.querySelector('.input-style').value;
+                const body = card.querySelector('.input-body').value;
+                const isGenerated = card.querySelector('.input-toggle').checked;
+                const fileInput = card.querySelector('.input-file');
+
+                if (fileInput.files.length === 0) {
+                    alert(`Page #${index + 1}의 사진을 업로드해주세요!`);
+                    hasError = true;
+                    return null;
+                }
+
                 const base64Img = await toBase64(fileInput.files[0]);
 
-                // 2. 서버로 보낼 데이터 구성 (server.py의 Pydantic 모델과 일치해야 함)
-                const payload = {
-                    articles: [{
-                        id: "0",
-                        title: title,
-                        request: request,
-                        style: style,
-                        is_generated: isGenerated,
-                        image_base64: base64Img
-                    }]
+                return {
+                    id: String(index), 
+                    title: title || "Untitled",
+                    request: body,  // 서버의 user_request 매핑용
+                    style: style,
+                    is_generated: isGenerated,
+                    image_base64: base64Img
                 };
+            });
 
-                // 3. FastAPI 서버로 요청 전송
+            const results = await Promise.all(promises);
+
+            if (hasError) {
+                document.getElementById('loading').style.display = 'none';
+                return;
+            }
+
+            const validArticles = results.filter(item => item !== null);
+
+            try {
+                // 리스트 형태로 서버 전송
                 const response = await fetch('/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({ articles: validArticles })
                 });
 
                 if (!response.ok) throw new Error("Server Error");
 
-                // 4. 결과 HTML 받아서 표시
                 const htmlContent = await response.text();
                 const frameContainer = document.getElementById('output-frame');
                 frameContainer.innerHTML = `<iframe srcdoc='${htmlContent.replace(/'/g, "&apos;")}' sandbox="allow-scripts allow-same-origin"></iframe>`;
