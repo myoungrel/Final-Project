@@ -30,7 +30,8 @@ def generate_single_article(a_id, article, chain):
         "image_data": "(Image inserted via placeholder)", 
         "vision_json": str(article.get("vision_analysis", {})),
         "design_json": str(article.get("design_spec", {})),
-        "plan_json": str(article.get("plan", {}))
+        "plan_json": str(article.get("plan", {})),
+        "layout_override": article.get("layout_override", "None")
     }
 
     max_retries = 3
@@ -123,39 +124,47 @@ def run_publisher(state):
            - **CRITICAL**: Do NOT write the base64 string or actual image URL.
            - Instead, for the `<img>` tag `src` attribute, write EXACTLY: `{{{{IMAGE_PLACEHOLDER}}}}`
            - Example: `<img src="{{{{IMAGE_PLACEHOLDER}}}}" class="...">`
+           - **EXCEPTION**: If layout strategy is 'Text-Only', DO NOT generate any `<img>` tags.
         4. **Output Structure**: 
            - **CRITICAL**: Do NOT write `<html>`, `<body>`, `<!DOCTYPE html>`, or `<head>` tags.
            - Start directly with a wrapper `<div>` that contains your layout.
            - The wrapper should be exactly 210mm x 297mm.
         5. **Auto-Fit Typography (CRITICAL)**:
            - **Priority 1**: Fit ALL content on ONE page.
-           - If text is long (> 1000 chars):
-             - Use smaller fonts: `text-sm` or `text-xs`.
+           - If text is long (> 2000 chars):
+             - Use smaller fonts: `text-xs` (0.75rem) or `text-[10px]`.
              - Use tighter spacing: `leading-tight`, `tracking-tight`.
-             - Reduce padding/margins appropriately.
+             - Use `columns-2` or `columns-3` (CSS Multi-column) for better density.
+             - Reduce padding/margins significantly.
 
         [Data]
         - Title: {headline}
         - Body: {body}
         - Image: {image_data}
+        - Layout Hint: {layout_override}
         
         - **Vision Analysis**: {vision_json}
         - **Design Spec**: {design_json}
         - **Plan**: {plan_json}
         
         [LAYOUT STRATEGY RULES - CRITICAL]
-            Check the 'layout_strategy' in [Design Spec] or [Vision Analysis].
+            **Priority**: If [Layout Hint] is provided (e.g., 'editorial_text_only'), use it. 
+            Otherwise, check 'layout_strategy' in [Design Spec].
         
-        👉 **CASE 1: STRATEGY = 'Separated' (or 'Split')**
-           - **Structure**: Use CSS Grid or Flexbox to PHYSICALLY SEPARATE image and text.
-           - **Image**: Occupy top 50% OR left 50%. (Do NOT make it full background).
-           - **Text**: Place in the remaining whitespace. Background MUST be solid (white/beige/black).
-           - **Overlap**: ABSOLUTELY NO text overlapping the image.
+        👉 **CASE 1: STRATEGY = 'Separated' (or 'Hero')**
+           - **Structure**: Image + Text split.
+           - **Image**: Occupy top 50% OR left 50%.
+           - **Text**: Place in the remaining whitespace.
         
         👉 **CASE 2: STRATEGY = 'Overlay' (or 'Cover')**
            - **Structure**: Image is `absolute inset-0` (Full Background).
            - **Text**: Use `z-10` to place text ON TOP of the image.
-           - **Contrast**: Use gradients or glass-morphism boxes behind text.
+        
+        👉 **CASE 3: STRATEGY = 'editorial_text_only' (CRITICAL)**
+           - **Structure**: **NO IMAGES**. Pure Text Layout.
+           - **Header**: Do NOT create a large header. Use a small breadcrumb or start directly with Body.
+           - **Body**: Use `columns-2` or `columns-3` with `gap-6` to fill the entire A4 page efficiently.
+           - **Styling**: High-end typography. Drop caps for the first letter.
         
         Generate HTML strictly following the detected strategy:
         """

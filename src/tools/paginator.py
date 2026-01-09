@@ -30,33 +30,39 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
     normalized_articles = []
     
     for art in articles:
-        # [Fix 1] 데이터 추출 경로 수정 (manuscript 우선 확인)
-        # Editor는 결과를 'manuscript' 안에 담기 때문에 여기서 꺼내야 함
+        # [Fix 1] 데이터 추출 경로 수정
         manuscript = art.get("manuscript", {})
         body_text = manuscript.get("body") or art.get("body", "")
         
-        has_image = bool(art.get("image_path"))
-        limit = SAFE_LIMIT_WITH_IMAGE if has_image else SAFE_LIMIT_TEXT_ONLY
+        # [Adaptive Layout] 3600자(A4 Full)까지는 한 페이지 수용
+        SAFE_LIMIT_WITH_IMAGE = 3600
+        SAFE_LIMIT_TEXT_ONLY = 3600
         
-        if len(body_text) <= limit:
+        limit = SAFE_LIMIT_WITH_IMAGE
+        text_len = len(body_text)
+        
+        if text_len <= limit:
             normalized_articles.append(art)
             continue
             
-        # 분할 로직 실행
-        print(f"✂️ Paginator: 기사 '{art.get('title')}' 길이가 {len(body_text)}자로 길어서 분할합니다.")
+        print(f"✂️ Paginator: 기사 '{art.get('title')}' ({text_len}자) -> Balanced Splitting 적용")
         
-        # 청크로 자르기
+        # [Balanced Splitting Logic]
+        # 무조건 꽉 채우지 않고, N등분하여 균형 맞춤
+        num_parts = math.ceil(text_len / limit)
+        ideal_chunk_size = math.ceil(text_len / num_parts)
+        
         chunks = []
         start = 0
-        while start < len(body_text):
-            # 첫 페이지는 이미지 때문에 제한이 더 엄격할 수 있음
-            current_limit = limit if start == 0 else SAFE_LIMIT_TEXT_ONLY
-            end = min(start + current_limit, len(body_text))
+        while start < text_len:
+            end = min(start + ideal_chunk_size, text_len)
             
-            # 문장 단위로 끊기 위해 뒤에서부터 마침표 search
-            if end < len(body_text):
-                last_period = body_text.rfind('.', start, end)
-                if last_period != -1 and last_period > start + (current_limit * 0.5):
+            # 문장 단위 끊기 (Tolerance 10% 허용)
+            if end < text_len:
+                search_end = min(text_len, end + 100) # 조금 더 뒤까지 봐서 마침표 찾기
+                last_period = body_text.rfind('.', start, search_end)
+                
+                if last_period != -1 and last_period > start + (ideal_chunk_size * 0.7):
                     end = last_period + 1
             
             chunks.append(body_text[start:end].strip())
@@ -69,21 +75,25 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
         
         for i, chunk in enumerate(chunks):
             new_art = art.copy()
-            # [Fix 2] 최상위 body 뿐만 아니라 manuscript 내부도 반드시 업데이트해야 함
-            # Publisher는 manuscript를 참조하기 때문
             new_art["body"] = chunk
             new_art["id"] = f"{base_id}_part{i+1}"
             
-            # manuscript 딥카피 혹은 새로 생성하여 내용 교체
+            # manuscript 업데이트
             new_manuscript = manuscript.copy()
             new_manuscript["body"] = chunk
             
-            if i > 0:
-                # 두 번째 파트부터는 이미지 제거 및 제목 변경
+            if i == 0:
+                # 첫 페이지: 기존 스타일 유지
+                pass
+            else:
+                # 두 번째 페이지부터: 텍스트 전용 + 헤더 제거
                 new_art["image_path"] = None 
                 new_art["vision_analysis"] = {} 
+                new_art["layout_override"] = "editorial_text_only" # Publisher 힌트
+                
                 new_art["title"] = f"{base_title} (Continued)"
-                new_manuscript["headline"] = f"{base_headline} (Continued)"
+                new_manuscript["headline"] = "" # 헤더 삭제 (본문 확보)
+                new_manuscript["subhead"] = ""  # 소제목 삭제
             
             new_art["manuscript"] = new_manuscript
             normalized_articles.append(new_art)
