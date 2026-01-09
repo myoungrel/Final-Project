@@ -20,7 +20,65 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
     if not isinstance(articles, list):
         print(f"⚠️ Paginator expects List, got {type(articles)}")
         return []
+        
+    # [Pre-processing] 긴 기사 분할 (Smart Splitting)
+    # A4 한 페이지에 이미지가 있을 때 안전한 글자 수는 약 800~1000자입니다.
+    # 하지만 사용자는 '한 페이지 완결'을 선호하므로, 한계치(1100/2200)까지 꽉 채웁니다.
+    SAFE_LIMIT_WITH_IMAGE = 1100 
+    SAFE_LIMIT_TEXT_ONLY = 2200
     
+    normalized_articles = []
+    
+    for art in articles:
+        body_text = art.get("body", "")
+        has_image = bool(art.get("image_path"))
+        limit = SAFE_LIMIT_WITH_IMAGE if has_image else SAFE_LIMIT_TEXT_ONLY
+        
+        if len(body_text) <= limit:
+            normalized_articles.append(art)
+            continue
+            
+        # 분할 로직 실행
+        print(f"✂️ Paginator: 기사 '{art.get('title')}' 길이가 {len(body_text)}자로 길어서 분할합니다.")
+        
+        # 청크로 자르기
+        chunks = []
+        start = 0
+        while start < len(body_text):
+            # 첫 페이지는 이미지 때문에 제한이 더 엄격할 수 있음
+            current_limit = limit if start == 0 else SAFE_LIMIT_TEXT_ONLY
+            end = min(start + current_limit, len(body_text))
+            
+            # 문장 단위로 끊기 위해 뒤에서부터 마침표 search
+            if end < len(body_text):
+                last_period = body_text.rfind('.', start, end)
+                if last_period != -1 and last_period > start + (current_limit * 0.5):
+                    end = last_period + 1
+            
+            chunks.append(body_text[start:end].strip())
+            start = end
+            
+        # 분할된 기사 객체 생성
+        base_id = art.get("id", "unknown")
+        base_title = art.get("title", "Untitled")
+        
+        for i, chunk in enumerate(chunks):
+            new_art = art.copy()
+            new_art["body"] = chunk
+            new_art["id"] = f"{base_id}_part{i+1}"
+            
+            # 첫 번째 파트만 이미지를 가짐 (나머지는 텍스트 전용)
+            if i > 0:
+                new_art["image_path"] = None 
+                new_art["vision_analysis"] = {} # 비전 정보 제거
+                new_art["title"] = f"{base_title} (Continued)"
+                new_art["manuscript"] = {
+                    "headline": f"{base_title} (Continued)",
+                    "body": chunk
+                }
+            
+            normalized_articles.append(new_art)
+
     # 설정: 한 페이지가 감당할 수 있는 최대 무게
     MAX_PAGE_WEIGHT = 100 
     
@@ -28,24 +86,23 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
     current_page_articles = []
     current_weight = 0
 
-    for article in articles:
+    for article in normalized_articles:
         # 1. 기사 무게 계산 (Weight Calculation)
-        # - 이미지: 시각적 비중이 크므로 50점 (캡션만 있어도 이미지 공간 확보 필요)
+        # - 이미지: 시각적 비중이 크므로 50점
         has_image = bool(article.get("image_path") or article.get("caption"))
         image_score = 50 if has_image else 0
         
-        # - 텍스트: 20자당 1점 (예: 1000자 = 50점) -> 긴 글은 혼자 한 페이지 차지하게 유도
+        # - 텍스트: 20자당 1점 (보수적으로 잡아서 페이지 넘김 유도)
         text_len = len(article.get("body", ""))
-        text_score = min(50, math.ceil(text_len / 20)) 
+        text_score = min(80, math.ceil(text_len / 20)) # 상한선 높임
         
         item_weight = image_score + text_score
         
-        # 기사가 하나인데 100점을 넘으면? -> 강제로 100점으로 보정 (한 페이지 꽉 채움)
+        # 기사가 하나인데 100점을 넘으면? -> 강제로 100점으로 보정
         if item_weight > MAX_PAGE_WEIGHT:
             item_weight = MAX_PAGE_WEIGHT
 
         # 2. 페이지 배치 로직 (Bin Packing)
-        # 현재 페이지에 담을 수 있으면 담고, 아니면 페이지 넘김
         if current_weight + item_weight > MAX_PAGE_WEIGHT:
             # (A) 기존 페이지 마감 & 저장
             if current_page_articles:

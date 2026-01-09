@@ -87,30 +87,36 @@ def run_paginator_node(state: MagazineState) -> dict:
         return {"pages": []}
 
     # Extract manuscripts from ArticleState
-    manuscript_list = []
+    full_articles_list = []
     
     for a_id, article in articles.items():
-        # Editor가 작성한 원고 추출
-        m = article.get("manuscript")
-        
-        if m:
-            # 원고에 ID가 누락됐을 경우를 대비해 안전하게 주입
-            if "id" not in m:
-                m["id"] = a_id
-            manuscript_list.append(m)
+        # 원고가 있는 것만 처리
+        if article.get("manuscript"):
+            # ID 보장
+            if "id" not in article:
+                article["id"] = a_id
+            full_articles_list.append(article)
         else:
             print(f"⚠️ [Paginator] 기사 ID {a_id}에 원고가 없습니다.")
 
-    if not manuscript_list:
+    if not full_articles_list:
         return {"pages": []}
 
     # Tool Execution
-    # organize_articles_into_pages expects List[Dict]
-    pages = organize_articles_into_pages(manuscript_list)
+    # organize_articles_into_pages returns List[PageDict]
+    pages = organize_articles_into_pages(full_articles_list)
     
-    print(f"📄 Paginator Result: Split into {len(pages)} page(s).")
+    # Flatten pages back into 'articles' state for Publisher
+    new_articles = {}
+    for page in pages:
+        for art in page['articles']:
+            # Paginator가 생성한 새로운 ID (_part1, _part2 등)를 사용
+            new_articles[art['id']] = art
+            
+    print(f"📄 Paginator Result: Split into {len(pages)} pages, Total Articles: {len(new_articles)}")
     
-    return {"pages": pages}
+    # Return both pages and updated articles
+    return {"pages": pages, "articles": new_articles}
 
 
 # ---------------------------------------------------------

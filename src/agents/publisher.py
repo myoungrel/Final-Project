@@ -81,7 +81,7 @@ def run_publisher(state):
     articles = state.get("articles", {})
     final_pages = []
 
-    # Prompt with Sanitization Instructions
+    # Prompt with Sanitization & Auto-fit Instructions
     prompt = ChatPromptTemplate.from_template(
         """
         You are an expert Frontend Developer specializing in high-end magazine layouts.
@@ -100,7 +100,12 @@ def run_publisher(state):
            - **CRITICAL**: Do NOT write `<html>`, `<body>`, `<!DOCTYPE html>`, or `<head>` tags.
            - Start directly with a wrapper `<div>` that contains your layout.
            - The wrapper should be exactly 210mm x 297mm.
-        5. **Output Format**: Return ONLY the raw HTML code. Do not use Markdown blocks (```html).
+        5. **Auto-Fit Typography (CRITICAL)**:
+           - **Priority 1**: Fit ALL content on ONE page.
+           - If text is long (> 1000 chars):
+             - Use smaller fonts: `text-sm` or `text-xs`.
+             - Use tighter spacing: `leading-tight`, `tracking-tight`.
+             - Reduce padding/margins appropriately.
 
         [Data]
         - Title: {headline}
@@ -124,12 +129,22 @@ def run_publisher(state):
            - **Structure**: Image is `absolute inset-0` (Full Background).
            - **Text**: Use `z-10` to place text ON TOP of the image.
            - **Contrast**: Use gradients or glass-morphism boxes behind text.
-
+        
         Generate HTML strictly following the detected strategy:
         """
     )
 
     chain = prompt | llm | StrOutputParser()
+
+    # [Design Inheritance Logic]
+    # Gatekeeper 없이도 작동하도록, 분할된 기사(_partX)가 원본의 디자인을 복사하도록 합니다.
+    for a_id, article in articles.items():
+        if "_part" in a_id and not article.get("design_spec"):
+            parent_id = a_id.split("_part")[0]
+            if parent_id in articles and articles[parent_id].get("design_spec"):
+                print(f"🧬 [Inherit] {a_id}는 {parent_id}의 디자인을 상속받습니다.")
+                article["design_spec"] = articles[parent_id].get("design_spec")
+                article["vision_analysis"] = articles[parent_id].get("vision_analysis")
 
     # Parallel Execution using ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=5) as executor:

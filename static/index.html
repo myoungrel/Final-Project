@@ -1,60 +1,212 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Magazine Generator</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f0f2f6; }
-        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #333; margin-bottom: 30px; }
-        
-        /* --- [1. 카드 및 삭제 버튼 스타일 추가] --- */
-        .article-card { 
-            background: #fff; 
-            border: 1px solid #ddd; 
-            border-left: 5px solid #ff4b4b; 
-            padding: 20px; 
-            margin-bottom: 20px; 
-            border-radius: 8px; 
-            position: relative;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f6;
         }
-        .article-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .article-number { font-weight: bold; color: #ff4b4b; font-size: 1.1em; }
-        .remove-btn { background: #666; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-        .remove-btn:hover { background: #444; }
 
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        input[type="text"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* --- [1. 카드 및 삭제 버튼 스타일 추가] --- */
+        .article-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-left: 5px solid #ff4b4b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .article-number {
+            font-weight: bold;
+            color: #ff4b4b;
+            font-size: 1.1em;
+        }
+
+        .remove-btn {
+            background: #666;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .remove-btn:hover {
+            background: #444;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
         /* --- [2. 버튼 그룹 스타일 추가] --- */
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        button { flex: 1; padding: 15px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-add { background-color: #4CAF50; color: white; } /* 초록색 */
-        .btn-add:hover { background-color: #45a049; }
-        .btn-generate { background-color: #ff4b4b; color: white; } /* 빨간색 */
-        .btn-generate:hover { background-color: #d43f3f; }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-        #result-area { margin-top: 30px; border: 1px solid #ddd; padding: 10px; background: white; min-height: 400px; }
-        iframe { width: 100%; height: 800px; border: none; }
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-add {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* 초록색 */
+        .btn-add:hover {
+            background-color: #45a049;
+        }
+
+        .btn-generate {
+            background-color: #ff4b4b;
+            color: white;
+        }
+
+        /* 빨간색 */
+        .btn-generate:hover {
+            background-color: #d43f3f;
+        }
+
+        #result-area {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            min-height: 400px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
 
         /* --- [토글 스위치 스타일] --- */
-        .switch-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
-        .switch-label { font-weight: bold; color: #333; font-size: 0.9em; }
-        .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #ff4b4b; }
-        input:checked + .slider:before { transform: translateX(18px); }
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .switch-label {
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #ff4b4b;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(18px);
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>📚 AI Magazine Maker</h1>
-        
+
         <div id="articles-container"></div>
 
         <div class="btn-group">
@@ -68,7 +220,12 @@
     </div>
 
     <div id="result-area" style="display:none;">
-        <h3>✨ 생성 결과</h3>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>✨ 생성 결과</h3>
+            <a id="download-btn"
+                style="display:none; background:#4CAF50; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; font-weight:bold; cursor:pointer;">💾
+                HTML 다운로드</a>
+        </div>
         <div id="output-frame"></div>
     </div>
 
@@ -76,7 +233,7 @@
         let pageCount = 0;
 
         // [5. 페이지 로드 시 자동으로 1개 추가]
-        window.onload = function() {
+        window.onload = function () {
             addPage();
         };
 
@@ -84,11 +241,11 @@
         function addPage() {
             pageCount++;
             const container = document.getElementById('articles-container');
-            
+
             const card = document.createElement('div');
             card.className = 'article-card';
             card.id = `card-${pageCount}`;
-            
+
             // 기존 HTML 폼을 템플릿 문자열로 넣음 (ID대신 class 사용 중요!)
             card.innerHTML = `
                 <div class="article-header">
@@ -135,7 +292,7 @@
         // [7. 페이지 삭제 함수]
         function removePage(cardId) {
             const card = document.getElementById(cardId);
-            if(card) card.remove();
+            if (card) card.remove();
         }
 
         const toBase64 = file => new Promise((resolve, reject) => {
@@ -172,7 +329,7 @@
                 const base64Img = await toBase64(fileInput.files[0]);
 
                 return {
-                    id: String(index), 
+                    id: String(index),
                     title: title || "Untitled",
                     request: body,  // 서버의 user_request 매핑용
                     style: style,
@@ -203,7 +360,14 @@
                 const htmlContent = await response.text();
                 const frameContainer = document.getElementById('output-frame');
                 frameContainer.innerHTML = `<iframe srcdoc='${htmlContent.replace(/'/g, "&apos;")}' sandbox="allow-scripts allow-same-origin"></iframe>`;
-                
+
+                // [New] 다운로드 버튼 활성화 로직
+                const downloadBtn = document.getElementById('download-btn');
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                downloadBtn.href = URL.createObjectURL(blob);
+                downloadBtn.download = `magazine_${new Date().getTime()}.html`;
+                downloadBtn.style.display = 'inline-block';
+
                 document.getElementById('result-area').style.display = 'block';
 
             } catch (error) {
@@ -215,4 +379,5 @@
         }
     </script>
 </body>
+
 </html>
