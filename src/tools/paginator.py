@@ -30,7 +30,11 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
     normalized_articles = []
     
     for art in articles:
-        body_text = art.get("body", "")
+        # [Fix 1] 데이터 추출 경로 수정 (manuscript 우선 확인)
+        # Editor는 결과를 'manuscript' 안에 담기 때문에 여기서 꺼내야 함
+        manuscript = art.get("manuscript", {})
+        body_text = manuscript.get("body") or art.get("body", "")
+        
         has_image = bool(art.get("image_path"))
         limit = SAFE_LIMIT_WITH_IMAGE if has_image else SAFE_LIMIT_TEXT_ONLY
         
@@ -61,22 +65,27 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
         # 분할된 기사 객체 생성
         base_id = art.get("id", "unknown")
         base_title = art.get("title", "Untitled")
+        base_headline = manuscript.get("headline", base_title)
         
         for i, chunk in enumerate(chunks):
             new_art = art.copy()
+            # [Fix 2] 최상위 body 뿐만 아니라 manuscript 내부도 반드시 업데이트해야 함
+            # Publisher는 manuscript를 참조하기 때문
             new_art["body"] = chunk
             new_art["id"] = f"{base_id}_part{i+1}"
             
-            # 첫 번째 파트만 이미지를 가짐 (나머지는 텍스트 전용)
-            if i > 0:
-                new_art["image_path"] = None 
-                new_art["vision_analysis"] = {} # 비전 정보 제거
-                new_art["title"] = f"{base_title} (Continued)"
-                new_art["manuscript"] = {
-                    "headline": f"{base_title} (Continued)",
-                    "body": chunk
-                }
+            # manuscript 딥카피 혹은 새로 생성하여 내용 교체
+            new_manuscript = manuscript.copy()
+            new_manuscript["body"] = chunk
             
+            if i > 0:
+                # 두 번째 파트부터는 이미지 제거 및 제목 변경
+                new_art["image_path"] = None 
+                new_art["vision_analysis"] = {} 
+                new_art["title"] = f"{base_title} (Continued)"
+                new_manuscript["headline"] = f"{base_headline} (Continued)"
+            
+            new_art["manuscript"] = new_manuscript
             normalized_articles.append(new_art)
 
     # 설정: 한 페이지가 감당할 수 있는 최대 무게

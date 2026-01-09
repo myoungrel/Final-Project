@@ -78,7 +78,34 @@ def run_publisher(state):
     print("--- [Publisher] Data-Driven HTML Generation (Sanitized) ---")
     
     llm = config.get_llm()
-    articles = state.get("articles", {})
+    
+    # [Modify] 1. Paginator 결과(pages)가 있으면 우선 사용
+    pages = state.get("pages")
+    all_articles = state.get("articles", {})
+    
+    target_articles = {}
+    
+    if pages and len(pages) > 0:
+        print(f"📚 Publisher: Paginator가 생성한 {len(pages)}개 페이지를 처리합니다.")
+        for page in pages:
+            for art in page['articles']:
+                a_id = art['id']
+                # [Inheritance Check]
+                # Paginator가 나눈 기사(_part2)에 디자인이 없으면 부모(원본) 디자인을 복사
+                if not art.get("design_spec"):
+                    parent_id = a_id.split("_part")[0]
+                    parent_art = all_articles.get(parent_id)
+                    if parent_art and parent_art.get("design_spec"):
+                        print(f"🧬 [Inherit] {a_id}는 {parent_id}의 디자인을 상속받습니다.")
+                        art["design_spec"] = parent_art.get("design_spec")
+                        art["vision_analysis"] = parent_art.get("vision_analysis")
+                
+                target_articles[a_id] = art
+    else:
+        # Paginator가 없는 경우 (Fallback)
+        print("📚 Publisher: 기본 Articles 모드로 실행합니다.")
+        target_articles = all_articles
+
     final_pages = []
 
     # Prompt with Sanitization & Auto-fit Instructions
@@ -136,21 +163,11 @@ def run_publisher(state):
 
     chain = prompt | llm | StrOutputParser()
 
-    # [Design Inheritance Logic]
-    # Gatekeeper 없이도 작동하도록, 분할된 기사(_partX)가 원본의 디자인을 복사하도록 합니다.
-    for a_id, article in articles.items():
-        if "_part" in a_id and not article.get("design_spec"):
-            parent_id = a_id.split("_part")[0]
-            if parent_id in articles and articles[parent_id].get("design_spec"):
-                print(f"🧬 [Inherit] {a_id}는 {parent_id}의 디자인을 상속받습니다.")
-                article["design_spec"] = articles[parent_id].get("design_spec")
-                article["vision_analysis"] = articles[parent_id].get("vision_analysis")
-
     # Parallel Execution using ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=5) as executor:
         future_to_id = {
             executor.submit(generate_single_article, a_id, article, chain): a_id 
-            for a_id, article in articles.items()
+            for a_id, article in target_articles.items()
         }
         
         results_map = {}
