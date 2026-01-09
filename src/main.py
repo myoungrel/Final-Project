@@ -164,25 +164,9 @@ def build_graph():
     workflow.add_edge("publisher", "critique")
 
     # [Critique Feedback Loop]
-    def route_critique(state):
-        decision = state.get("critique_decision", "APPROVE")
-        if decision == "RETRY_EDITOR": return "editor"
-        elif decision == "RETRY_DIRECTOR": return "director"
-        elif decision == "RETRY_PLANNER": return "planner"
-        elif decision == "RETRY_PUBLISHER": return "publisher"
-        else: return "formatter"
-
-    workflow.add_conditional_edges(
-        "critique",
-        route_critique,
-        {
-            "editor": "editor",
-            "director": "director",
-            "planner": "planner",
-            "publisher": "publisher",
-            "formatter": "formatter"
-        }
-    )
+    # NOTE: Temporarily disabled conditional logic to prevent infinite loops.
+    # We now route directly to formatter.
+    workflow.add_edge("critique", "formatter")
     
     workflow.add_edge("formatter", END)
 

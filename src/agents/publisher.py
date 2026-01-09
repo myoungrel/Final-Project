@@ -4,107 +4,171 @@ from src.config import config
 import os
 import time
 import random
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def generate_single_article(a_id, article, chain):
+    """
+    Process a single article to generate HTML (for parallel execution).
+    Uses placeholder strategy and sanitizes HTML tags.
+    """
+    print(f"🎨 [Parallel] Generative Coding for Article {a_id}...")
+    
+    manuscript = article.get("manuscript", {})
+    
+    # 1. Image Setup (Placeholder Strategy)
+    real_image_src = article.get("image_path")
+    if not real_image_src or len(real_image_src) < 10:
+        mood = article.get("vision_analysis", {}).get("metadata", {}).get("mood", "abstract")
+        real_image_src = f"https://source.unsplash.com/random/1600x2400/?{mood}&sig={a_id}"
+    elif not real_image_src.startswith("http") and not real_image_src.startswith("data:"):
+        real_image_src = f"data:image/png;base64,{real_image_src}"
+
+    # 2. Input Data
+    input_data = {
+        "headline": manuscript.get("headline", "Untitled"),
+        "body": manuscript.get("body", ""),
+        "image_data": "(Image inserted via placeholder)", 
+        "vision_json": str(article.get("vision_analysis", {})),
+        "design_json": str(article.get("design_spec", {})),
+        "plan_json": str(article.get("plan", {}))
+    }
+
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            # 3. LLM Generation
+            html_code = chain.invoke(input_data)
+            
+            # 4. CRITICAL: Sanitize HTML (Remove root tags)
+            # This allows multiple pages to be rendered in one file
+            remove_list = [
+                "```html", "```", 
+                "<!DOCTYPE html>", "<!doctype html>",
+                "<html>", "</html>", 
+                "<body>", "</body>", 
+                "<head>", "</head>"
+            ]
+            for tag in remove_list:
+                html_code = html_code.replace(tag, "")
+            
+            html_code = html_code.strip()
+            
+            # 5. Inject Real Image
+            if "{{IMAGE_PLACEHOLDER}}" in html_code:
+                html_code = html_code.replace("{{IMAGE_PLACEHOLDER}}", real_image_src)
+            
+            return html_code
+            
+        except Exception as e:
+            print(f"⚠️ Attempt {attempt+1}/{max_retries} failed for Article {a_id}: {e}")
+            
+            # Retry on temporary errors (503, 429)
+            if "503" in str(e) or "overloaded" in str(e) or "429" in str(e):
+                if attempt < max_retries - 1:
+                    wait_time = (2 ** (attempt + 1)) + random.uniform(0, 1) 
+                    time.sleep(wait_time)
+                    continue
+            
+            # Stop on non-retriable errors
+            break
+
+    return f"<div style='color:red'>Generation Failed for Article {a_id}</div>"
 
 def run_publisher(state):
-    print("--- [Publisher] Generative HTML Coding Start ---")
+    print("--- [Publisher] Data-Driven HTML Generation (Sanitized) ---")
     
     llm = config.get_llm()
     articles = state.get("articles", {})
     final_pages = []
 
-    # 1. Define the HTML Generation Prompt
-    # A4 Size: 210mm x 297mm
+    # Prompt with Sanitization Instructions
     prompt = ChatPromptTemplate.from_template(
         """
         You are an expert Frontend Developer specializing in high-end magazine layouts.
         
         [TASK]
-        Write the full HTML/CSS code for a single magazine page (A4 size).
-        Use **Tailwind CSS** (via CDN).
+        Create a stunning A4 HTML Magazine Page.
         
         [Constraints]
-        1. **Size**: Strictly A4 (width: 210mm, height: 297mm). Overflow hidden. 
-           - Set body/html to margin 0, padding 0.
-           - Wrapper div should be strictly 210mm x 297mm.
-        2. **Styling**: Use the provided [Design Spec] for fonts, colors, and layout.
-        3. **Content**: Use the [Manuscript] for texts.
-        4. **Image**: Use the provided [Image Data] (Base64). Ensure it fits the [Vision Strategy].
-        5. **Output**: Return ONLY the raw HTML code. Do not use Markdown blocks (```html).
-        6. **CDN**: Include <script src="https://cdn.tailwindcss.com"></script> at the top.
+        1. **Size**: Strictly A4 (210mm x 297mm). Overflow hidden. Margin 0.
+        2. **Styling**: Follow [Design Spec] for fonts, colors, layout. Use Tailwind CSS classes.
+        3. **Image Handling**: 
+           - **CRITICAL**: Do NOT write the base64 string or actual image URL.
+           - Instead, for the `<img>` tag `src` attribute, write EXACTLY: `{{{{IMAGE_PLACEHOLDER}}}}`
+           - Example: `<img src="{{{{IMAGE_PLACEHOLDER}}}}" class="...">`
+        4. **Output Structure**: 
+           - **CRITICAL**: Do NOT write `<html>`, `<body>`, `<!DOCTYPE html>`, or `<head>` tags.
+           - Start directly with a wrapper `<div>` that contains your layout.
+           - The wrapper should be exactly 210mm x 297mm.
+        5. **Output Format**: Return ONLY the raw HTML code. Do not use Markdown blocks (```html).
 
         [Data]
         - Title: {headline}
         - Body: {body}
-        - Image Base64: {image_data} (If None/Empty, use a placeholder color or gradient)
+        - Image: {image_data}
         
         - **Vision Analysis**: {vision_json}
         - **Design Spec**: {design_json}
         - **Plan**: {plan_json}
         
-        [Design Directive]
-        - If strategy is 'Overlay', place text over the image with proper contrast (gradients/boxes).
-        - If strategy is 'Separated', create a multi-column layout or grid.
-        - Use the specific fonts and colors defined in [Design Spec].
+        [LAYOUT STRATEGY RULES - CRITICAL]
+            Check the 'layout_strategy' in [Design Spec] or [Vision Analysis].
         
-        Generate the HTML now:
+        👉 **CASE 1: STRATEGY = 'Separated' (or 'Split')**
+           - **Structure**: Use CSS Grid or Flexbox to PHYSICALLY SEPARATE image and text.
+           - **Image**: Occupy top 50% OR left 50%. (Do NOT make it full background).
+           - **Text**: Place in the remaining whitespace. Background MUST be solid (white/beige/black).
+           - **Overlap**: ABSOLUTELY NO text overlapping the image.
+        
+        👉 **CASE 2: STRATEGY = 'Overlay' (or 'Cover')**
+           - **Structure**: Image is `absolute inset-0` (Full Background).
+           - **Text**: Use `z-10` to place text ON TOP of the image.
+           - **Contrast**: Use gradients or glass-morphism boxes behind text.
+
+        Generate HTML strictly following the detected strategy:
         """
     )
 
-    # Output Parser returns string
     chain = prompt | llm | StrOutputParser()
 
-    # 2. Iterate and Generate with Retry
-    for a_id, article in articles.items():
-        print(f"🎨 Coding HTML for Article {a_id}...")
-        
-        manuscript = article.get("manuscript", {})
-        
-        # NOTE: ArticleState uses 'image_path' for the image data/path
-        image_val = article.get("image_path") or ""
-        
-        input_data = {
-            "headline": manuscript.get("headline", "Untitled"),
-            "body": manuscript.get("body", ""),
-            "image_data": image_val,
-            "vision_json": str(article.get("vision_analysis", {})),
-            "design_json": str(article.get("design_spec", {})),
-            "plan_json": str(article.get("plan", {}))
+    # Parallel Execution using ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        future_to_id = {
+            executor.submit(generate_single_article, a_id, article, chain): a_id 
+            for a_id, article in articles.items()
         }
-
-        html_code = ""
-        max_retries = 3
         
-        for attempt in range(max_retries):
+        results_map = {}
+        for future in as_completed(future_to_id):
+            a_id = future_to_id[future]
             try:
-                # Invoke LLM
-                html_code = chain.invoke(input_data)
-                
-                # Success! Break the retry loop
-                html_code = html_code.replace("```html", "").replace("```", "")
-                break 
-                
+                html = future.result()
+                results_map[a_id] = html
+                print(f"✅ Article {a_id} Generated & Sanitized.")
             except Exception as e:
-                print(f"⚠️ Attempt {attempt+1}/{max_retries} failed for Article {a_id}: {e}")
-                
-                # Check if it's a 503 or overload error or 429
-                if "503" in str(e) or "overloaded" in str(e) or "429" in str(e):
-                    if attempt < max_retries - 1:
-                        # Exponential backoff + jitter
-                        # 0: 2s, 1: 4s, 2: stop
-                        wait_time = (2 ** (attempt + 1)) + random.uniform(0, 1) 
-                        print(f"⏳ Waiting {wait_time:.1f}s before retrying...")
-                        time.sleep(wait_time)
-                        continue
-                
-                # If it's not a temporary error, or we ran out of retries
-                html_code = f"<div style='color:red; padding:20px;'><h1>Error Generating Page {a_id}</h1><p>{e}</p></div>"
+                print(f"❌ Critical Error in thread for Article {a_id}: {e}")
+                results_map[a_id] = f"<div>Error: {e}</div>"
 
-        final_pages.append(html_code)
+    # Sort pages by ID to maintain order
+    sorted_ids = sorted(results_map.keys())
+    for a_id in sorted_ids:
+        final_pages.append(results_map[a_id])
 
-    # 3. Combine Pages
-    full_html = "\n<div class='page-break'></div>\n".join(final_pages)
+    # Viewer Wrapper with Proper A4 Sizing
+    full_html = """<!DOCTYPE html>
+<html class="bg-gray-200">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Magazine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center py-10 space-y-10">
+""" + "\n".join([f"    <div class='shadow-2xl bg-white relative w-[210mm] h-[297mm] overflow-hidden'>{page}</div>" for page in final_pages]) + """
+</body>
+</html>"""
     
     return {
         "html_code": full_html,
-        "logs": [f"Publisher: Generated {len(final_pages)} pages via LLM (with retry logic)"]
+        "logs": [f"Publisher: Generated {len(final_pages)} sanitized pages"]
     }
