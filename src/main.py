@@ -1,8 +1,9 @@
 # src/main.py
+from typing import List, Dict, Any
 from langgraph.graph import StateGraph, START, END
-from src.state import MagazineState
+from src.state import MagazineState, ArticleState
 
-# 에이전트들
+# 양방향 참조 방지 및 에이전트 임포트
 from src.agents.router import run_router
 from src.agents.safety import run_safety
 from src.agents.vision import run_vision
@@ -16,55 +17,128 @@ from src.agents.formatter import run_formatter
 from src.tools.paginator import organize_articles_into_pages
 
 # ---------------------------------------------------------
-# [New] Paginator 노드 함수를 여기서 바로 정의 (Inline)
+# [Node] Setup Node (Initialization)
+# ---------------------------------------------------------
+def run_setup(state: MagazineState) -> dict:
+    """
+    [Steps 0] Setup Node
+    사용자 입력(List)을 Unified Architecture의 핵심 구조인
+    'articles' 딕셔너리(Dict[id, ArticleState])로 변환하여 초기화합니다.
+    """
+    print("--- [Step 0] Setup: Initializing Articles State ---")
+    
+    user_inputs = state.get("user_input", [])
+    raw_images = state.get("image_data") or {}
+    
+    # 만약 image_data가 리스트라면 딕셔너리로 변환 (안전장치)
+    if isinstance(raw_images, list):
+        print("⚠️ Warning: image_data is List, converting to Dict...")
+        image_map = {}
+        for idx, item in enumerate(raw_images):
+            # user_input 순서와 매칭 가정 혹은 id 확인
+            # 여기서는 편의상 user_inputs의 ID를 따라가거나 인덱스 매칭
+            if idx < len(user_inputs):
+                u_id = str(user_inputs[idx].get("id", str(idx+1)))
+                image_map[u_id] = item
+        raw_images = image_map
+
+    articles: Dict[str, ArticleState] = {}
+    
+    for item in user_inputs:
+        # ID가 없으면 'main' 또는 임의 생성
+        article_id = str(item.get("id", "main"))
+        
+        # ArticleState 기본 구조 생성
+        articles[article_id] = {
+            # 1. Input Data
+            "id": article_id,
+            "title": item.get("title", "Untitled"),
+            "request": item.get("request", ""),
+            "style": item.get("style", "Elegant"),
+            "is_generated": item.get("is_generated", True),
+            "image_path": raw_images.get(article_id), # 매핑된 이미지
+            
+            # 2. Placeholders (빈 딕셔너리로 초기화)
+            "vision_analysis": {},
+            "plan": {},
+            "manuscript": {},
+            "design_spec": {}
+        }
+        print(f"   > Initialized Article ID: {article_id}")
+
+    # State Update
+    return {"articles": articles}
+
+
+# ---------------------------------------------------------
+# [Node] Paginator Node (Adapter)
 # ---------------------------------------------------------
 def run_paginator_node(state: MagazineState) -> dict:
     """
-    Editor가 쓴 글을 받아서 src/tools/paginator.py의 로직을 돌려주는 함수
+    [Unified Architecture]
+    state['articles']에 있는 모든 ArticleState에서 원고(manuscript)를 추출하여
+    Paginator 툴에 전달합니다.
     """
-    print("--- [Step 4.5] Paginator: Organizing Articles (Inline) ---")
+    print("--- [Step 4.5] Paginator: Organizing Articles (Unified) ---")
     
-    # 1. 원고 가져오기
-    manuscript = state.get("manuscript", {})
-    
-    # [방어 코드] 원고가 없으면 빈 리스트 처리
-    if not manuscript:
-        print("⚠️ [Paginator] 원고(Manuscript)가 없습니다. 빈 페이지를 반환합니다.")
+    articles = state.get("articles", {})
+    if not articles:
+        print("⚠️ [Paginator] 처리할 기사(Articles)가 없습니다.")
         return {"pages": []}
 
-    # 리스트 변환 (안전장치)
-    if isinstance(manuscript, dict):
-        articles = [manuscript]
-    else:
-        articles = manuscript
+    # Extract manuscripts from ArticleState
+    manuscript_list = []
+    
+    for a_id, article in articles.items():
+        # Editor가 작성한 원고 추출
+        m = article.get("manuscript")
+        
+        if m:
+            # 원고에 ID가 누락됐을 경우를 대비해 안전하게 주입
+            if "id" not in m:
+                m["id"] = a_id
+            manuscript_list.append(m)
+        else:
+            print(f"⚠️ [Paginator] 기사 ID {a_id}에 원고가 없습니다.")
 
-    # 2. 도구 실행 (툴 폴더에 있는 함수 호출)
-    pages = organize_articles_into_pages(articles)
+    if not manuscript_list:
+        return {"pages": []}
+
+    # Tool Execution
+    # organize_articles_into_pages expects List[Dict]
+    pages = organize_articles_into_pages(manuscript_list)
     
     print(f"📄 Paginator Result: Split into {len(pages)} page(s).")
     
-    # 3. 결과 반환
     return {"pages": pages}
 
+
+# ---------------------------------------------------------
+# [Graph] Graph Construction
+# ---------------------------------------------------------
 def build_graph():
     workflow = StateGraph(MagazineState)
 
     # 1. 노드 등록
+    workflow.add_node("setup", run_setup) # ✨ New Entry Node
+    
     workflow.add_node("router", run_router)
     workflow.add_node("safety", run_safety)
     workflow.add_node("vision", run_vision)
     workflow.add_node("planner", run_planner)
     
     workflow.add_node("editor", run_editor)
-    workflow.add_node("paginator", run_paginator_node) # Editor 다음 타자
+    workflow.add_node("paginator", run_paginator_node)
     workflow.add_node("director", run_director)
     
     workflow.add_node("publisher", run_publisher)
     workflow.add_node("critique", run_critique)
     workflow.add_node("formatter", run_formatter)
 
-    # 2. 엣지 연결 (흐름 제어)
-    workflow.add_edge(START, "router")
+    # 2. 엣지 연결 (Setup을 시작점으로 설정)
+    workflow.add_edge(START, "setup")      # Start -> Setup
+    workflow.add_edge("setup", "router")   # Setup -> Router
+    
     workflow.add_edge("router", "safety")
 
     # [Safety Check]
@@ -75,16 +149,14 @@ def build_graph():
 
     workflow.add_edge("vision", "planner")
     
-    # 🔥 [병렬 시작] Planner에서 두 갈래로 나뉨!
-    workflow.add_edge("planner", "editor")   # 루트 1: 글쓰기 팀
-    workflow.add_edge("planner", "director") # 루트 2: 디자인 팀
+    # 🔥 [병렬 시작] Planner -> Editor / Director
+    workflow.add_edge("planner", "editor")   
+    workflow.add_edge("planner", "director") 
 
-    # 📄 [루트 1 상세] Editor -> Paginator
-    # Editor가 글을 다 쓰면 Paginator가 받아서 페이지를 나눔
+    # 📄 [루트 1] Editor -> Paginator
     workflow.add_edge("editor", "paginator")
 
-    # 🔀 [병렬 합류] Paginator와 Director가 모두 끝나면 Publisher로 모임
-    # LangGraph는 들어오는 엣지가 다 도착할 때까지 자동으로 기다려줌! (Wait for all)
+    # 🔀 [병렬 합류] Paginator + Director -> Publisher
     workflow.add_edge("paginator", "publisher") 
     workflow.add_edge("director", "publisher")
 

@@ -1,477 +1,110 @@
-# /home/sauser/final/Final-Project/src/agents/publisher.py
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from src.config import config
 import os
-import base64
-import io
-from PIL import Image
-from jinja2 import Environment, FileSystemLoader
-
-class PublisherAgent:
-    def __init__(self):
-        """
-        Publisher 에이전트 초기화 (경로 수정 + 루트 경로 유지 버전)
-        """
-        # 1. 현재 파일(publisher.py)의 위치 기준 (src/agents)
-        self.current_dir = os.path.dirname(os.path.abspath(__file__)) 
-        
-        # 2. [중요] 프로젝트 루트 경로 계산 (저장할 때 필요해서 유지해야 함!)
-        # src/agents -> src -> ProjectRoot
-        self.project_root = os.path.dirname(os.path.dirname(self.current_dir))
-        
-        # 3. 템플릿 폴더는 바로 옆 'templates' 폴더로 설정
-        # (기존: project_root/templates -> 수정: src/agents/templates)
-        self.template_dir = os.path.join(self.current_dir, "templates")
-        
-        # 디버깅: 실제 경로 확인
-        print(f"📂 Publisher Template Dir: {self.template_dir}")
-        if not os.path.exists(self.template_dir):
-            print("❌ [CRITICAL] 템플릿 폴더가 없습니다! 경로를 확인하세요.")
-        
-        # Jinja2 환경 설정
-        self.env = Environment(loader=FileSystemLoader(self.template_dir))
-
-    def _looks_like_path(self, s: str) -> bool:
-        if not isinstance(s, str):
-            return False
-        s = s.strip()
-        if len(s) == 0 or len(s) > 260:   # 윈도/리눅스 공통으로 보수적
-            return False
-        if s.startswith(("data:image", "http://", "https://")):
-            return False
-        # 확장자 기반 + 경로구분자
-        has_sep = ("/" in s) or ("\\" in s)
-        has_ext = os.path.splitext(s)[1].lower() in {".jpg", ".jpeg", ".png", ".webp"}
-        return has_sep and has_ext
-
-
-    def _optimize_image(self, image_data, max_width=1024):
-        """
-        image_data: data URI / base64 payload / file path
-        return: base64 payload (JPEG) or None
-        """
-        try:
-            if not image_data:
-                return None            
-
-            # 2) 파일 경로면 파일 열기
-            if self._looks_like_path(image_data) and os.path.exists(image_data):
-                img = Image.open(image_data)
-            else:
-                # 3) base64 payload로 간주하고 decode
-                img_bytes = base64.b64decode(image_data)
-                img = Image.open(io.BytesIO(img_bytes))
-
-            # 4) 리사이즈
-            if img.width > max_width:
-                ratio = max_width / float(img.width)
-                new_height = int(float(img.height) * ratio)
-                img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
-
-            # 5) JPEG로 압축
-            img = img.convert("RGB")
-            buffer = io.BytesIO()
-            img.save(buffer, format="JPEG", quality=75)
-
-            # ✅ base64 payload만 반환
-            return base64.b64encode(buffer.getvalue()).decode("utf-8")
-
-        except Exception:
-            # ✅ 실패 시 원본을 그대로 반환하지 말고 None
-            return None
-    
-    # -----------------------------
-    # Layout Params Builder (NEW)
-    # -----------------------------
-    def _extract_main_image_src(self, state: dict):
-        images = state.get("images") or {}
-        if not isinstance(images, dict) or not images:
-            return None
-        return images.get("main_img") or next(iter(images.values()), None)
-
-    def _open_pil_from_image_src(self, image_src: str):
-        if not image_src or not isinstance(image_src, str):
-            return None
-
-        payload = image_src
-        if payload.startswith("data:image"):
-            payload = payload.split(",", 1)[-1]
-
-        try:
-            if self._looks_like_path(payload) and os.path.exists(payload):
-                return Image.open(payload)
-            img_bytes = base64.b64decode(payload)
-            return Image.open(io.BytesIO(img_bytes))
-        except Exception:
-            return None
-
-    def _compute_image_meta(self, state: dict) -> dict:
-        img_src = self._extract_main_image_src(state)
-        img = self._open_pil_from_image_src(img_src) if img_src else None
-        if not img:
-            return {"width": 0, "height": 0, "aspect_ratio": 1.0}
-
-        w, h = img.size
-        ar = float(w) / float(h if h else 1)
-        return {"width": w, "height": h, "aspect_ratio": ar}
-
-    def _pick_largest_box(self, boxes: list):
-        best, best_area = None, -1
-        for b in boxes:
-            if not (isinstance(b, (list, tuple)) and len(b) == 4):
-                continue
-            ymin, xmin, ymax, xmax = b
-            try:
-                area = max(0, (xmax - xmin)) * max(0, (ymax - ymin))
-            except Exception:
-                continue
-            if area > best_area:
-                best_area = area
-                best = [ymin, xmin, ymax, xmax]
-        return best
-
-    def _compute_split_params(self, state: dict) -> dict:
-        planner = state.get("planner_result") or {}
-        selected_type = str(planner.get("selected_type", "")).upper()
-
-        vision = state.get("vision_result") or {}
-        vw = (((vision.get("metadata") or {}).get("composition_analysis") or {}).get("visual_weight") or "")
-        vw = str(vw)
-
-        meta = state.get("image_meta") or {"aspect_ratio": 1.0}
-        ar = float(meta.get("aspect_ratio", 1.0))
-
-        # 방향: 가로면 row, 세로면 column
-        direction = "row" if ar >= 1.25 else "column"
-
-        # reverse: right-heavy면 텍스트를 왼쪽으로 (order 뒤집기)
-        reverse = ("right-heavy" in vw.lower()) or (vw.strip().lower() == "right")
-
-        # ratio: image-section 비중 (타입별)
-        if "TYPE_LUXURY_PRODUCT" in selected_type:
-            ratio = 0.45  # 텍스트 크게(이미지 작게)
-        elif "TYPE_EDITORIAL_SPLIT" in selected_type:
-            ratio = 0.55  # 55:45
-        elif "TYPE_STREET_VIBE" in selected_type:
-            ratio = 0.70  # 이미지 크게
-        else:
-            ratio = 0.55
-
-        if direction == "column":
-            ratio = min(0.65, max(0.50, ratio))
-
-        return {"direction": direction, "ratio": float(ratio), "reverse": bool(reverse)}
-
-    def _compute_overlay_params(self, state: dict) -> dict:
-        """
-        [수정됨] Director의 layout_config가 있으면 우선 적용, 없으면 Vision AI fallback
-        """
-        # 1. [NEW] Director의 지시사항 확인 (Design Spec)
-        design_spec = state.get("design_spec") or {}
-        layout_config = design_spec.get("layout_config") or {}
-        
-        # Director가 정한 정렬 값 (예: 'left', 'right', 'center')
-        director_align = layout_config.get("text_alignment")
-        
-        # 2. [NEW] Director가 명확히 지시했다면 강제 적용 (Vision 무시)
-        if director_align:
-            # (디버깅용 로그)
-            print(f"🎨 Director Override: Force Alignment -> {director_align}")
-            
-            # Director 지시에 따른 좌표 하드코딩 (필요하면 비율 조정 가능)
-            if director_align == "right":
-                return {"box": {"left_pct": 45, "top_pct": 10, "width_pct": 50, "align": "right"}}
-            elif director_align == "center":
-                return {"box": {"left_pct": 15, "top_pct": 20, "width_pct": 70, "align": "center"}}
-            else: # left (default)
-                return {"box": {"left_pct": 5, "top_pct": 10, "width_pct": 50, "align": "left"}}
-
-        # ---------------------------------------------------------
-        # 3. [OLD] Director 의견 없으면 기존 Vision 로직 실행 (Fallback)
-        # ---------------------------------------------------------
-        vision = state.get("vision_result") or {}
-        meta = state.get("image_meta") or {"width": 0, "height": 0}
-        W, H = int(meta.get("width", 0)), int(meta.get("height", 0))
-
-        boxes = vision.get("space_analysis") or vision.get("safe_areas")
-
-        # safe_areas가 "Center" 같은 문자열이면 fallback
-        if not isinstance(boxes, list) or W <= 0 or H <= 0:
-            return {"box": {"left_pct": 8, "top_pct": 10, "width_pct": 60, "align": "left"}}
-
-        best = self._pick_largest_box(boxes)
-        if not best:
-            return {"box": {"left_pct": 8, "top_pct": 10, "width_pct": 60, "align": "left"}}
-
-        ymin, xmin, ymax, xmax = best
-
-        # normalized(0~1) 가능성 판별
-        is_norm = max(abs(ymin), abs(xmin), abs(ymax), abs(xmax)) <= 1.2
-        if is_norm:
-            ymin, ymax = ymin * H, ymax * H
-            xmin, xmax = xmin * W, xmax * W
-
-        left_pct = (xmin / W) * 100
-        top_pct = (ymin / H) * 100
-        width_pct = ((xmax - xmin) / W) * 100
-
-        pad = 2.0
-        left_pct = max(0.0, min(95.0, left_pct + pad))
-        top_pct = max(0.0, min(90.0, top_pct + pad))
-        width_pct = max(20.0, min(85.0, width_pct - (pad * 2)))
-
-        cx = (xmin + xmax) / 2.0
-        align = "right" if cx > (0.55 * W) else "left"
-
-        return {"box": {"left_pct": round(left_pct, 2), "top_pct": round(top_pct, 2), "width_pct": round(width_pct, 2), "align": align}}
-
-    def _build_layout_params(self, state: dict) -> None:
-        print("🧩 main_img head:", (state.get("images", {}).get("main_img") or "")[:40])
-        
-        # 1. 기본 메타 및 레이아웃 계산
-        state["image_meta"] = self._compute_image_meta(state)
-        state.setdefault("layout_params", {})
-        state["layout_params"]["split"] = self._compute_split_params(state)
-        state["layout_params"]["overlay"] = self._compute_overlay_params(state) # 위에서 수정한 함수 호출
-
-        # (옵션) vision alias
-        vision = state.get("vision_result")
-        if isinstance(vision, dict):
-            vision.setdefault("safe_areas", vision.get("space_analysis") or vision.get("safe_areas") or "Center")
-
-        # ---------------------------------------------------------
-        # 2. [NEW] Director 디자인 스타일(CSS 변수화) 주입
-        # ---------------------------------------------------------
-        design = state.get("design_spec") or {}
-        theme = design.get("theme") or {}
-        colors = theme.get("colors") or {}
-        fonts = theme.get("fonts") or {}
-        comp_style = design.get("components_style") or {}
-
-        # 템플릿(HTML)에서 {{ styles.bg_color }} 등으로 쓰기 쉽게 정리
-        state["styles"] = {
-            # 폰트 패밀리 (없으면 기본값)
-            "font_title": fonts.get("title", "serif"),
-            "font_body": fonts.get("body", "sans-serif"),
-            
-            # 색상 코드
-            "color_bg": colors.get("primary", "#000000"),
-            "color_text_main": colors.get("text_main", "#ffffff"),
-            "color_text_sub": colors.get("text_sub", "#cccccc"),
-            
-            # 박스 스타일 (Director가 준 Tailwind 클래스 혹은 CSS 값 조립)
-            "box_classes": self._parse_box_style(comp_style.get("content_box", {}))
-        }
-    
-    # [NEW] 헬퍼 함수: Director의 Dict 스타일을 Tailwind 클래스 문자열로 변환
-    def _parse_box_style(self, box_spec: dict) -> str:
-        """
-        Director가 준 content_box 스타일을 HTML class 문자열로 합침
-        """
-        if not box_spec:
-            # 기본값: 흰 배경, 반투명, 패딩, 둥근 모서리
-            return "bg-white/80 p-8 rounded-xl shadow-lg backdrop-blur-sm"
-            
-        classes = []
-        # Director가 "bg_color": "bg-white/90" 처럼 Tailwind 클래스로 줬다고 가정
-        if box_spec.get("bg_color"): classes.append(box_spec["bg_color"])
-        if box_spec.get("padding"): classes.append(box_spec["padding"])
-        if box_spec.get("shadow"): classes.append(box_spec["shadow"])
-        if box_spec.get("border_radius"): classes.append(box_spec["border_radius"])
-        if box_spec.get("backdrop_blur"): classes.append(box_spec["backdrop_blur"])
-        
-        return " ".join(classes)
-
-
-    def _human_in_the_loop(self, state):
-        """
-        [내부 메서드] 사용자 검수 단계 (HITL)
-        """
-        print("\n" + "="*50)
-        print("🔍 [Publisher HITL] 최종 조립 전 검수를 시작합니다.")
-        
-        # 첫 번째 블록의 헤드라인을 검수 대상으로 지정
-        if 'blocks' in state.get('content', {}) and len(state['content']['blocks']) > 0:
-            current_headline = state['content']['blocks'][0].get('headline', 'N/A')
-            print(f"현재 표지 문구: {current_headline}")
-            
-            user_input = input("👉 수정할 문구를 입력하세요 (엔터 시 유지): ").strip()
-            if user_input:
-                state['content']['blocks'][0]['headline'] = user_input
-                print(f"✅ 문구가 '{user_input}'(으)로 업데이트되었습니다.")
-        
-        print("="*50 + "\n")
-        return state
-
-    def run_process(self, state, enable_hitl=False):
-        """
-        에이전트 실행 메인 메서드 (Multi-Page Loop 지원)
-        """
-        print("--- [Node 7] Publisher Agent 작동 시작 ---")
-
-        # ------------------------------------------------------------------
-        # 1. 데이터 모드 확인 (Single vs Multi)
-        # ------------------------------------------------------------------
-        user_input = state.get("user_input")
-        is_multi_mode = isinstance(user_input, list)
-        
-        # 처리할 아이템 리스트 생성
-        if is_multi_mode:
-            items_to_process = user_input
-            plans_map = state.get("planner_result") or {}
-            visions_map = state.get("vision_results") or state.get("vision_result") or {}
-            # 수정: list -> {id: article_dict} 로 변환
-            raw_manuscript = state.get("manuscript") or {}
-
-            if isinstance(raw_manuscript, list):
-                manuscripts_map = {}
-                for idx, m in enumerate(raw_manuscript):
-                    if isinstance(m, dict):
-                        mid = str(m.get("id", idx))
-                        manuscripts_map[mid] = m
-            elif isinstance(raw_manuscript, dict):
-                manuscripts_map = raw_manuscript
-            else:
-                manuscripts_map = {}
-            designs_map = state.get("design_spec") or {}
-            
-            # 🚨 [안전장치] image_data가 리스트로 올 경우 Dict로 변환하여 에러 방지
-            raw_imgs = state.get("image_data") or state.get("images")
-            if isinstance(raw_imgs, list):
-                # 리스트라면 user_input의 순서에 맞춰서 임시 매핑
-                images_map = {}
-                for idx, img in enumerate(raw_imgs):
-                    if idx < len(items_to_process):
-                        u_id = str(items_to_process[idx].get("id", f"img_{idx}"))
-                        images_map[u_id] = img
-            elif isinstance(raw_imgs, dict):
-                images_map = raw_imgs
-            else:
-                images_map = {}
-        else:
-            # 단일 모드: 가짜 ID 'main' 사용
-            items_to_process = [{"id": "main"}]
-            plans_map = {"main": state.get("planner_result", {})}
-            visions_map = {"main": state.get("vision_result", {})}
-            manuscripts_map = {"main": state.get("manuscript", {})}
-            designs_map = {"main": state.get("design_spec", {})}
-            # 단일 이미지 처리
-            single_img = state.get("image_data") or (state.get("images", {}).get("main_img") if isinstance(state.get("images"), dict) else None)
-            images_map = {"main": single_img}
-
-        accumulated_html = []
-
-        # ------------------------------------------------------------------
-        # 2. 반복문 실행 (페이지별 렌더링)
-        # ------------------------------------------------------------------
-        for item in items_to_process:
-            a_id = str(item.get("id", "main"))
-            print(f"🖨️ Publishing Page [ID:{a_id}]...")
-
-            # (A) Local State 생성
-            local_state = {
-                "user_input": item,
-                "planner_result": plans_map.get(a_id, {}),
-                "vision_result": visions_map.get(a_id, {}),
-                "manuscript": manuscripts_map.get(a_id, {}),
-                "design_spec": designs_map.get(a_id, {}),
-                "intent": state.get("intent"),
-                "images": {} 
-            }
-
-            # (B) 이미지 처리 및 최적화
-            raw_img = images_map.get(a_id)
-            if raw_img:
-                # data URI 처리
-                payload = raw_img
-                if isinstance(payload, str) and payload.startswith("data:image"):
-                    payload = payload.split(",", 1)[-1]
-                
-                # 최적화 실행
-                optimized = self._optimize_image(payload)
-                if optimized:
-                    local_state["images"]["main_img"] = f"data:image/jpeg;base64,{optimized}"
-                else:
-                    # 실패 시 원본 사용
-                    if isinstance(raw_img, str) and raw_img.startswith("data:image"):
-                        local_state["images"]["main_img"] = raw_img
-                    elif optimized is None and payload:
-                        local_state["images"]["main_img"] = f"data:image/jpeg;base64,{payload}"
-
-            # (C) 레이아웃 파라미터 계산
-            self._build_layout_params(local_state)
-
-            # (D) 템플릿 선택
-            try:
-                planner_data = local_state.get("planner_result", {})
-                intent = local_state.get("intent") or planner_data.get("selected_type", "")
-                intent_str = str(intent).upper()
-                
-                vision = local_state.get("vision_result", {})
-                strategy = str((vision.get("layout_strategy") or {}).get("recommendation") or planner_data.get("layout_mode") or "")
-                
-                if strategy.lower() == "separated":
-                    current_template_name = "layout_separated.html"
-                elif ("SPLIT" in intent_str) or ("PRODUCT" in intent_str) or ("SEPARATED" in intent_str):
-                    current_template_name = "layout_separated.html"
-                else:
-                    current_template_name = "layout_overlay.html"
-
-                # (E) 데이터 호환성 보정
-                m = local_state.get("manuscript")
-                if m and isinstance(m, dict):
-                    local_state.setdefault("content", {"blocks": [{}]})
-                    b0 = local_state["content"]["blocks"][0]
-                    b0["headline"] = m.get("headline", "Untitled")
-                    b0["subhead"] = m.get("subhead", "")
-                    b0["body"] = m.get("body", "")
-                    b0["caption"] = m.get("caption", "")
-
-                # (F) 단일 페이지 렌더링
-                template = self.env.get_template(current_template_name)
-                page_html = template.render(data=local_state, images=local_state.get('images', {}))
-                
-                accumulated_html.append(page_html)
-
-            except Exception as e:
-                print(f"❌ Page Render Error [ID:{a_id}]: {e}")
-                accumulated_html.append(f"<div class='page'><h3>Error Rendering Page {a_id}: {e}</h3></div>")
-
-        # ------------------------------------------------------------------
-        # 3. 최종 결과 합치기
-        # ------------------------------------------------------------------
-        final_output = "\n".join(accumulated_html)
-        
-        # A4 스타일 및 페이지 넘김 강제 적용
-        global_style = """
-            <style>
-                @media print {
-                    .page { break-after: always; page-break-after: always; }
-                    body { margin: 0; padding: 0; }
-                }
-            </style>
-        """
-        final_output = global_style + final_output
-
-        # 4. 결과 저장
-        state["html_code"] = final_output
-        
-        output_path = os.path.join(self.project_root, "output", "final_magazine.html")
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(final_output)
-        
-        print(f"✅ 매거진 조립 완료: {output_path} (총 {len(accumulated_html)} 페이지)")
-        return state
-
-# ---------------------------------------------------------
-# [중요] 외부 파일(main.py)에서 import 할 수 있도록 함수 노출
-# ---------------------------------------------------------
-publisher_agent = PublisherAgent()
+import time
+import random
 
 def run_publisher(state):
-    out_state = publisher_agent.run_process(state, enable_hitl=False)
+    print("--- [Publisher] Generative HTML Coding Start ---")
+    
+    llm = config.get_llm()
+    articles = state.get("articles", {})
+    final_pages = []
 
-    # ✅ formatter/critique가 읽는 키로 맞춰서 반환
+    # 1. Define the HTML Generation Prompt
+    # A4 Size: 210mm x 297mm
+    prompt = ChatPromptTemplate.from_template(
+        """
+        You are an expert Frontend Developer specializing in high-end magazine layouts.
+        
+        [TASK]
+        Write the full HTML/CSS code for a single magazine page (A4 size).
+        Use **Tailwind CSS** (via CDN).
+        
+        [Constraints]
+        1. **Size**: Strictly A4 (width: 210mm, height: 297mm). Overflow hidden. 
+           - Set body/html to margin 0, padding 0.
+           - Wrapper div should be strictly 210mm x 297mm.
+        2. **Styling**: Use the provided [Design Spec] for fonts, colors, and layout.
+        3. **Content**: Use the [Manuscript] for texts.
+        4. **Image**: Use the provided [Image Data] (Base64). Ensure it fits the [Vision Strategy].
+        5. **Output**: Return ONLY the raw HTML code. Do not use Markdown blocks (```html).
+        6. **CDN**: Include <script src="https://cdn.tailwindcss.com"></script> at the top.
+
+        [Data]
+        - Title: {headline}
+        - Body: {body}
+        - Image Base64: {image_data} (If None/Empty, use a placeholder color or gradient)
+        
+        - **Vision Analysis**: {vision_json}
+        - **Design Spec**: {design_json}
+        - **Plan**: {plan_json}
+        
+        [Design Directive]
+        - If strategy is 'Overlay', place text over the image with proper contrast (gradients/boxes).
+        - If strategy is 'Separated', create a multi-column layout or grid.
+        - Use the specific fonts and colors defined in [Design Spec].
+        
+        Generate the HTML now:
+        """
+    )
+
+    # Output Parser returns string
+    chain = prompt | llm | StrOutputParser()
+
+    # 2. Iterate and Generate with Retry
+    for a_id, article in articles.items():
+        print(f"🎨 Coding HTML for Article {a_id}...")
+        
+        manuscript = article.get("manuscript", {})
+        
+        # NOTE: ArticleState uses 'image_path' for the image data/path
+        image_val = article.get("image_path") or ""
+        
+        input_data = {
+            "headline": manuscript.get("headline", "Untitled"),
+            "body": manuscript.get("body", ""),
+            "image_data": image_val,
+            "vision_json": str(article.get("vision_analysis", {})),
+            "design_json": str(article.get("design_spec", {})),
+            "plan_json": str(article.get("plan", {}))
+        }
+
+        html_code = ""
+        max_retries = 3
+        
+        for attempt in range(max_retries):
+            try:
+                # Invoke LLM
+                html_code = chain.invoke(input_data)
+                
+                # Success! Break the retry loop
+                html_code = html_code.replace("```html", "").replace("```", "")
+                break 
+                
+            except Exception as e:
+                print(f"⚠️ Attempt {attempt+1}/{max_retries} failed for Article {a_id}: {e}")
+                
+                # Check if it's a 503 or overload error or 429
+                if "503" in str(e) or "overloaded" in str(e) or "429" in str(e):
+                    if attempt < max_retries - 1:
+                        # Exponential backoff + jitter
+                        # 0: 2s, 1: 4s, 2: stop
+                        wait_time = (2 ** (attempt + 1)) + random.uniform(0, 1) 
+                        print(f"⏳ Waiting {wait_time:.1f}s before retrying...")
+                        time.sleep(wait_time)
+                        continue
+                
+                # If it's not a temporary error, or we ran out of retries
+                html_code = f"<div style='color:red; padding:20px;'><h1>Error Generating Page {a_id}</h1><p>{e}</p></div>"
+
+        final_pages.append(html_code)
+
+    # 3. Combine Pages
+    full_html = "\n<div class='page-break'></div>\n".join(final_pages)
+    
     return {
-        "html_code": out_state.get("html_code", ""),
-        "logs": ["Publisher: HTML assembled"]
+        "html_code": full_html,
+        "logs": [f"Publisher: Generated {len(final_pages)} pages via LLM (with retry logic)"]
     }

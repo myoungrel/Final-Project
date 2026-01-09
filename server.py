@@ -57,7 +57,9 @@ def generate_magazine(payload: MagazineRequest):
             user_inputs.append({
                 "id": art.id,
                 "title": art.title,
-                "user_request": art.request,
+                "title": art.title,
+                "request": art.request, # ✨ Key Mismatch Fix: user_request -> request
+                "style": art.style,
                 "style": art.style,
                 "is_generated": art.is_generated
             })
@@ -74,7 +76,9 @@ def generate_magazine(payload: MagazineRequest):
         }
 
         final_state = app_graph.invoke(initial_state)
-        html_output = final_state.get("final_output", "")
+        
+        # ✨ [Fallback Check] final_output or html_code
+        html_output = final_state.get("final_output") or final_state.get("html_code") or ""
         
         if not html_output:
             raise HTTPException(status_code=500, detail="HTML 생성 실패")

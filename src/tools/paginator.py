@@ -4,6 +4,10 @@ from typing import List, Dict
 
 def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
     """
+    [Input Expectation]
+    - articles: List[Dict] - Each dict must have 'body', 'caption', etc.
+    - Note: Caller (main.py's run_paginator_node) should convert Dict[id, article] to List[article]
+    
     [기능]
     여러 개의 기사(Article)를 입력받아, '페이지(Page)' 단위로 묶어줍니다.
     각 페이지에 어떤 레이아웃을 쓸지(layout_hint)도 결정합니다.
@@ -11,6 +15,11 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
     [알고리즘: First Fit / Bin Packing]
     페이지 용량(100)이 찰 때까지 기사를 담고, 넘치면 새 페이지를 만듭니다.
     """
+    
+    # ✨ [New] 입력 타입 검증
+    if not isinstance(articles, list):
+        print(f"⚠️ Paginator expects List, got {type(articles)}")
+        return []
     
     # 설정: 한 페이지가 감당할 수 있는 최대 무게
     MAX_PAGE_WEIGHT = 100 

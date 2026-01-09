@@ -30,7 +30,7 @@ class Config:
     # ---------------------------------------------------------
 
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-    MODEL_NAME = "gemini-2.5-pro"
+    MODEL_NAME = "gemini-2.5-flash"
 
     @staticmethod
     def get_llm():
