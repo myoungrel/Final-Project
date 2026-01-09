@@ -34,9 +34,9 @@ def organize_articles_into_pages(articles: List[Dict]) -> List[Dict]:
         manuscript = art.get("manuscript", {})
         body_text = manuscript.get("body") or art.get("body", "")
         
-        # [Adaptive Layout] 3600자(A4 Full)까지는 한 페이지 수용
-        SAFE_LIMIT_WITH_IMAGE = 3600
-        SAFE_LIMIT_TEXT_ONLY = 3600
+        # [Adaptive Layout] 2800자(A4 Safe)까지는 한 페이지 수용
+        SAFE_LIMIT_WITH_IMAGE = 2800
+        SAFE_LIMIT_TEXT_ONLY = 2800
         
         limit = SAFE_LIMIT_WITH_IMAGE
         text_len = len(body_text)
