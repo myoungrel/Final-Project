@@ -1,0 +1,3863 @@
+[
+  {
+    "image_id": "fashion_1.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_1.png",
+    "total_elements": 3,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 552,
+          "y1": 870,
+          "x2": 732,
+          "y2": 1036
+        },
+        "confidence": 0.7637307643890381,
+        "text": "Strictly’s newest star SCARLETT MOFFATT opens up on miscarriage, mum life and why she’s inviting Ant and Dec to her wedding",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 515,
+          "y1": 515,
+          "x2": 769,
+          "y2": 864
+        },
+        "confidence": 0.3396282196044922,
+        "text": "‘l said to Scott: “I can't handle the heartbreak any more”",
+        "ocr_confidence": 0.73
+      },
+      {
+        "id": 2,
+        "type": "figure",
+        "coordinates": {
+          "x1": 1,
+          "y1": 124,
+          "x2": 777,
+          "y2": 1121
+        },
+        "confidence": 0.2684129774570465
+      }
+    ],
+    "mood": "Emotional",
+    "description": "Scarlett Moffatt discusses her personal struggles with miscarriage, mum life, and her upcoming wedding.",
+    "category": "fashion",
+    "type": "Celebrity_Lifestyle"
+  },
+  {
+    "image_id": "fashion_2.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_2.png",
+    "total_elements": 6,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 90,
+          "y1": 758,
+          "x2": 453,
+          "y2": 800
+        },
+        "confidence": 0.8863362669944763,
+        "text": "A chef-inspired pyramid mousse paté, crowned with gravy. One look, and it’s love.",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 1,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 0,
+          "y1": 1062,
+          "x2": 792,
+          "y2": 1099
+        },
+        "confidence": 0.8401728272438049
+      },
+      {
+        "id": 2,
+        "type": "title",
+        "coordinates": {
+          "x1": 90,
+          "y1": 600,
+          "x2": 252,
+          "y2": 711
+        },
+        "confidence": 0.7745956778526306,
+        "text": "CUISINE | LIKE YOU’VE NEVER, EVER SEEN",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 3,
+        "type": "title",
+        "coordinates": {
+          "x1": 91,
+          "y1": 734,
+          "x2": 263,
+          "y2": 756
+        },
+        "confidence": 0.5336424112319946,
+        "text": "Fancy Feast Gems",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 4,
+        "type": "figure",
+        "coordinates": {
+          "x1": 85,
+          "y1": 822,
+          "x2": 449,
+          "y2": 1008
+        },
+        "confidence": 0.30498409271240234
+      },
+      {
+        "id": 5,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 510,
+          "y1": 839,
+          "x2": 664,
+          "y2": 937
+        },
+        "confidence": 0.3007282316684723
+      }
+    ],
+    "mood": "Luxurious",
+    "description": "An advertisement for Fancy Feast Gems, a chef-inspired pyramid mousse pâté for cats, featuring a white cat with green eyes.",
+    "category": "fashion",
+    "type": "Advertisement"
+  },
+  {
+    "image_id": "fashion_3.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_3.png",
+    "total_elements": 8,
+    "elements": [
+      {
+        "id": 0,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 638,
+          "y1": 1091,
+          "x2": 762,
+          "y2": 1109
+        },
+        "confidence": 0.8472141027450562
+      },
+      {
+        "id": 1,
+        "type": "figure",
+        "coordinates": {
+          "x1": 0,
+          "y1": 123,
+          "x2": 789,
+          "y2": 1122
+        },
+        "confidence": 0.5399087071418762
+      },
+      {
+        "id": 2,
+        "type": "title",
+        "coordinates": {
+          "x1": 79,
+          "y1": 933,
+          "x2": 203,
+          "y2": 951
+        },
+        "confidence": 0.4626130163669586,
+        "text": "Festive Fashion",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 37,
+          "y1": 953,
+          "x2": 246,
+          "y2": 1045
+        },
+        "confidence": 0.4561433792114258,
+        "text": "Blake Lively stunned in a corseted red Annina Alice dress while stopping by a Pop-up at Stoney Clover Lane West Village for Blake Brown — her ‘eponymous haircare brand — just in tima'for the holidays.",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 4,
+        "type": "title",
+        "coordinates": {
+          "x1": 362,
+          "y1": 540,
+          "x2": 514,
+          "y2": 559
+        },
+        "confidence": 0.42886781692504883,
+        "text": "She Came to Sleigh",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 5,
+        "type": "title",
+        "coordinates": {
+          "x1": 501,
+          "y1": 936,
+          "x2": 571,
+          "y2": 955
+        },
+        "confidence": 0.3611069619655609,
+        "text": "Posh Off",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 6,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 343,
+          "y1": 561,
+          "x2": 536,
+          "y2": 637
+        },
+        "confidence": 0.35597652196884155,
+        "text": "Very merry! Queen Camilla hitched a ride with a pair of children — and Saint Nick — during a charity Christmas tree decorating event ‘at Clarence House.",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 420,
+          "y1": 959,
+          "x2": 652,
+          "y2": 1058
+        },
+        "confidence": 0.2835683524608612,
+        "text": "oe ee coe ae Wun ngio os \"rectal gue chains nF",
+        "ocr_confidence": 0.25
+      }
+    ],
+    "mood": "Trendy",
+    "description": "A compilation of recent celebrity sightings and their fashion moments.",
+    "category": "fashion",
+    "type": "Celebrity_Lifestyle"
+  },
+  {
+    "image_id": "fashion_4.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_4.png",
+    "total_elements": 11,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 58,
+          "y1": 263,
+          "x2": 516,
+          "y2": 412
+        },
+        "confidence": 0.8687117099761963,
+        "text": "Flexible design to fit your body for maximum healing potential Lightweight, portable and fully rechargeable — perfect for treatment rooms or travel Multi-wavelength (blue, red, and near-infrared light) Powerful low-level cell repaiging LED technology",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 45,
+          "y1": 185,
+          "x2": 516,
+          "y2": 242
+        },
+        "confidence": 0.8632032871246338,
+        "text": "The first compact LED device to deliver 5 FDA-cleared’ treatments in one revolutionary, shape-taking panel.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 2,
+        "type": "title",
+        "coordinates": {
+          "x1": 94,
+          "y1": 828,
+          "x2": 586,
+          "y2": 998
+        },
+        "confidence": 0.6794743537902832,
+        "text": "celluma NOVA",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 101,
+          "y1": 1048,
+          "x2": 692,
+          "y2": 1074
+        },
+        "confidence": 0.6611013412475586,
+        "text": "www.cellumauk.co.uk | enquiries@cellumauk.co.uk | + 44 (0) 1462 481500",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 4,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 639,
+          "y1": 859,
+          "x2": 747,
+          "y2": 1020
+        },
+        "confidence": 0.5788369178771973
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 93,
+          "y1": 798,
+          "x2": 174,
+          "y2": 834
+        },
+        "confidence": 0.47115185856819153,
+        "text": "New!",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 6,
+        "type": "figure",
+        "coordinates": {
+          "x1": 639,
+          "y1": 859,
+          "x2": 747,
+          "y2": 1020
+        },
+        "confidence": 0.3431248366832733
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 366,
+          "y1": 1005,
+          "x2": 582,
+          "y2": 1024
+        },
+        "confidence": 0.3347012996673584,
+        "text": "‘Class IIA Medical Device & FDA Cleared",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 8,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 4,
+          "y1": 117,
+          "x2": 784,
+          "y2": 145
+        },
+        "confidence": 0.3304707705974579
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 142,
+          "y1": 53,
+          "x2": 668,
+          "y2": 80
+        },
+        "confidence": 0.2834567725658417,
+        "text": "= MOST AWARDED LIGHT THERAPY COMPANY IN THE WORL",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 10,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 4,
+          "y1": 117,
+          "x2": 784,
+          "y2": 145
+        },
+        "confidence": 0.2675597071647644,
+        "text": "‘ing skit ‘in bf i “i @ ageingskin @ acne ™ painmanagement |B Pairrestoration » body contouring",
+        "ocr_confidence": 0.59
+      }
+    ],
+    "mood": "Innovative",
+    "description": "An advertisement for Celluma NOVA, an advanced LED light therapy device offering multiple FDA-cleared treatments.",
+    "category": "fashion",
+    "type": "Advertisement"
+  },
+  {
+    "image_id": "fashion_5.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_5.png",
+    "total_elements": 14,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 463,
+          "y1": 699,
+          "x2": 596,
+          "y2": 917
+        },
+        "confidence": 0.9657192230224609,
+        "text": "He began by cutting, out sodaand juice, (Before, *Lcould knock outa gallon of juice, no problem”) The first 30 Ibs. “dropped off?” and then COVID hit. While the world was on pause, “it felt ikea green ighttome.”He began walkingin his etairwellaiddoing",
+        "ocr_confidence": 0.67
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 610,
+          "y1": 222,
+          "x2": 740,
+          "y2": 441
+        },
+        "confidence": 0.9473835825920105,
+        "text": "outdoor workouts, anc hetried aketo diet. “Twasn’texercising before that, soeven doingsmall workouts was super beneficial” Heboughtacopy of People with acover story about weight loss. “Twas like, ‘Ymgoingtobein that magazine!”",
+        "ocr_confidence": 0.63
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 611,
+          "y1": 442,
+          "x2": 746,
+          "y2": 917
+        },
+        "confidence": 0.9339662194252014,
+        "text": "Over the next five years he motivated himself with daily affirmations (“‘Tthelps rewire your brain”). Now, at 300 Ibs, he's 75lbs. away from his, goal. “ve proven to myself that anythingis possible,” says Ander- son, whois singleand estimates he spends $1,000 monthlyon training, healthy food andsupplements. As forfulfillinghis vow to make tinto People, “Tmoverthemoon. And Iwant tosheda light for people who. fee! like they'rein the dark, Losing 300 Ibs. is daunting but find onethingyoucan commit to, and itwill be life-changing?",
+        "ocr_confidence": 0.69
+      },
+      {
+        "id": 3,
+        "type": "title",
+        "coordinates": {
+          "x1": 497,
+          "y1": 76,
+          "x2": 746,
+          "y2": 111
+        },
+        "confidence": 0.9246107935905457,
+        "text": "Brian Anderson",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 500,
+          "y1": 116,
+          "x2": 746,
+          "y2": 146
+        },
+        "confidence": 0.9199021458625793,
+        "text": "Age: 40 Height: 61” Lives in: San Diego ‘Jaki O91 flee dlapatth auperviees",
+        "ocr_confidence": 0.68
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 462,
+          "y1": 224,
+          "x2": 598,
+          "y2": 697
+        },
+        "confidence": 0.9027510285377502,
+        "text": "‘Growing up, Brian D> andersonwas knownasBigB:\"All mynicknameswere size-related.” Asahigh school senior he was more than 4001bs.and onaliquid diet. By 2019 he'd reached his highest weight,578 bs. “Every morning I'd wakeupandsit at the edge ofthebed fora few minutes. Ihadto hype myselfupto stand up because itwas sommuch,\" hesays. “It’s, like wearingweight packs everywhere. Twas tired all the time, Just walking tomy car was a workout.” The possibility of hit- ting600onthescale wasterrifying:“Ihad todosomething”",
+        "ocr_confidence": 0.73
+      },
+      {
+        "id": 6,
+        "type": "title",
+        "coordinates": {
+          "x1": 460,
+          "y1": 158,
+          "x2": 729,
+          "y2": 210
+        },
+        "confidence": 0.8953913450241089,
+        "text": "‘Lknow what it’s like to feel li : 0",
+        "ocr_confidence": 0.76
+      },
+      {
+        "id": 7,
+        "type": "title",
+        "coordinates": {
+          "x1": 342,
+          "y1": 783,
+          "x2": 434,
+          "y2": 827
+        },
+        "confidence": 0.8541119694709778,
+        "text": "NON-SCALE VICTORIES",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 8,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 354,
+          "y1": 178,
+          "x2": 448,
+          "y2": 303
+        },
+        "confidence": 0.8435360789299011,
+        "text": "Cost kepthim fromusing GLP-1s, but ‘'mglad! dide't. Henow Pl beabletosustain my weightloss because of my dietandexercise beat",
+        "ocr_confidence": 0.49
+      },
+      {
+        "id": 9,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 507,
+          "y1": 15,
+          "x2": 747,
+          "y2": 44
+        },
+        "confidence": 0.6601119041442871
+      },
+      {
+        "id": 10,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 510,
+          "y1": 1083,
+          "x2": 745,
+          "y2": 1101
+        },
+        "confidence": 0.6209169626235962
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 343,
+          "y1": 834,
+          "x2": 433,
+          "y2": 932
+        },
+        "confidence": 0.6140438914299011,
+        "text": "“Getting in the car and just putting on my seat belt. Icouldn’t wear my seat belt for years.”",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 12,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 344,
+          "y1": 947,
+          "x2": 432,
+          "y2": 1046
+        },
+        "confidence": 0.4720737636089325,
+        "text": "“Lused to have ‘Brian's chair’ at work—the one I could fit in. | don’t have a special chair enpeere!",
+        "ocr_confidence": 0.73
+      },
+      {
+        "id": 13,
+        "type": "figure",
+        "coordinates": {
+          "x1": 0,
+          "y1": 124,
+          "x2": 449,
+          "y2": 1123
+        },
+        "confidence": 0.3485732674598694
+      }
+    ],
+    "mood": "Inspirational",
+    "description": "An inspirational story detailing Brian Anderson's significant weight loss journey and transformation.",
+    "category": "fashion",
+    "type": "Real_Life_Story"
+  },
+  {
+    "image_id": "fashion_6.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_6.png",
+    "total_elements": 23,
+    "elements": [
+      {
+        "id": 0,
+        "type": "figure",
+        "coordinates": {
+          "x1": 284,
+          "y1": 71,
+          "x2": 510,
+          "y2": 300
+        },
+        "confidence": 0.9802188277244568
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 56,
+          "y1": 847,
+          "x2": 266,
+          "y2": 1045
+        },
+        "confidence": 0.9771385192871094,
+        "text": "TV star Olivia Attwood's new hustle isthe distraction you need during Twixmas. The ex Love-ander’s sharp humour and unfitered chat shines through during her entertaining convos with quests including influencer Brooks Nader and rugby player and TikTok star llona Maher. Theyil be talking about the moments that made their careers, Giving the lowdown on their love lives, and telling a few scandalous stories, along the way. A fab isten. Available wherever you get your podcasts.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 282,
+          "y1": 909,
+          "x2": 502,
+          "y2": 1045
+        },
+        "confidence": 0.9762627482414246,
+        "text": "lt your kids (or yout) are big fans of the Disney-Pirar films, thisis the perfect day out. Whether its discovering the Monsters Inc factory with Mike and Sule, oF stepping into Andy room with Buzz and Woody, this immersive experience in north London with 8 unique Pixar sets will have you al kidding around. From February 13, 2026, Mundopixarcom",
+        "ocr_confidence": 0.8
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 348,
+          "x2": 510,
+          "y2": 500
+        },
+        "confidence": 0.975851833820343,
+        "text": "It you prefer your NYE to be more jammies on the sofa than dancing the night away, we've got just the thing, Boyzone's Ronan Keating is throwing one hell of a bash to ring in 2026 - and everyone’ invited! The When You Say Nothing At Allinger will lead the celebrations with performances ot his biggest hits plus some very special guests will be making an appearance. Isn't it a wonder! Wednesday, BBCI",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 56,
+          "y1": 90,
+          "x2": 260,
+          "y2": 303
+        },
+        "confidence": 0.9756431579589844,
+        "text": "Poker faces at the ready: the new season of The Traitors is kicking off and we're all kinds of excited. Hot on the heels of our fave TV show of 2025 (AKA the first celebrity edition), (Claudia Winkleman is heading back to the castle to put 22 new contestants through their paces for series four But who will remain faithful, and who will backstab and lie through their teeth in an attempt to bag the whopping £20k prize pot? Youtl have to watch along with us to find out! Thursday, 8pm, BBCI",
+        "ocr_confidence": 0.81
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 522,
+          "y1": 91,
+          "x2": 730,
+          "y2": 303
+        },
+        "confidence": 0.9755980968475342,
+        "text": "After an experimental military weapon is accidentally detonated in Tasmania, volunteers - inducing Ava Newman (Daisy Ridley) - travel to the istand to help with the clearrup and identity bodies. But they soon discover that some of the dead don't seem to be staying dead - instead, theyre showing worrying signs of ite and wreaking havoc on the living. As Ava searches in vain for her missing husband, she must use every last bit of her strength tosurvive against the odds. Terrifying stuff. In cinemas Friday",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 6,
+        "type": "figure",
+        "coordinates": {
+          "x1": 280,
+          "y1": 707,
+          "x2": 507,
+          "y2": 875
+        },
+        "confidence": 0.9724260568618774
+      },
+      {
+        "id": 7,
+        "type": "figure",
+        "coordinates": {
+          "x1": 524,
+          "y1": 313,
+          "x2": 750,
+          "y2": 542
+        },
+        "confidence": 0.9710686802864075
+      },
+      {
+        "id": 8,
+        "type": "figure",
+        "coordinates": {
+          "x1": 545,
+          "y1": 562,
+          "x2": 732,
+          "y2": 850
+        },
+        "confidence": 0.9664722681045532
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 522,
+          "y1": 878,
+          "x2": 722,
+          "y2": 1044
+        },
+        "confidence": 0.9639809131622314,
+        "text": "Rosie moves to London and joins an exclusive agency selling high-end ‘houses. But then she starts being stalked by “Michael”, who seems to think he's in a relationship with her and even sends her creepy phatos from inside her home. Who is he, and just how far will he go? A fast-paced thriller that will really get your heart pumping! To win, visit Fabulousmag. co.uk.* Out Thursday (£14.99, Corvus)",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 10,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 290,
+          "y1": 585,
+          "x2": 504,
+          "y2": 680
+        },
+        "confidence": 0.9507536888122559,
+        "text": "Immerse yourself in Pixar, watch Daisy Ridley get gory, and take another trip to the Traitors’ castle",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 11,
+        "type": "title",
+        "coordinates": {
+          "x1": 284,
+          "y1": 315,
+          "x2": 448,
+          "y2": 347
+        },
+        "confidence": 0.9348070621490479,
+        "text": "Ronan ea A New Year's Eve Party.",
+        "ocr_confidence": 0.76
+      },
+      {
+        "id": 12,
+        "type": "title",
+        "coordinates": {
+          "x1": 283,
+          "y1": 891,
+          "x2": 440,
+          "y2": 908
+        },
+        "confidence": 0.9195597767829895,
+        "text": "Mundo Pixar Expericnce",
+        "ocr_confidence": 0.79
+      },
+      {
+        "id": 13,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 312,
+          "y1": 1086,
+          "x2": 487,
+          "y2": 1100
+        },
+        "confidence": 0.9163753390312195
+      },
+      {
+        "id": 14,
+        "type": "title",
+        "coordinates": {
+          "x1": 57,
+          "y1": 830,
+          "x2": 148,
+          "y2": 846
+        },
+        "confidence": 0.9109182357788086,
+        "text": "Olivia's House",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 15,
+        "type": "figure",
+        "coordinates": {
+          "x1": 44,
+          "y1": 314,
+          "x2": 270,
+          "y2": 542
+        },
+        "confidence": 0.8974611759185791
+      },
+      {
+        "id": 16,
+        "type": "title",
+        "coordinates": {
+          "x1": 58,
+          "y1": 73,
+          "x2": 140,
+          "y2": 89
+        },
+        "confidence": 0.8961470127105713,
+        "text": "The Traitors",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 17,
+        "type": "title",
+        "coordinates": {
+          "x1": 523,
+          "y1": 73,
+          "x2": 647,
+          "y2": 90
+        },
+        "confidence": 0.863742470741272,
+        "text": "We Bury The Dead",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 18,
+        "type": "title",
+        "coordinates": {
+          "x1": 299,
+          "y1": 524,
+          "x2": 497,
+          "y2": 574
+        },
+        "confidence": 0.844758927822113,
+        "text": "Fabu",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 19,
+        "type": "title",
+        "coordinates": {
+          "x1": 523,
+          "y1": 860,
+          "x2": 705,
+          "y2": 877
+        },
+        "confidence": 0.7778767347335815,
+        "text": "Your Every Move by Sam Blake",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 20,
+        "type": "title",
+        "coordinates": {
+          "x1": 306,
+          "y1": 23,
+          "x2": 487,
+          "y2": 43
+        },
+        "confidence": 0.6485370993614197,
+        "text": "ENTERTAINMENT",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 21,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 766,
+          "y1": 644,
+          "x2": 780,
+          "y2": 1050
+        },
+        "confidence": 0.6417112946510315
+      },
+      {
+        "id": 22,
+        "type": "figure",
+        "coordinates": {
+          "x1": 44,
+          "y1": 573,
+          "x2": 269,
+          "y2": 813
+        },
+        "confidence": 0.4943206012248993
+      }
+    ],
+    "mood": "Engaging",
+    "description": "This page offers a curated selection of current and upcoming entertainment, including TV shows, music events, movies, podcasts, and books.",
+    "category": "fashion",
+    "type": "Editorial_Column"
+  },
+  {
+    "image_id": "fashion_7.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_7.png",
+    "total_elements": 1,
+    "elements": [
+      {
+        "id": 0,
+        "type": "figure",
+        "coordinates": {
+          "x1": 24,
+          "y1": 123,
+          "x2": 758,
+          "y2": 1122
+        },
+        "confidence": 0.7305870652198792
+      }
+    ],
+    "mood": "Trendy",
+    "description": "A curated shopping guide showcasing a variety of fashion, beauty, and home items for a stylish lifestyle.",
+    "category": "fashion",
+    "type": "Product_Showcase"
+  },
+  {
+    "image_id": "fashion_8.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_8.png",
+    "total_elements": 30,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 42,
+          "y1": 681,
+          "x2": 265,
+          "y2": 786
+        },
+        "confidence": 0.974837601184845,
+        "text": "“But since we've had Jude, and then | lost my bestfriend David [vo lveson, who died of cancer, aged 38} at the beginning of this yeac is made me go: \"You can save for arainy day, but you can stillenjoy it” So. | try totreat us more. Tomorrow is not guaranteed”",
+        "ocr_confidence": 0.75
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 42,
+          "y1": 589,
+          "x2": 266,
+          "y2": 680
+        },
+        "confidence": 0.9744333028793335,
+        "text": "“When you come from a hard-working, working-class background then, all of a sudden, you have money that you didnit actually think would ever be doable, | think youre always quite sensible” she explains. “Scott is very sensible as well.",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 282,
+          "y1": 695,
+          "x2": 505,
+          "y2": 803
+        },
+        "confidence": 0.9742802977561951,
+        "text": "“Ive sorted the bridesmaids and bridesmen. My best friends are drag queens and godparents to Jude, theyll be bridesmen, then tm having my ite sister Ava, Scott's cousin Miley, and my best friend Sarah, then Jude and Wo ttle boy ‘Archie are going to be pageboys.",
+        "ocr_confidence": 0.79
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 438,
+          "x2": 508,
+          "y2": 512
+        },
+        "confidence": 0.9730477929115295,
+        "text": "“Twill go in January to get my dress. Im honestly not stressing about it Some of the bridal shops I messaged saic: ‘Oh, our lead time is 2-18 months’ and | thought ‘Well. | won't be going to you then’",
+        "ocr_confidence": 0.81
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 195,
+          "x2": 503,
+          "y2": 300
+        },
+        "confidence": 0.9725426435470581,
+        "text": "“This is a warning to other brides.” she explains. \"We went to see the venue and they asked: ‘What time is your wedding?” We said don't know, ike 130m or something’ And they said: ‘What time is your registrar corning? We didn't know we were meant to sat that”",
+        "ocr_confidence": 0.76
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 301,
+          "x2": 506,
+          "y2": 391
+        },
+        "confidence": 0.9711969494819641,
+        "text": "‘When the couple tried to book one, they had abit of a shock. “They offered us Tlam or Spm! What we are doing is getting a celebrant and actually getting married the week before. Maybe me and Scott are thick, because we really didn’t realise”",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 6,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 42,
+          "y1": 316,
+          "x2": 267,
+          "y2": 438
+        },
+        "confidence": 0.9710355401039124,
+        "text": "“Tm still doing print on demand,” she says. \" make mugs and Ive got a tote bag that says ‘Pumpkin Spice Girl. People buy them, although | think its mostly my family and friends! | didn't want to doit as myself,so I've not posted on socials. as {felt ike that gave me an advantage. All the money | make, | donate to Samaritans’",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 589,
+          "x2": 506,
+          "y2": 695
+        },
+        "confidence": 0.9699668288230896,
+        "text": "“Twould love a band from the ‘90s to perform. Although | love Calum Scott and. Ive got his number I could message him: \"Hiya, hun, do you do mates’ rates?” she laughs. “ideally fd have Steps, but they are probably out of my budget. Maybe | could just have H from Steps!",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 8,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 42,
+          "y1": 135,
+          "x2": 266,
+          "y2": 284
+        },
+        "confidence": 0.9657601118087769,
+        "text": "“Lwas thinking, how much money can you really make from a side hustle? So we do a deep dive into lots of different stuf. | tried print on demand, where you make things and sell them on Etsy, then I bought stuff at car-boot sales to selon Vinted. | got a pair of leopard print shoes for £4 and sold them for £12. I met Becky Bazaar, who is big on TiKTok, and she made £85,000 last vear on Vinted.”",
+        "ocr_confidence": 0.78
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 514,
+          "x2": 503,
+          "y2": 589
+        },
+        "confidence": 0.9628757238388062,
+        "text": "“Ido know | want to change my outfit for the night for a jumpsuit maybe. | want to be able to dance freely and have a lot of entertainment, because | fel ike that's what | always remember from a wedding.",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 10,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 392,
+          "x2": 498,
+          "y2": 437
+        },
+        "confidence": 0.9598312973976135,
+        "text": "‘Scarlett isn’t worried about choosing her dress, even though the wedding is only six months away.",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 43,
+          "y1": 73,
+          "x2": 268,
+          "y2": 134
+        },
+        "confidence": 0.9560244679450989,
+        "text": "who are mental health nurses, but are also drag queens on the side” she says. \"Even my Scott paints Warhammer figures and sells them. It's a geeky side hustle!",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 12,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 104,
+          "x2": 504,
+          "y2": 164
+        },
+        "confidence": 0.9453970193862915,
+        "text": "“Tm gonna DIY stuff so it feels more personal” she says. \"leven made my own save-the-date cards, although | havent sent them out vet - but I've sent a text!”",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 13,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 72,
+          "x2": 505,
+          "y2": 103
+        },
+        "confidence": 0.9058336019515991,
+        "text": "her new Channel 4 special is coming in handy now she's booked her June wedding.",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 14,
+        "type": "title",
+        "coordinates": {
+          "x1": 50,
+          "y1": 453,
+          "x2": 260,
+          "y2": 499
+        },
+        "confidence": 0.897221565246582,
+        "text": "Id have Steps performing Mealy at my wedding",
+        "ocr_confidence": 0.78
+      },
+      {
+        "id": 15,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 59,
+          "y1": 787,
+          "x2": 253,
+          "y2": 803
+        },
+        "confidence": 0.8935701847076416,
+        "text": "Learning to upcycle and get crafty for",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 16,
+        "type": "title",
+        "coordinates": {
+          "x1": 330,
+          "y1": 21,
+          "x2": 463,
+          "y2": 41
+        },
+        "confidence": 0.8792480230331421,
+        "text": "COVER STAR",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 17,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 309,
+          "y1": 1087,
+          "x2": 489,
+          "y2": 1100
+        },
+        "confidence": 0.8789638876914978
+      },
+      {
+        "id": 18,
+        "type": "figure",
+        "coordinates": {
+          "x1": 283,
+          "y1": 813,
+          "x2": 508,
+          "y2": 1040
+        },
+        "confidence": 0.5954434275627136
+      },
+      {
+        "id": 19,
+        "type": "figure",
+        "coordinates": {
+          "x1": 557,
+          "y1": 24,
+          "x2": 787,
+          "y2": 370
+        },
+        "confidence": 0.5483173131942749
+      },
+      {
+        "id": 20,
+        "type": "figure",
+        "coordinates": {
+          "x1": 42,
+          "y1": 812,
+          "x2": 509,
+          "y2": 1041
+        },
+        "confidence": 0.5462670922279358
+      },
+      {
+        "id": 21,
+        "type": "figure",
+        "coordinates": {
+          "x1": 557,
+          "y1": 745,
+          "x2": 788,
+          "y2": 1093
+        },
+        "confidence": 0.5279533267021179
+      },
+      {
+        "id": 22,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 41,
+          "y1": 513,
+          "x2": 249,
+          "y2": 589
+        },
+        "confidence": 0.5014516115188599,
+        "text": "espite being worth an estimated Di Scarlett. who is from Bishop Auckland in Durham, thinks her northern roots help her be savw with money.",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 23,
+        "type": "figure",
+        "coordinates": {
+          "x1": 44,
+          "y1": 813,
+          "x2": 268,
+          "y2": 1041
+        },
+        "confidence": 0.4845646619796753
+      },
+      {
+        "id": 24,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 164,
+          "x2": 505,
+          "y2": 194
+        },
+        "confidence": 0.4267888367176056,
+        "text": "‘Scarlett has had a bit of a disaster with booking the ceremony, though.",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 25,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 43,
+          "y1": 559,
+          "x2": 239,
+          "y2": 589
+        },
+        "confidence": 0.3718397319316864,
+        "text": "thinks her northern roots help her be sawvy with money.",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 26,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 42,
+          "y1": 286,
+          "x2": 250,
+          "y2": 315
+        },
+        "confidence": 0.3439865708351135,
+        "text": "‘Scarlett's enjoyed her side hustle so much that she's kept it going.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 27,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 42,
+          "y1": 286,
+          "x2": 250,
+          "y2": 316
+        },
+        "confidence": 0.3402855694293976,
+        "text": "‘Scarlett's enjoyed her side hustle so much that she’s kept it going.",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 28,
+        "type": "title",
+        "coordinates": {
+          "x1": 42,
+          "y1": 513,
+          "x2": 249,
+          "y2": 558
+        },
+        "confidence": 0.32002928853034973,
+        "text": "espite being worth an estimated £15milion, Scarlett, who is from Bishop Auckland in Durham,",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 29,
+        "type": "figure",
+        "coordinates": {
+          "x1": 557,
+          "y1": 383,
+          "x2": 788,
+          "y2": 730
+        },
+        "confidence": 0.2506897747516632
+      }
+    ],
+    "mood": "Emotional",
+    "description": "Scarlett Moffatt, the 'Cover Star', shares candid insights into her career, financial journey, and wedding preparations in an in-depth interview.",
+    "category": "fashion",
+    "type": "Celebrity_Lifestyle"
+  },
+  {
+    "image_id": "fashion_9.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_9.png",
+    "total_elements": 26,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 513,
+          "x2": 333,
+          "y2": 634
+        },
+        "confidence": 0.9741721153259277,
+        "text": "Itwas May 2023 and, at 25, | was addicted to the drug. fist taken it at a friend’ party, aged 17. It doesnt mix well with alcohol, and asd been drinking, I felt out of control and didnt ke it. But two years later, after my friends encouraged me, | tried it again andit gave me a euphoric feeling. It was easy to get hold of and cost only £15 a bag. so | started taking it socially, three times a week, uniil | became pregnant at 20.",
+        "ocr_confidence": 0.76
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 437,
+          "x2": 322,
+          "y2": 512
+        },
+        "confidence": 0.9733327627182007,
+        "text": "“Crouched on my bathroom floor, | froze, knowing evena slight movement would make the already unbearable pain worse. Eight hours lates, | was finally able to get up. Stil in pain, though. | reached for the only thing that would numb it - ketamine.",
+        "ocr_confidence": 0.8
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 465,
+          "y1": 816,
+          "x2": 751,
+          "y2": 877
+        },
+        "confidence": 0.9675168395042419,
+        "text": "In 2024, doctors tried to stretch my bladder again. but my blood vessels ripped and my bladder filled with blood. They inserted a camera and found | had extensive scar tissue from my drug use.",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 465,
+          "y1": 710,
+          "x2": 743,
+          "y2": 815
+        },
+        "confidence": 0.9673635363578796,
+        "text": "By August of that year. | could barely leave the bathroom and fell into a depression. Finally. realising | needed to quit for my son's sake, as well as my own, I got rid of my stash and vowed never to touch it again. fd been with my partner Callum, 22. who works in sales, for a year, and he was a real support as | battled my addiction.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 726,
+          "x2": 332,
+          "y2": 831
+        },
+        "confidence": 0.9623882174491882,
+        "text": "‘constantly needed a wee, which developed into bouts of immobilsing pain. Iwas referred to a urologist and | admitted fd used ketamine. She explained that chronic use can shrink the lining of the bladder, which can lead to bleeding and blockages. | measured my liquid intake and discovered my bladder could only hold 20m, while a normal bladder can hold 500mi.",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 346,
+          "y1": 878,
+          "x2": 747,
+          "y2": 937
+        },
+        "confidence": 0.9587160348892212,
+        "text": "It's been two years since | stopped taking ketamine, but I'm still living with the consequences and am unable to work because of the constant pain. Every day, Ihave to get in the bath for two hours to ease it. still wear incontinence pads and often have to wee in public in the pad, because | can't hold it.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 6,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 466,
+          "y1": 650,
+          "x2": 748,
+          "y2": 710
+        },
+        "confidence": 0.9473093152046204,
+        "text": "had frequent sickness bugs and had to call 999 as | was dangerously dehydrated. By now, my mum knew what was going on ~ she was initaly annoyed with me. but thankfully stepped in to help with my son",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 46,
+          "y1": 375,
+          "x2": 279,
+          "y2": 422
+        },
+        "confidence": 0.9440224170684814,
+        "text": "AMBER CURRAH, 28, LIVES IN MORECAMBE, LANCASHIRE, WITH HER SIX-YEAR-OLD SON.",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 8,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 346,
+          "y1": 938,
+          "x2": 750,
+          "y2": 1014
+        },
+        "confidence": 0.93292635679245,
+        "text": "id love to have another chilld, but because of the damage, | don't know if | can. Calum and | only have sex every three months, because | have to make sure fm not doing much in the following days as I can have increased pain for a week. Im waiting for an op to remove my bladder and make anew one out of part of my bowels, which | hope will give me a better quality of life.",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 832,
+          "x2": 327,
+          "y2": 907
+        },
+        "confidence": 0.921661376953125,
+        "text": "Although | was horrified, | carried on taking it, but had to stop going out because | was incontinent and in such pain. Eventually, doctors injected hyaluronic acid into my bladder, then attempted to stretch it The agony was so horrific. I thought | was aoing to die",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 10,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 466,
+          "y1": 619,
+          "x2": 744,
+          "y2": 649
+        },
+        "confidence": 0.9210871458053589,
+        "text": "| pushed the lumps, they just went back up. It hurt far worse than childbirth - I've never felt anything like it.",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 46,
+          "y1": 909,
+          "x2": 323,
+          "y2": 1059
+        },
+        "confidence": 0.9115001559257507,
+        "text": "Despite ins, found mysen taxing more and more ketamine to get the same effect. By January 2023, | was taking i five times a day - | was addicted and couldn't stop, despite the horrendous pain | was experiencing daily. While my son slept or wasnt with me, sit in the bath for 10 hours to relieve the pain, and sometimes Id sleep on the toilet, because | needed a wee constantly At times, Iwas weeing out lumps of crystalsed urine. bts of blood and parts of bladder lining. Because the urethra is so small, when.",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 12,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 346,
+          "y1": 1015,
+          "x2": 719,
+          "y2": 1059
+        },
+        "confidence": 0.9055690169334412,
+        "text": "Tm now determined to wam other young people of the dangers of ketamine. If fd known what it could do to me, fd never have taken it. ve wasted my 20s, but I'm determined to make the next decade count” F",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 13,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 644,
+          "y1": 72,
+          "x2": 745,
+          "y2": 179
+        },
+        "confidence": 0.9040068984031677,
+        "text": "‘Amber is sharing her story to warn oc dngec ketamine, she stated taking the drug on tights out with her partner Callum",
+        "ocr_confidence": 0.67
+      },
+      {
+        "id": 14,
+        "type": "figure",
+        "coordinates": {
+          "x1": 347,
+          "y1": 373,
+          "x2": 558,
+          "y2": 586
+        },
+        "confidence": 0.8881609439849854
+      },
+      {
+        "id": 15,
+        "type": "title",
+        "coordinates": {
+          "x1": 66,
+          "y1": 66,
+          "x2": 313,
+          "y2": 362
+        },
+        "confidence": 0.8674167394638062,
+        "text": "‘Ketamine left me needin a bladder transplant’",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 16,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 313,
+          "y1": 1087,
+          "x2": 491,
+          "y2": 1100
+        },
+        "confidence": 0.8621267676353455
+      },
+      {
+        "id": 17,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 354,
+          "y1": 771,
+          "x2": 445,
+          "y2": 847
+        },
+        "confidence": 0.7095603346824646,
+        "text": "Deaths due to ict ketamine use have increased 204d since ‘14*",
+        "ocr_confidence": 0.69
+      },
+      {
+        "id": 18,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 635,
+          "x2": 326,
+          "y2": 725
+        },
+        "confidence": 0.6993202567100525,
+        "text": "After | had my son in June 2019, his dad and | co-parented, but I struggled with the responsibilty of being a single mum. Any time my son wasrit with me, Td take ketamine as a form of escape, to switch off my mind. initially there were no side effects, but by 2022 I'd started experiencing problems with my bladder.",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 19,
+        "type": "figure",
+        "coordinates": {
+          "x1": 347,
+          "y1": 0,
+          "x2": 628,
+          "y2": 344
+        },
+        "confidence": 0.6214277148246765
+      },
+      {
+        "id": 20,
+        "type": "figure",
+        "coordinates": {
+          "x1": 584,
+          "y1": 203,
+          "x2": 751,
+          "y2": 585
+        },
+        "confidence": 0.6154352426528931
+      },
+      {
+        "id": 21,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 353,
+          "y1": 636,
+          "x2": 445,
+          "y2": 756
+        },
+        "confidence": 0.5417251586914062,
+        "text": "BIW Ketamine was the ‘main reason cited inthe accidental death of Friends ‘star Matthew ‘Perry.",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 22,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 127,
+          "y1": 20,
+          "x2": 254,
+          "y2": 41
+        },
+        "confidence": 0.5310107469558716,
+        "text": "LIFE STORY",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 23,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 635,
+          "x2": 325,
+          "y2": 725
+        },
+        "confidence": 0.3143620193004608,
+        "text": "After | had my son in June 2019, his dad and | co-parented, but I struggled with the responsibilty of being a single mum. Any time my son wasrit with me, Id take ketamine as a form of escape, to switch off my mind. initially there were no side effects, but by 2022 I'd started experiencing problems with my bladder.",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 24,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 18,
+          "y1": 908,
+          "x2": 33,
+          "y2": 1057
+        },
+        "confidence": 0.31317436695098877
+      },
+      {
+        "id": 25,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 21,
+          "y1": 905,
+          "x2": 32,
+          "y2": 1041
+        },
+        "confidence": 0.26387691497802734
+      }
+    ],
+    "mood": "Disturbing",
+    "description": "Amber Currah shares her real-life story of how ketamine addiction led to her needing a bladder transplant.",
+    "category": "fashion",
+    "type": "Real_Life_Story"
+  },
+  {
+    "image_id": "fashion_10.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_10.png",
+    "total_elements": 8,
+    "elements": [
+      {
+        "id": 0,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 307,
+          "y1": 1085,
+          "x2": 492,
+          "y2": 1101
+        },
+        "confidence": 0.867466390132904
+      },
+      {
+        "id": 1,
+        "type": "figure_caption",
+        "coordinates": {
+          "x1": 39,
+          "y1": 707,
+          "x2": 279,
+          "y2": 832
+        },
+        "confidence": 0.8387770056724548,
+        "text": "Blaver, £28, Tu Clothing: earrings, £5, Bochoo.com: bog, £46, River Island: model's ght han: bracelets, £7.99 fr six, New Look top rng, £350 for three, Primark botiom rng, £8 for eight, Pretyitlething cot left hand: necktace in glass). £79, Krenmilencomr bangles. £4 fortwo, top ting, £350 for three both Primark all other rings, from £6 for set, Prettylitlething.com",
+        "ocr_confidence": 0.62
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 610,
+          "y1": 175,
+          "x2": 755,
+          "y2": 238
+        },
+        "confidence": 0.6008602976799011,
+        "text": "‘Dress, £40, earrings. £15. both Pretylitleting com: neckace, £899, New Look tights, £19.99, Caledonia",
+        "ocr_confidence": 0.63
+      },
+      {
+        "id": 3,
+        "type": "figure",
+        "coordinates": {
+          "x1": 39,
+          "y1": 54,
+          "x2": 754,
+          "y2": 1054
+        },
+        "confidence": 0.5402611494064331
+      },
+      {
+        "id": 4,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 769,
+          "y1": 965,
+          "x2": 783,
+          "y2": 1061
+        },
+        "confidence": 0.46971040964126587
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 350,
+          "y1": 18,
+          "x2": 445,
+          "y2": 37
+        },
+        "confidence": 0.4294029474258423,
+        "text": "FASHION",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 6,
+        "type": "figure",
+        "coordinates": {
+          "x1": 42,
+          "y1": 67,
+          "x2": 449,
+          "y2": 618
+        },
+        "confidence": 0.37387093901634216
+      },
+      {
+        "id": 7,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 350,
+          "y1": 18,
+          "x2": 445,
+          "y2": 37
+        },
+        "confidence": 0.3266487717628479
+      }
+    ],
+    "mood": "Glamorous",
+    "description": "A model showcases various fashion items and accessories with detailed pricing.",
+    "category": "fashion",
+    "type": "Product_Showcase"
+  },
+  {
+    "image_id": "fashion_11.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_11.png",
+    "total_elements": 17,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 38,
+          "y1": 269,
+          "x2": 466,
+          "y2": 393
+        },
+        "confidence": 0.9798708558082581,
+        "text": "I work for the NHS and have an exit interview coming up, as I'm moving to work in a different hospital | know this is my opportunity to be transparent with HR as to why Ihave chosen to leave, but I don’t want to burn any bridges. ‘There are many reasons why I'm quitting ~ including poor management, tunprofessionalism and dishonesty among both my peers and superiors - but I'm worried it will come across as spiteful and my comments could get back to the people | worked with. | don’t want it to jeopardise having a good reference should | need it in the future, too. Do you have any advice? Vicky",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 405,
+          "y1": 846,
+          "x2": 618,
+          "y2": 1043
+        },
+        "confidence": 0.9744610786437988,
+        "text": "Avoid ultimatums or constant confrontation, and focus on maintaining trust. Listen to her feelings, show interest in her ife and model respectful boundaries. While she may test mits, your steady guidance and openness will matter far more in the long tun - she'll know she can come to you if anything ever feels uncomfortable, and that you love her, while allowing her to grow. © Got a parenting question? Follow @No_parental_quidance on Instagram and let us know your queries.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 67,
+          "y1": 936,
+          "x2": 387,
+          "y2": 1044
+        },
+        "confidence": 0.9720852971076965,
+        "text": "Eva, this is such a familiar and tricky stage, and your instincts to.both protect your daughter and respect her budding independence are completely normal. | wish fd known that ry mum meant well when | was 15! At this age. i's healthy for teens to start exploring relationships, but they also need clear boundaries. Asking her to keep the bedroom door ‘open is a reasonable compromise, as it balances her need",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 39,
+          "y1": 406,
+          "x2": 465,
+          "y2": 633
+        },
+        "confidence": 0.9700637459754944,
+        "text": "you're attending an exit interview, you shouldn't have to sugar-coat how you feel. Honesty is important - but how you express it makes all the cifference. The goal is to be professional, measured and constructive, not emotional or accusatory. Avoid using overly charged words like “unprofessiona’ \"toxic\" or “dishonest”. Instead, describe behaviours or pattems that can be addressed constructively For example, rather than pointing to sues with specific managers, you might say. “At times, I felt there was a lack of clear direction and consistency, which made it dificult for the team to feel supported and confident in priorities” That stil tells the truth. but ina way that HR can act on. Frame your points around the impact it had on your experience and abilty to perform to the best of your capability. Balance your feedback by also highlighting what you valued about the role or workplace. including the skils you developed. the people you enjoyed working with and the positive experiences you've had. Finally, don't hesitate to ask for confidentiality regarding what you share. © Got a careers question for Karren? Email bossingit@fabulousmaa.co.uk.",
+        "ocr_confidence": 0.81
+      },
+      {
+        "id": 4,
+        "type": "title",
+        "coordinates": {
+          "x1": 36,
+          "y1": 66,
+          "x2": 469,
+          "y2": 170
+        },
+        "confidence": 0.918727457523346,
+        "text": "Bossing it",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 5,
+        "type": "title",
+        "coordinates": {
+          "x1": 183,
+          "y1": 673,
+          "x2": 726,
+          "y2": 723
+        },
+        "confidence": 0.9106968641281128,
+        "text": "Host of Fabulous podcast No Parental Guidance and mum-of-three LOUISE BOYCE gives you advice from the parenting frontline",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 6,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 307,
+          "y1": 1085,
+          "x2": 492,
+          "y2": 1100
+        },
+        "confidence": 0.9082497358322144
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 91,
+          "y1": 173,
+          "x2": 412,
+          "y2": 246
+        },
+        "confidence": 0.9004548788070679,
+        "text": "Apprentice star and West Ham United vice-chair KARREN BRADY answers your careers questions",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 8,
+        "type": "figure",
+        "coordinates": {
+          "x1": 0,
+          "y1": 647,
+          "x2": 169,
+          "y2": 848
+        },
+        "confidence": 0.9002944827079773
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 406,
+          "y1": 787,
+          "x2": 618,
+          "y2": 846
+        },
+        "confidence": 0.8321712017059326,
+        "text": "communicate calmly, without shaming or lecturing, You could also negotiate some flexibility around shared spaces downstairs, which lets her feel respected.",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 10,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 765,
+          "y1": 758,
+          "x2": 786,
+          "y2": 1057
+        },
+        "confidence": 0.7552546262741089
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 68,
+          "y1": 740,
+          "x2": 391,
+          "y2": 923
+        },
+        "confidence": 0.5369638204574585,
+        "text": "¥ My daughter is 15 and has her first ac boyfriend, who's the same age. He © seems nice enough, but her dad and have said that although he's allowed inher bedroom, the door must stay \\ ‘open - and this means that whenever anyone goes upstairs, they can see in. She is complaining this invades her privacy so is furious, and has said she'llust spend more time at his house as his mum isn’t so unreasonable. | don't know his parents at all, and while | don’t want to push her away, lalso know what teenage hormones are like. Help! Eva",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 12,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 407,
+          "y1": 756,
+          "x2": 723,
+          "y2": 786
+        },
+        "confidence": 0.4854440987110138,
+        "text": "It's understandable she feels frustrated - teens often see rules as personal attacks, not safety measures. The key is to",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 13,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 406,
+          "y1": 740,
+          "x2": 688,
+          "y2": 755
+        },
+        "confidence": 0.4646211266517639,
+        "text": "for privacy with your need for safety and supervision.",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 14,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 356,
+          "y1": 22,
+          "x2": 439,
+          "y2": 42
+        },
+        "confidence": 0.3678993284702301,
+        "text": "ADVICE",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 15,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 632,
+          "y1": 921,
+          "x2": 723,
+          "y2": 1030
+        },
+        "confidence": 0.33840179443359375,
+        "text": "Scan the QR code to watch our No Parental Guidance ‘podcast on YouTube or listen ‘wherever you get ‘your podcasts.",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 16,
+        "type": "figure",
+        "coordinates": {
+          "x1": 481,
+          "y1": 2,
+          "x2": 784,
+          "y2": 663
+        },
+        "confidence": 0.30381640791893005
+      }
+    ],
+    "mood": "Informative",
+    "description": "Karren Brady provides career advice, and Louise Boyce offers parenting guidance.",
+    "category": "fashion",
+    "type": "Editorial_Column"
+  },
+  {
+    "image_id": "fashion_12.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_12.png",
+    "total_elements": 6,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 404,
+          "y1": 826,
+          "x2": 754,
+          "y2": 1090
+        },
+        "confidence": 0.9773595929145813,
+        "text": "Soprannominato “il re delle scarpe italiane”, Cesare Paciotti ha trasformato un’eredita familiare in un simbolo de! Made in Italy. La storia ha inizio a Civitanova Marche, dove nel 1948 i genitori Giuseppe e Cecilia fondano il calzaturificio Paris, divenuto celebre in breve tempo grazie alla lavorazione artigianale e alla cura estrema dei dettagli. Negli anni Ottanta, Cesare e la sorella Paola subentrano alla guida dell’azienda, producendo principalmente calzature maschili, in cui eleganza, design e provocazione si fondono in modo distintivo. II riconoscimento internazionale arriva negli anni Novanta, quando le collezioni Paciotti vengono ampliate e diventano simbolo di sensualit’ e carattere, conquistando l’attenzione di maison",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 35,
+          "y1": 826,
+          "x2": 387,
+          "y2": 1090
+        },
+        "confidence": 0.8103117346763611,
+        "text": "Nicknamed “the king of Italian shoes”, Cesare Paciotti turned a family legacy into a symbol of Made in Italy. The story began in Civitanova Marche, where in 1948 his parents Giuseppe and Cecilia founded the Paris shoe factory, which quickly became famous for its craftsmanship and extreme attention to detail. In the 1980s, Cesare and his, sister Paola took over the running of the company, producing mainly men’s shoes, which distinctively combined elegance, design and provocation. International recognition came in the 1990s, when the Paciotti collections were expanded and became a symbol of sensuality and character, winning the attention of designer brands such as Dolce &",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 2,
+        "type": "title",
+        "coordinates": {
+          "x1": 34,
+          "y1": 60,
+          "x2": 491,
+          "y2": 193
+        },
+        "confidence": 0.7393718957901001,
+        "text": "(gare Dncrffé HE KING OF SHOES”",
+        "ocr_confidence": 0.64
+      },
+      {
+        "id": 3,
+        "type": "figure",
+        "coordinates": {
+          "x1": 439,
+          "y1": 319,
+          "x2": 755,
+          "y2": 766
+        },
+        "confidence": 0.5851196646690369
+      },
+      {
+        "id": 4,
+        "type": "figure",
+        "coordinates": {
+          "x1": 37,
+          "y1": 220,
+          "x2": 439,
+          "y2": 811
+        },
+        "confidence": 0.5448755621910095
+      },
+      {
+        "id": 5,
+        "type": "figure",
+        "coordinates": {
+          "x1": 35,
+          "y1": 214,
+          "x2": 759,
+          "y2": 812
+        },
+        "confidence": 0.5195137858390808
+      }
+    ],
+    "mood": "Sophisticated",
+    "description": "An editorial column featuring Cesare Paciotti, 'The King of Shoes,' and his brand's journey, known for elegant and provocative designs.",
+    "category": "fashion",
+    "type": "Editorial_Column"
+  },
+  {
+    "image_id": "fashion_13.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_13.png",
+    "total_elements": 5,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 402,
+          "y1": 940,
+          "x2": 734,
+          "y2": 1091
+        },
+        "confidence": 0.9811218976974487,
+        "text": "Paciotti non segue i trend ma evolve con i tempi. Ne é prova la forte presenza sui social media e le collaborazioni con artisti e influencer italiani, come Gus Pequeno, II Volo, Elisa Maino e tanti altri. Tra le ultime novita, la sneaker Blade Runner, lanciata per la collezione Spring/Summer 2025, un modello che unisce estetica metropolitana e alte prestazioni, pensato per chi cerca comfort senza rinunciare alla",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 30,
+          "y1": 940,
+          "x2": 384,
+          "y2": 1091
+        },
+        "confidence": 0.9760485291481018,
+        "text": "Paciotti does not follow trends but evolves with the times. Proof of this is the brand’s strong presence on social media and collaborations with Italian artists and influencers, such as Gu Pequeno, II Volo, Elisa Maino and many others. One of the latest new product: is the Blade Runner sneaker, launched for the Spring/ Summer 2025 collection, a model that combines metropolitan aesthetics and high performance,",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 2,
+        "type": "figure",
+        "coordinates": {
+          "x1": 0,
+          "y1": 74,
+          "x2": 794,
+          "y2": 937
+        },
+        "confidence": 0.8237149715423584
+      },
+      {
+        "id": 3,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 12,
+          "y1": 24,
+          "x2": 150,
+          "y2": 40
+        },
+        "confidence": 0.6518943905830383
+      },
+      {
+        "id": 4,
+        "type": "figure",
+        "coordinates": {
+          "x1": 437,
+          "y1": 107,
+          "x2": 792,
+          "y2": 543
+        },
+        "confidence": 0.3132306933403015
+      }
+    ],
+    "mood": "Trendy",
+    "description": "A showcase of Paciotti's diverse shoe designs, featuring the new Blade Runner sneaker from their Spring/Summer 2025 collection.",
+    "category": "fashion",
+    "type": "Product_Showcase"
+  },
+  {
+    "image_id": "fashion_14.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_14.png",
+    "total_elements": 9,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 403,
+          "y1": 639,
+          "x2": 760,
+          "y2": 870
+        },
+        "confidence": 0.9837197065353394,
+        "text": "Next summer, Hogan tells the story of a Summer in the Gity filled with energy, light and freedom. Milan provides the backdrop for footwear, bags and ready-to-wear pieces that tum everyday gestures into experiences of style. Premium materials and warm tones blend harmoniously, striking a balance between comfort and refinement. Trainers, loafers, sandals and boat shoes renew the brand's casual-chic spirit, uniting playfulness with practicality. The new Hogan Athletic and Hogan Cool lines reinterpret iconic models with an urban twist, while the Script ‘Address and flap bags accompany the season with versalility and elegance.",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 402,
+          "y1": 878,
+          "x2": 760,
+          "y2": 1089
+        },
+        "confidence": 0.9835163950920105,
+        "text": "Per la prossima estate, Hogan racconta una Summer in the city fatta di energia, luce e libertd. Milano fa da sfondo a calzature, borse e capi ready-to-wear che trasformano i gesti quotidiani in esperienze di stile. Materiali pregiati € tonalita calde si fondono in un equilibrio tra comfort e raffinatezza. Sneakers, mocassini, sandali e boat shoes rinnovano lo spirito casual-chic del brand, unendo ironia  funzionalita. Le nuove linee Hogan Athletic e Hogan Cool reinterpretano i modelli iconic’ in chiave urbana, mentre le borse Script Address e flap bag accompagnano la stagione con versatilita ed eleganza.",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 31,
+          "y1": 420,
+          "x2": 483,
+          "y2": 579
+        },
+        "confidence": 0.9811995029449463,
+        "text": "Tra artigianalita e innovazione, la prossima Primavera/Estate racconta un’eleganza istintiva, costruita su materiali autentici, palette naturali e forme che uniscono comfort e personalita. Le collezioni celebrano il gesto artigianale con nuove sensibiliti: intrecci dautore, pelli morbide, dettagli metallici e volumi leggeri ridefiniscono Videa di contemporaneitd. E una stagione che invita a scegliere accessori che durano, capaci di raccontare chi siamo e il modo in cui desideriamo abitare il mondo e il tempo: con autenticita, misura e una bellezza quieta, che non ha bisogno di esagerare.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 3,
+        "type": "figure",
+        "coordinates": {
+          "x1": 488,
+          "y1": 216,
+          "x2": 793,
+          "y2": 575
+        },
+        "confidence": 0.9654746055603027
+      },
+      {
+        "id": 4,
+        "type": "title",
+        "coordinates": {
+          "x1": 616,
+          "y1": 591,
+          "x2": 759,
+          "y2": 626
+        },
+        "confidence": 0.9393347501754761,
+        "text": "HOGAN",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 5,
+        "type": "figure",
+        "coordinates": {
+          "x1": 0,
+          "y1": 593,
+          "x2": 389,
+          "y2": 1121
+        },
+        "confidence": 0.9375178813934326
+      },
+      {
+        "id": 6,
+        "type": "title",
+        "coordinates": {
+          "x1": 32,
+          "y1": 164,
+          "x2": 476,
+          "y2": 223
+        },
+        "confidence": 0.6284981966018677,
+        "text": "The brands to keep an eye on for S/S 2026 | brand da tenere d’occhio per la P/E 2026",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 30,
+          "y1": 233,
+          "x2": 475,
+          "y2": 412
+        },
+        "confidence": 0.6157961487770081,
+        "text": "Between craftsmanship and innovation, the coming Spring/Summer season tells a story of instinctive elegance, built on genuine materials, natural palettes and shapes that combine comfort with personality. The collections celebrate artisanal skill with renewed sensibilities: signature weaves, soft leathers, metallic details and lightweight volumes redefine the idea of contemporaneity. It is a season that invites us to choose accessories that endure, capable of expressing who we are and how we wish to inhabit the world and time: with authenticity, restraint and a quiet beauty that has no need to exaggerate.",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 8,
+        "type": "title",
+        "coordinates": {
+          "x1": 29,
+          "y1": 63,
+          "x2": 477,
+          "y2": 223
+        },
+        "confidence": 0.5556588768959045,
+        "text": "(1 Jap new? The brands to keep an eye on for S/S 2026 | brand da tenere d’occhio per la P/E 2026",
+        "ocr_confidence": 0.86
+      }
+    ],
+    "mood": "Chic",
+    "description": "This editorial introduces the Spring/Summer 2026 fashion trends, highlighting innovative accessories and new collections, particularly from Hogan.",
+    "category": "fashion",
+    "type": "Editorial_Column"
+  },
+  {
+    "image_id": "fashion_15.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_15.png",
+    "total_elements": 9,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 381,
+          "y1": 642,
+          "x2": 762,
+          "y2": 862
+        },
+        "confidence": 0.9846034646034241,
+        "text": "A connection between stories, hands and memory defines the new Dragon Diffusion collection, which celebrates the beauty of time and artisanal gesture. Each bag, handwoven in soft natural leather, reflects ancient expertise reinterpreted with modern sensitivity. In the new summer collection, the colours draw inspiration from the earth and the morning light; the shapes remain essential yet full of character. Every creation is unique and unrepeatable, carrying the traces of time and human touch. In this way, the brand renews its identity in a continuous dialogue between tradition, material and modem spirit.",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 33,
+          "y1": 354,
+          "x2": 357,
+          "y2": 581
+        },
+        "confidence": 0.9838405251502991,
+        "text": "Vizzano presenta una collezione che interpreta il nuovo lusso urbano con un‘eleganza decisa ma femminile. Il brand esplora forme essenziali, superfici luminose e dettagli audaci che definiscono la stagione. La slingback debutta con la stampa tartaruga, mente il fold-over boot introduce un tocco fashion-forward e scultoreo. La décolleté nel tono carminio scuro esprime una tonalit profonda e sensuale, bilanciata dal mocassino in grigio scuro, pensato per un‘eleganza quotidiana. Completa il racconto la shoulder bag, sintesi di funzionalita, carattere e design contemporaneo.",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 383,
+          "y1": 872,
+          "x2": 762,
+          "y2": 1090
+        },
+        "confidence": 0.9829670190811157,
+        "text": "Una connessione tra storie, mani e memoria accompagna la nuova collezione Dragon Diffusion, che celebra la bellezza del tempo e del gesto artigianale. Ogni borsa, intrecciata a mano con morbida pelle naturale, riflette una competenza antica reinterpretata con sensibilita contemporanea. Nella nuova collezione estiva, i colori si ispirano alla terra e alla luce del mattino, le forme restano essenziali ma vibrano di carattere. Ogni creazione & diversa, irripetibile, perché porta con sé le tracce del tempo e del lavoro umano. Cosi il brand rinnova la propria identita in un dialogo continuo tra tradizione, materia e spirito modemo.",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 33,
+          "y1": 121,
+          "x2": 343,
+          "y2": 348
+        },
+        "confidence": 0.9829644560813904,
+        "text": "Vizzano presents a collection that interprets the new urban luxury with a bold yet feminine elegance. The label explores essential shapes, luminous finishes and daring details that define the season. The slingback makes its debut with a tortoiseshell print, while the fold-over boot introduces a fashion-forward, sculptural touch. The dark carmine court shoe conveys a deep and sensual shade, balanced by the dark grey loafer designed for everyday elegance. Completing the narrative is the shoulder bag, a synthesis of functionality, character and contemporary design.",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 4,
+        "type": "figure",
+        "coordinates": {
+          "x1": 33,
+          "y1": 596,
+          "x2": 366,
+          "y2": 1086
+        },
+        "confidence": 0.9581149816513062
+      },
+      {
+        "id": 5,
+        "type": "title",
+        "coordinates": {
+          "x1": 398,
+          "y1": 594,
+          "x2": 760,
+          "y2": 630
+        },
+        "confidence": 0.9398736357688904,
+        "text": "DRAGON DIFFUSION",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 6,
+        "type": "title",
+        "coordinates": {
+          "x1": 34,
+          "y1": 71,
+          "x2": 198,
+          "y2": 106
+        },
+        "confidence": 0.9207659959793091,
+        "text": "VIZZANO",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 7,
+        "type": "figure",
+        "coordinates": {
+          "x1": 363,
+          "y1": 77,
+          "x2": 760,
+          "y2": 578
+        },
+        "confidence": 0.8773871064186096
+      },
+      {
+        "id": 8,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 641,
+          "y1": 24,
+          "x2": 780,
+          "y2": 40
+        },
+        "confidence": 0.7710649371147156
+      }
+    ],
+    "mood": "Chic",
+    "description": "This page introduces new collections of elegant shoes and artisanal bags from Vizzano and Dragon Diffusion.",
+    "category": "fashion",
+    "type": "Product_Showcase"
+  },
+  {
+    "image_id": "fashion_16.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_16.png",
+    "total_elements": 16,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 50,
+          "y1": 834,
+          "x2": 398,
+          "y2": 1001
+        },
+        "confidence": 0.9838747978210449,
+        "text": "W's not just the industry that's changing, audiences are too. It's no longer enough to sell the latest handbag or pair of shoes: people are searching for something thal is more resonant, more reflective of the times. There's a growing appelite for exclusivity that extends beyond the things we wear lo the experiences we take part in. From Vogue World to Prada Mode, and from global icons like Wimbledon to intimate experiences closer to home—the Bvlgari Iligh Jewellery and Watch Trunk Show al the House of Tan Yeok Nee or the Louis Vuitton x Murakami Pop-up Café al Peranakan House in Joo Chiat it's all about invoking emotion that runs parallel to the brand itself allowing ganpieto ind pestofit tun derser massimaeein ven,",
+        "ocr_confidence": 0.82
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 50,
+          "y1": 727,
+          "x2": 398,
+          "y2": 833
+        },
+        "confidence": 0.9811052680015564,
+        "text": "‘Some of fashion’s most established houses have undergone monumental transformations, from Matthieu [slazy’s move to Chanel to Jonathan Anderson's appointment at Dior. ‘These are more than creative shake-ups: they mark cultural turning points. How will the romance of the Chanel woman evolve under Islazy’s hand? And how will Anderson's vision reshape Dior’s heritage? And beyond this, how will this change the way people aspire and identify with themectves?",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 49,
+          "y1": 603,
+          "x2": 398,
+          "y2": 725
+        },
+        "confidence": 0.9760560989379883,
+        "text": "‘has been a year for the books. Looking back at 2025, the spring/summer 2026 season stands out as one of the most pivotal in recent fashion history. Yet beyond the collections, the very machinery of fashion has begun to move in new directions. As we step into 2026, i's worth remembering that 2025 was merely the beginning the moment when the gears first started to shifl.‘The true outcomes of these changes are only jus beginning to unfold.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 50,
+          "y1": 1003,
+          "x2": 398,
+          "y2": 1064
+        },
+        "confidence": 0.9706582427024841,
+        "text": "Needless to say, fashion as we know it, no longer exists the way it once did. As we look back on the year, we distil the shifts, the turning wheels and what lies ahead, hese are the eight key moments that have defined the industry this year.e",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 4,
+        "type": "figure",
+        "coordinates": {
+          "x1": 492,
+          "y1": 567,
+          "x2": 693,
+          "y2": 820
+        },
+        "confidence": 0.9668319225311279
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 50,
+          "y1": 329,
+          "x2": 374,
+          "y2": 445
+        },
+        "confidence": 0.9639174342155457,
+        "text": "It has been 12 months of transformation. From monumental creative shifts and archival revivals to immersive experiences and the challenges facing online luxury, we look back at the defining moments that shaped the industry and set the stage for the season ahead.",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 6,
+        "type": "figure",
+        "coordinates": {
+          "x1": 492,
+          "y1": 96,
+          "x2": 648,
+          "y2": 278
+        },
+        "confidence": 0.9556055068969727
+      },
+      {
+        "id": 7,
+        "type": "title",
+        "coordinates": {
+          "x1": 47,
+          "y1": 200,
+          "x2": 294,
+          "y2": 319
+        },
+        "confidence": 0.9521206021308899,
+        "text": "Avearm FASHION",
+        "ocr_confidence": 0.62
+      },
+      {
+        "id": 8,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 509,
+          "y1": 851,
+          "x2": 680,
+          "y2": 1064
+        },
+        "confidence": 0.9299041032791138,
+        "text": "Pollowing this trcad, brands are mining thir archives fo the next mus have ‘accessory Exclusivity now means Pieces that embody uniqueness, heritage. nostalgia and significance. ‘With vintage shopping onthe rise, luxury houses are revising signature ‘odesand reviving cherished cons. “Take Louis Viton, for example, which this year reissued Takashi Marakams iconic candy dotted collaboration, ‘bringing back into the spotigh. The allure continucs with Chloe's slim down Paddingtonbag and Celin'scas ‘wes! Phantom, now featuring play “smnile—both still perfect fora night out.",
+        "ocr_confidence": 0.61
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 509,
+          "y1": 314,
+          "x2": 678,
+          "y2": 538
+        },
+        "confidence": 0.9111582040786743,
+        "text": "dapeiee femdntets expectation. lnxury brands turn to’experiatial luxury moments designed to spark emotion forge connection and leave a lasting. impression Globally. thistakes shape incvens like Vogue World or Wimbledon. where audicaces witness momcatsin eal ine. In Singapore, itappearsthrough imited-run experiences sch asthe Hvar Trunk ‘Show athe House of Tan Yeok Nec, Prada Caffeat fon Orchard, Louis Viton Marakami Pop-up at Joo Chiat and Herm Wings of Hermes public yet lectin, making them fel like rare,",
+        "ocr_confidence": 0.53
+      },
+      {
+        "id": 10,
+        "type": "title",
+        "coordinates": {
+          "x1": 511,
+          "y1": 297,
+          "x2": 632,
+          "y2": 309
+        },
+        "confidence": 0.8803561329841614,
+        "text": "It's all about the experience",
+        "ocr_confidence": 0.74
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 50,
+          "y1": 459,
+          "x2": 164,
+          "y2": 473
+        },
+        "confidence": 0.8616158962249756,
+        "text": "Words MAYA MENON",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 12,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 50,
+          "y1": 1086,
+          "x2": 62,
+          "y2": 1096
+        },
+        "confidence": 0.8405043482780457
+      },
+      {
+        "id": 13,
+        "type": "title",
+        "coordinates": {
+          "x1": 556,
+          "y1": 835,
+          "x2": 678,
+          "y2": 847
+        },
+        "confidence": 0.7969952821731567,
+        "text": "The Revival of The Classics",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 14,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 49,
+          "y1": 37,
+          "x2": 225,
+          "y2": 61
+        },
+        "confidence": 0.6862667798995972
+      },
+      {
+        "id": 15,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 755,
+          "y1": 869,
+          "x2": 770,
+          "y2": 1062
+        },
+        "confidence": 0.4164440929889679
+      }
+    ],
+    "mood": "Insightful",
+    "description": "An editorial analysis of the past year's significant transformations and trends in the fashion industry, focusing on experiential luxury and the revival of classic designs.",
+    "category": "fashion",
+    "type": "Editorial_Column"
+  },
+  {
+    "image_id": "fashion_17.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_17.png",
+    "total_elements": 27,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 425,
+          "y1": 487,
+          "x2": 760,
+          "y2": 657
+        },
+        "confidence": 0.980985164642334,
+        "text": "The Internet personality is growing his fan base with a role as Air Force pilot Captain Pauly Russo on the It pre- uel series, Welcome to Derry — and Us can't help but love a man in uniform. “He's very much an extension of a version of myself,” Mancuso, 33, tells Us of his character, whom he describes as an “Italian-American guy who has Napoleon complex.” OK, Rudy, the self-depricating hu- ‘mor is only making Us more attracted to you. But bad news if you think you have a shot: The actor recently got ‘engaged to Camila Mendes. Congrats, lovebirds!",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 1,
+        "type": "figure",
+        "coordinates": {
+          "x1": 48,
+          "y1": 766,
+          "x2": 232,
+          "y2": 965
+        },
+        "confidence": 0.9694954752922058
+      },
+      {
+        "id": 2,
+        "type": "figure",
+        "coordinates": {
+          "x1": 304,
+          "y1": 766,
+          "x2": 484,
+          "y2": 966
+        },
+        "confidence": 0.9686940908432007
+      },
+      {
+        "id": 3,
+        "type": "figure",
+        "coordinates": {
+          "x1": 563,
+          "y1": 766,
+          "x2": 742,
+          "y2": 965
+        },
+        "confidence": 0.9648212194442749
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 539,
+          "y1": 992,
+          "x2": 759,
+          "y2": 1068
+        },
+        "confidence": 0.9546687006950378,
+        "text": "‘Seven months after Gifford split from wife and Criminal Minds costar Kiele Sanchez, 2 rep confirmed the actor is now dating Liber- ‘ato, who also appears on the show. “[The relationship] is fairly new,” adds a source.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 5,
+        "type": "title",
+        "coordinates": {
+          "x1": 38,
+          "y1": 103,
+          "x2": 344,
+          "y2": 175
+        },
+        "confidence": 0.9515589475631714,
+        "text": "‘We Don’t Get Sick of Each Other’",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 6,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 283,
+          "y1": 992,
+          "x2": 507,
+          "y2": 1069
+        },
+        "confidence": 0.9506864547729492,
+        "text": "“They run in the same fashion circles. It's ‘new, but they're excited about it,” an insider tolls Us of the heir to the Guess Inc. clothing empire and the model, who went public at the GQ Men of the Year party on Nov. 13.",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 40,
+          "y1": 992,
+          "x2": 242,
+          "y2": 1069
+        },
+        "confidence": 0.9380877017974854,
+        "text": "In late November, Us confirmed that the realty TV stars parted ways earlier this fall. The duo hooked up while filming season 10 of Bachelor in Paradise last ‘May, ultimately finishing in third place.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 8,
+        "type": "title",
+        "coordinates": {
+          "x1": 512,
+          "y1": 459,
+          "x2": 652,
+          "y2": 483
+        },
+        "confidence": 0.9287323951721191,
+        "text": "Rudy Mancuso",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 9,
+        "type": "figure",
+        "coordinates": {
+          "x1": 410,
+          "y1": 73,
+          "x2": 758,
+          "y2": 450
+        },
+        "confidence": 0.9217013120651245
+      },
+      {
+        "id": 10,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 631,
+          "y1": 1086,
+          "x2": 758,
+          "y2": 1101
+        },
+        "confidence": 0.8988019227981567
+      },
+      {
+        "id": 11,
+        "type": "title",
+        "coordinates": {
+          "x1": 554,
+          "y1": 975,
+          "x2": 746,
+          "y2": 990
+        },
+        "confidence": 0.8837949633598328,
+        "text": "Liana Liberato & Zach Gifford",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 12,
+        "type": "title",
+        "coordinates": {
+          "x1": 70,
+          "y1": 974,
+          "x2": 211,
+          "y2": 990
+        },
+        "confidence": 0.8732590675354004,
+        "text": "Dale Moss & Kat Izzo",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 13,
+        "type": "title",
+        "coordinates": {
+          "x1": 283,
+          "y1": 974,
+          "x2": 506,
+          "y2": 991
+        },
+        "confidence": 0.8480127453804016,
+        "text": "Nicolai Marciano & Amelia Hamlin",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 14,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 167,
+          "y1": 509,
+          "x2": 248,
+          "y2": 598
+        },
+        "confidence": 0.833318293094635,
+        "text": "The couple dressed to the nines for the (CMA Awards ‘in Nashville on Nov. 19.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 15,
+        "type": "title",
+        "coordinates": {
+          "x1": 27,
+          "y1": 714,
+          "x2": 208,
+          "y2": 751
+        },
+        "confidence": 0.761988639831543,
+        "text": "ON © OFF!",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 16,
+        "type": "title",
+        "coordinates": {
+          "x1": 118,
+          "y1": 74,
+          "x2": 264,
+          "y2": 94
+        },
+        "confidence": 0.7454524040222168,
+        "text": "CHELSEA & COLE",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 17,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 214,
+          "y1": 192,
+          "x2": 386,
+          "y2": 429
+        },
+        "confidence": 0.7408962249755859,
+        "text": "lucky that we get to be to- gether so much.” Cole, 37, agrees, adding that work-life balance is their “most asked question... This is my best friend, so why not... do all the things?” The couple — who met at a gas station in 2014 before tying the knot two years later — launched their HGTV show, Down Home Fab, which centers on their home renovation and design business in",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 18,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 254,
+          "y1": 428,
+          "x2": 386,
+          "y2": 681
+        },
+        "confidence": 0.7261126041412354,
+        "text": "South Dakota, in early 2023. “Coming into the HGTV world, we were new to the game, and we were just new to remod- ling in general,” Chelsea shares. “Getting that confidence over the last three years, V'm like, OK, now we're here, and we deserve to be here.”",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 19,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 27,
+          "y1": 247,
+          "x2": 196,
+          "y2": 398
+        },
+        "confidence": 0.6649017333984375,
+        "text": "art of mixing business and pleasure. “We actually don’t get sick of each other,” the Teen Mom 2 alum, 34, told Us at the 2025 CMA Awards. “We just have so much fun. We always do little lunch dates, [co] were kinder",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 20,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 240,
+          "y1": 725,
+          "x2": 536,
+          "y2": 748
+        },
+        "confidence": 0.6585902571678162,
+        "text": "Who's Hooking Up & Who's Breaking Up",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 21,
+        "type": "figure",
+        "coordinates": {
+          "x1": 122,
+          "y1": 369,
+          "x2": 254,
+          "y2": 485
+        },
+        "confidence": 0.566626250743866
+      },
+      {
+        "id": 22,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 69,
+          "y1": 194,
+          "x2": 197,
+          "y2": 245
+        },
+        "confidence": 0.4669795632362366,
+        "text": "HGTV stars Cole and Chelsea DeBoer have mastarad the",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 23,
+        "type": "title",
+        "coordinates": {
+          "x1": 506,
+          "y1": 83,
+          "x2": 658,
+          "y2": 123
+        },
+        "confidence": 0.44038838148117065,
+        "text": "People We Googled Shirtless This Week",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 24,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 761,
+          "y1": 637,
+          "x2": 780,
+          "y2": 1058
+        },
+        "confidence": 0.341387003660202
+      },
+      {
+        "id": 25,
+        "type": "figure",
+        "coordinates": {
+          "x1": 6,
+          "y1": 413,
+          "x2": 252,
+          "y2": 679
+        },
+        "confidence": 0.3353223502635956
+      },
+      {
+        "id": 26,
+        "type": "title",
+        "coordinates": {
+          "x1": 240,
+          "y1": 725,
+          "x2": 536,
+          "y2": 748
+        },
+        "confidence": 0.2595300078392029,
+        "text": "Who's Hooking Up & Who's Breaking Up",
+        "ocr_confidence": 0.83
+      }
+    ],
+    "mood": "Gossip",
+    "description": "This page features updates on various celebrity relationships, breakups, and trending personalities.",
+    "category": "fashion",
+    "type": "Celebrity_Lifestyle"
+  },
+  {
+    "image_id": "fashion_18.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_18.png",
+    "total_elements": 26,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 302,
+          "y1": 352,
+          "x2": 558,
+          "y2": 573
+        },
+        "confidence": 0.9731737375259399,
+        "text": "after coming in second place on season 34 with her pro partner, Val Chmerkovskly Berrios sent her a good-luck video in the November finale) “She's been in great spirits and having fun with her friends,” the source adds. Earle and Berrios started dating in 2023 after his breakup from Sophia Culpo, who later accused the NFL star of cheating. Earle and Berrios denied any overlap in the rela- tionships, with the Hot Mess podcast host even saying on Call Her Daddy last year that she asked the athlete “probably 110 times” for “secelpte” to clear thelr names.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 309,
+          "y1": 685,
+          "x2": 544,
+          "y2": 1066
+        },
+        "confidence": 0.9725915789604187,
+        "text": "Kate Winslet wants to age naturally. In a. recent interview, the Titanic star, 50, de- nounced the rising popularity of filer and other cosmetic trends, as well as GLP-1s, among her peers. “It is devastating,” she told The Sunday Times. “if a person's slf- esteem is so bound up in how they look, it’s frightening.” Winslet said “all the f**king actresses” who've “become obsessed with chasing an idea of perfection” upset her, but not as much as everyday people who “save up for Botox or the s**t they put in their lips.” The Oscar winner is also con- cerned about what's really in injectables, saying, “The disregard for one's health is terrifying. It bothers me now more than ever. tis king chaos out there.” An irate Winslet even went so far as to point out the lines in her face and hands to prove she “hasn't got anything” in them. “Some of the ‘most beautiful women I know are over 70,” she added, “and what upsets me is that young women have no concept of what being beautiful actually is.”",
+        "ocr_confidence": 0.87
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 587,
+          "y1": 713,
+          "x2": 762,
+          "y2": 808
+        },
+        "confidence": 0.9656994342803955,
+        "text": "© Confessions of a Shopaholic author Sophie Kinsella died on Dec. 10, three years after being diagnosed with glioblastoma, an aggressive form of brain cancer. She was 55.",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 586,
+          "y1": 899,
+          "x2": 751,
+          "y2": 1009
+        },
+        "confidence": 0.9585658311843872,
+        "text": "¢ Have mercy! John Stamos will play a character named Chase Brylan in The Hunting Wives season 2. Twilight star ‘Cam Gigandet and veteran actress Dale Dickey have also joined tea cua",
+        "ocr_confidence": 0.84
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 587,
+          "y1": 1015,
+          "x2": 761,
+          "y2": 1079
+        },
+        "confidence": 0.9543874859809875,
+        "text": "On Dec. 8, ABC extended Jimmy Kimmel’ Live! contract through May 2027, following his brief suapension in September.",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 5,
+        "type": "title",
+        "coordinates": {
+          "x1": 308,
+          "y1": 629,
+          "x2": 522,
+          "y2": 679
+        },
+        "confidence": 0.9508310556411743,
+        "text": "Kate Slams Plastic Surgery in Hollywood",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 6,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 587,
+          "y1": 814,
+          "x2": 760,
+          "y2": 893
+        },
+        "confidence": 0.9506015181541443,
+        "text": "© The Real Housewives of Salt Lake City alum Jen Shah was released from prison on Dec. 10 after serving nearly two years and 10 months for fraud.",
+        "ocr_confidence": 0.93
+      },
+      {
+        "id": 7,
+        "type": "figure",
+        "coordinates": {
+          "x1": 706,
+          "y1": 419,
+          "x2": 762,
+          "y2": 491
+        },
+        "confidence": 0.9443796277046204
+      },
+      {
+        "id": 8,
+        "type": "figure",
+        "coordinates": {
+          "x1": 221,
+          "y1": 0,
+          "x2": 558,
+          "y2": 342
+        },
+        "confidence": 0.9434829950332642
+      },
+      {
+        "id": 9,
+        "type": "title",
+        "coordinates": {
+          "x1": 39,
+          "y1": 78,
+          "x2": 202,
+          "y2": 246
+        },
+        "confidence": 0.9402662515640259,
+        "text": "Inside Alix & Braxton’s Split",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 10,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 587,
+          "y1": 497,
+          "x2": 759,
+          "y2": 575
+        },
+        "confidence": 0.9382668733596802,
+        "text": "Actor in a Motion Picture — Musical or Comedy for Leonar- do DiCaprio (right). The White Lotus snagged the most nods in the TV categories with six.",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 11,
+        "type": "figure",
+        "coordinates": {
+          "x1": 39,
+          "y1": 604,
+          "x2": 299,
+          "y2": 1067
+        },
+        "confidence": 0.9307020306587219
+      },
+      {
+        "id": 12,
+        "type": "figure",
+        "coordinates": {
+          "x1": 687,
+          "y1": 579,
+          "x2": 765,
+          "y2": 673
+        },
+        "confidence": 0.9210764765739441
+      },
+      {
+        "id": 13,
+        "type": "figure",
+        "coordinates": {
+          "x1": 590,
+          "y1": 67,
+          "x2": 761,
+          "y2": 307
+        },
+        "confidence": 0.9157518148422241
+      },
+      {
+        "id": 14,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 27,
+          "y1": 1087,
+          "x2": 297,
+          "y2": 1111
+        },
+        "confidence": 0.8965985178947449
+      },
+      {
+        "id": 15,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 587,
+          "y1": 417,
+          "x2": 698,
+          "y2": 496
+        },
+        "confidence": 0.8547250032424927,
+        "text": "One Battle After Another leads this year’s Golden Globe nominations with nine, including Best",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 16,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 586,
+          "y1": 581,
+          "x2": 726,
+          "y2": 707
+        },
+        "confidence": 0.8047207593917847,
+        "text": "Jenna Bush Hager revealed on Dec.9 Aw that Sheinelle Jones (right) will ane be her permanent cohost for the fourth hour of the Today show, replacing Hoda Kot",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 17,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 636,
+          "y1": 1097,
+          "x2": 759,
+          "y2": 1112
+        },
+        "confidence": 0.7861536145210266
+      },
+      {
+        "id": 18,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 497,
+          "y1": 240,
+          "x2": 559,
+          "y2": 344
+        },
+        "confidence": 0.7340930700302124,
+        "text": "Asecond insider says Earle and Berrios “mutually agreed” to split.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 19,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 30,
+          "y1": 284,
+          "x2": 208,
+          "y2": 351
+        },
+        "confidence": 0.7059354186058044,
+        "text": "Allx Earle and Braxton Berrios have called it Quits after two years of dating. “Distance was a huge",
+        "ocr_confidence": 0.9
+      },
+      {
+        "id": 20,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 587,
+          "y1": 316,
+          "x2": 753,
+          "y2": 411
+        },
+        "confidence": 0.6906004548072815,
+        "text": "Beyoncé (above) is going to the Met Gala forthe first time in a decade! The singer will cochair the May 4 event with Nicole Kidman, Venus Wil- liams and Anna Wintour.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 21,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 30,
+          "y1": 351,
+          "x2": 287,
+          "y2": 573
+        },
+        "confidence": 0.5847636461257935,
+        "text": "factor,” a source tells Us. The New Jersey- bor TikToker, 25, “wants to spend more time in LA,” according to the source, while the Houston Texans wide receiver, 30, is currently based in Miami. “The more time they spent apart, the more they realized they were grow- ing apart as a couple,” the source shares. Although she's navigating heartbreak, the source says Earle is “focused on her new chapter,” which includes the upcoming Danc~ ing With the Stars tour. The influencer is set to make a guest appearance during the Feb. 14 and 15 shows in her home state and NYC",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 22,
+        "type": "figure_caption",
+        "coordinates": {
+          "x1": 587,
+          "y1": 316,
+          "x2": 753,
+          "y2": 411
+        },
+        "confidence": 0.5190528035163879,
+        "text": "Beyoncé (above) is going to the Met Gala forthe first time in a decade! The singer will cochair the May 4 event with Nicole Kidman, Venus Wil- liams and Anna Wintour.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 23,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 41,
+          "y1": 977,
+          "x2": 113,
+          "y2": 1065
+        },
+        "confidence": 0.38201597332954407,
+        "text": "Winslet questioned why some people can't just “be themselves.”",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 24,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 98,
+          "y1": 256,
+          "x2": 143,
+          "y2": 264
+        },
+        "confidence": 0.3530621826648712,
+        "text": "",
+        "ocr_confidence": 0.0
+      },
+      {
+        "id": 25,
+        "type": "figure_caption",
+        "coordinates": {
+          "x1": 497,
+          "y1": 240,
+          "x2": 559,
+          "y2": 344
+        },
+        "confidence": 0.285271018743515,
+        "text": "Asecond insider says Earle and Berrios “mutually agreed” to split.",
+        "ocr_confidence": 0.89
+      }
+    ],
+    "mood": "Gossip",
+    "description": "This page covers celebrity relationship news, various Hollywood updates, and Kate Winslet's opinion on plastic surgery trends.",
+    "category": "fashion",
+    "type": "Celebrity_Lifestyle"
+  },
+  {
+    "image_id": "fashion_19.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_19.png",
+    "total_elements": 24,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 521,
+          "y1": 498,
+          "x2": 750,
+          "y2": 681
+        },
+        "confidence": 0.976633608341217,
+        "text": "Culturally, Ill remember this as the year of KPop Demon Hunters, which my five-year-old daughter is now bored of while m stil singing all the songs. Hopefully that will get my Spotty Wrapped age down from 84 next year (sadly, not a joke). AKPDH sequel is now in the works, along with a whole new batch of trends, fads and topics of conversation to rage bait us over the coming months. But until then, please no more Labuibus, | beg of you. F @ Follow Kate on Instagram @katewillswrites.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 40,
+          "y1": 862,
+          "x2": 259,
+          "y2": 1028
+        },
+        "confidence": 0.9751325249671936,
+        "text": "‘What else from the past 12 months would | ike to see climb into a giant bin? Bonkers bilionaires (and their weddings), microdosing. padel. air fryers and people who have self diagnosed ADHD just because they/re quite scatty and want to tell you all about it And I love a matcha latte as much as the next gil but I can't stand anyone who makes it their entire personaity (and, no, | don't want matcha- flavowedeenthing).",
+        "ocr_confidence": 0.77
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 521,
+          "y1": 332,
+          "x2": 747,
+          "y2": 497
+        },
+        "confidence": 0.9711800813674927,
+        "text": "That said, there were a few glimmers of greatness in 2025 and they came in unexpected places - the Coldplay Jumbotron, 'm looking at you. | wanted to loathe Dubai chocolate and thought it sounded tke overhyped siliness. Then Itried some and now consume a bar a night (sa, on second thoughts, maybe | wish Fd never heard of it). Likewise. Gen Z's alcopop of choice, Buz7Ball ~so fun! So colourfull So drunk-making!",
+        "ocr_confidence": 0.81
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 39,
+          "y1": 207,
+          "x2": 259,
+          "y2": 406
+        },
+        "confidence": 0.9689319729804993,
+        "text": "sit draws to a close, | think we canal agree that 2025 was a strange and dificult year Like ‘Mummy Pig from Peppa Pig. | spent most of it pregnant, which for me meant nine months of vomiting, acid reflux and elasticated waistbands. But there was at least one good outcome after nine months of misery. Not the birth of my daughter (although she is great), but the fact that I could avoid the year's most terrifying fashion trend - barrel-leq jeans.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 41,
+          "y1": 771,
+          "x2": 263,
+          "y2": 861
+        },
+        "confidence": 0.9662433862686157,
+        "text": "mall for being the best version of yourself, but when teens are talking about getting sliced open with increasing nonchalance. it makes me scared for the future. And that was before | heard about skincare for toddlers (yes, really).",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 521,
+          "y1": 209,
+          "x2": 750,
+          "y2": 330
+        },
+        "confidence": 0.9658498764038086,
+        "text": "lingo of choice in 2025. “Six sevvuhnn!” isnow screeched at bus stops across the land, with no one - not even teens themselves -having any idea what it means Which is, in fact, iting, as nonsensical gibberish is about all we've come to expect from our politicians of late, whether it's Kemi Badenoch or Rachel from Accounts.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 6,
+        "type": "figure",
+        "coordinates": {
+          "x1": 657,
+          "y1": 738,
+          "x2": 742,
+          "y2": 828
+        },
+        "confidence": 0.9489238262176514
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 40,
+          "y1": 665,
+          "x2": 269,
+          "y2": 770
+        },
+        "confidence": 0.9464002847671509,
+        "text": "‘Then there's the rise of Ozempic, which has meant that every other celebrity has seemed to shrink before our eyes in recent months - while the rest were busy getting facelits. From blepharoplasty to buccal fat removal, this was the year cosmetic surgery went both extreme and mainstream.",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 8,
+        "type": "figure",
+        "coordinates": {
+          "x1": 657,
+          "y1": 949,
+          "x2": 743,
+          "y2": 1041
+        },
+        "confidence": 0.9460737705230713
+      },
+      {
+        "id": 9,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 529,
+          "y1": 847,
+          "x2": 651,
+          "y2": 938
+        },
+        "confidence": 0.9380455017089844,
+        "text": "Loving... ‘The Standard ‘The London hotel has swapped festive overload for community evens, ‘storytelling and choirs.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 10,
+        "type": "figure",
+        "coordinates": {
+          "x1": 657,
+          "y1": 842,
+          "x2": 742,
+          "y2": 935
+        },
+        "confidence": 0.9365672469139099
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 531,
+          "y1": 952,
+          "x2": 652,
+          "y2": 1045
+        },
+        "confidence": 0.931390106678009,
+        "text": "Watching... ‘The Housemaid I devoured Freida McFadden's book in one ‘go Sytiney Sweeney's movie is just 2s gripping.",
+        "ocr_confidence": 0.73
+      },
+      {
+        "id": 12,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 531,
+          "y1": 740,
+          "x2": 652,
+          "y2": 832
+        },
+        "confidence": 0.9223647117614746,
+        "text": "Listening to Becoming ‘Meg Dashwood Emma Thompson lends her voice to this sweet ‘Sense And Sensbiliy spin-cffon Audie",
+        "ocr_confidence": 0.71
+      },
+      {
+        "id": 13,
+        "type": "title",
+        "coordinates": {
+          "x1": 190,
+          "y1": 65,
+          "x2": 605,
+          "y2": 147
+        },
+        "confidence": 0.9035155773162842,
+        "text": "Kate Wills",
+        "ocr_confidence": 0.95
+      },
+      {
+        "id": 14,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 41,
+          "y1": 1029,
+          "x2": 263,
+          "y2": 1059
+        },
+        "confidence": 0.892010509967804,
+        "text": "I you thought “skibidi” and \"rizz” were annoying, they have nothing on the kids’",
+        "ocr_confidence": 0.81
+      },
+      {
+        "id": 15,
+        "type": "title",
+        "coordinates": {
+          "x1": 581,
+          "y1": 704,
+          "x2": 691,
+          "y2": 719
+        },
+        "confidence": 0.8767783045768738,
+        "text": "THIS WEEK I'M...",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 16,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 40,
+          "y1": 407,
+          "x2": 261,
+          "y2": 664
+        },
+        "confidence": 0.8737863898277283,
+        "text": "Fashion-wise, the last 12 months weren't really my bag, Perhaps because | didn't have a weird, snaggle toothed plush creature hanging from the handle of mine. Labubus were funny for about five minutes, but when grown adults are queueing for cuddly toys and parting with serious cash think we all have to question what the world is coming to. Nothing good it seems, given every conversation ve had lately seems to be about how scary Alis (its the new \"kids and smartphones” chal). The only thing worse than talking about Alis using i to craft your Linkedin profile. And don't get me started on people using ChatGPT to write text messanes to their dates. Just nc",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 17,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 310,
+          "y1": 1086,
+          "x2": 484,
+          "y2": 1100
+        },
+        "confidence": 0.8687830567359924
+      },
+      {
+        "id": 18,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 47,
+          "y1": 156,
+          "x2": 743,
+          "y2": 182
+        },
+        "confidence": 0.8288206458091736,
+        "text": "Our columnist on the trends that have made her delighted to say goodbye to this year",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 19,
+        "type": "figure",
+        "coordinates": {
+          "x1": 300,
+          "y1": 310,
+          "x2": 489,
+          "y2": 1070
+        },
+        "confidence": 0.7390731573104858
+      },
+      {
+        "id": 20,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 12,
+          "y1": 887,
+          "x2": 25,
+          "y2": 1058
+        },
+        "confidence": 0.6807631254196167
+      },
+      {
+        "id": 21,
+        "type": "title",
+        "coordinates": {
+          "x1": 302,
+          "y1": 202,
+          "x2": 489,
+          "y2": 286
+        },
+        "confidence": 0.5958400964736938,
+        "text": "‘From Labubus to Ozempic, why I'm glad 2025 is over’",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 22,
+        "type": "title",
+        "coordinates": {
+          "x1": 349,
+          "y1": 21,
+          "x2": 442,
+          "y2": 41
+        },
+        "confidence": 0.5655115246772766,
+        "text": "OPINION",
+        "ocr_confidence": 0.96
+      },
+      {
+        "id": 23,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 302,
+          "y1": 202,
+          "x2": 489,
+          "y2": 286
+        },
+        "confidence": 0.4636157751083374,
+        "text": "‘From Labubus to Ozempic, why I'm glad 2025 is over’",
+        "ocr_confidence": 0.94
+      }
+    ],
+    "mood": "Gossip",
+    "description": "Columnist Kate Wills reflects on a year filled with various trends, fads, and social observations, expressing her relief for it to be over.",
+    "category": "fashion",
+    "type": "Editorial_Column"
+  },
+  {
+    "image_id": "fashion_20.png",
+    "image_path": "/home/enjoy/final/data/fashion/fashion_test/fashion_20.png",
+    "total_elements": 24,
+    "elements": [
+      {
+        "id": 0,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 527,
+          "y1": 105,
+          "x2": 755,
+          "y2": 229
+        },
+        "confidence": 0.9790412187576294,
+        "text": "Jesus being born... is the foundation of it, which is why we read the Bible the morning of Christmas, to remind ourselves what we're actually celebrat- ing — the birth of Jesus — and that we give gifts because Jesus gave us the gif of salvation. Those are beautiful things.",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 1,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 279,
+          "y1": 177,
+          "x2": 513,
+          "y2": 266
+        },
+        "confidence": 0.9787988066673279,
+        "text": "‘Now firmly in her unapologetic era, the mom of three — to Natasha, 27, Lev, 25, and Maksim, 23 — sat down with Usto talk about her favorite time of year and standing up for her beliefs.",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 2,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 584,
+          "y1": 821,
+          "x2": 751,
+          "y2": 928
+        },
+        "confidence": 0.9760386347770691,
+        "text": "Sharing the gospel of Jesus Christ truly is the most im- portant thing in my life, and I get to share this in creative ways as a woman of faith in the entertainment industry.",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 3,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 279,
+          "y1": 104,
+          "x2": 506,
+          "y2": 175
+        },
+        "confidence": 0.9748948812484741,
+        "text": "herself above reproach. “Any mistakes, whether big or small, they're good,” she says. “You learn from mistakes. You grow from them.”",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 4,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 527,
+          "y1": 245,
+          "x2": 758,
+          "y2": 481
+        },
+        "confidence": 0.9747092723846436,
+        "text": "Speaking of presents, this is the second year ina row you've given fans the gift of a holiday movie with you and Cameron Mathison. What's your secret to creating onscreen chemistry with a leading man? Its just about getting to know each other. 'm fortunate enough to produce these movies. I really love being able to cast people who I already know are good human beings and happy and positive. I just like working with good people, and then when I find them, I want to keep working with them.",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 5,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 584,
+          "y1": 589,
+          "x2": 763,
+          "y2": 767
+        },
+        "confidence": 0.9744278788566589,
+        "text": "I feel like these movies have resonated so much. The channel has really leaned into that market and the people who are yearning for the name Jesus to be in Christmas movies — and I think that Great American will continue to lean even further into those types of stories.",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 6,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 30,
+          "y1": 373,
+          "x2": 254,
+          "y2": 497
+        },
+        "confidence": 0.9705272912979126,
+        "text": "fter nearly forty years in Hollywood, Candace Cameron Bure — who turns 50 in April — is feeling surer of herself than ever. “Every decade of my life has been better and better,” she tells Us in an exclusive interview. “You become more confident in who you are”",
+        "ocr_confidence": 0.88
+      },
+      {
+        "id": 7,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 278,
+          "y1": 282,
+          "x2": 512,
+          "y2": 481
+        },
+        "confidence": 0.9600090384483337,
+        "text": "You’ve made more than 15 holiday movies and have been dubbed the Queen of Christmas. What does that mean to you? It’ the holiday Took forward to most. like to make itas peaceful and simple as possible and really make Christmas about connecting with my family and friends. The older I get, [just want to have deep, meaningful moments. Val always makes a beautiful Christmas Eve dinner for us and then we go to church.",
+        "ocr_confidence": 0.89
+      },
+      {
+        "id": 8,
+        "type": "figure",
+        "coordinates": {
+          "x1": 222,
+          "y1": 546,
+          "x2": 566,
+          "y2": 1068
+        },
+        "confidence": 0.9582802653312683
+      },
+      {
+        "id": 9,
+        "type": "title",
+        "coordinates": {
+          "x1": 584,
+          "y1": 783,
+          "x2": 755,
+          "y2": 817
+        },
+        "confidence": 0.9443278908729553,
+        "text": "Why does making films rooted in religion matter to you?",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 10,
+        "type": "figure",
+        "coordinates": {
+          "x1": 1,
+          "y1": 52,
+          "x2": 249,
+          "y2": 361
+        },
+        "confidence": 0.9418584704399109
+      },
+      {
+        "id": 11,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 31,
+          "y1": 1000,
+          "x2": 198,
+          "y2": 1070
+        },
+        "confidence": 0.9379894137382507,
+        "text": "Which doesn’t mean the star — who's been married to former hockey pro Valeri Bure since 1996 — considers",
+        "ocr_confidence": 0.92
+      },
+      {
+        "id": 12,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 30,
+          "y1": 527,
+          "x2": 206,
+          "y2": 999
+        },
+        "confidence": 0.9151875376701355,
+        "text": "ee as Donna Jo“D.J.\" Tanner on Full House at age 11, her faith and conservative values have come to define her. She au- thored the 30-day devotional Riseand Renew, released in November. And Another Swoeet Christmas, her latest TV movie for Great American Family, where she is chief creative officer, premieres Dec. 20 — three years after she defended the network's decision to “keep traditional marriage” front and center ofits programming, (She also has Ainsley McGregor Mysteries: A Case for the Watchmaker, premiering Jan. 1,2026, on Great American Fi, the network's streamer) “There's nothing I need to clear up? she says about her opinions tending to make headlines. “There really isn. Fan just living tras toma”",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 13,
+        "type": "title",
+        "coordinates": {
+          "x1": 584,
+          "y1": 533,
+          "x2": 745,
+          "y2": 585
+        },
+        "confidence": 0.9088647365570068,
+        "text": "Family, which makes content about “faith, family and country.”",
+        "ocr_confidence": 0.86
+      },
+      {
+        "id": 14,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 31,
+          "y1": 1089,
+          "x2": 167,
+          "y2": 1107
+        },
+        "confidence": 0.880715012550354
+      },
+      {
+        "id": 15,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 583,
+          "y1": 945,
+          "x2": 758,
+          "y2": 1071
+        },
+        "confidence": 0.858977198600769,
+        "text": "Have there been moments when you questioned whether itwas worth it to be so open about your religious beliefs? The Bible says to go out into the world and share the good news with others, to share the",
+        "ocr_confidence": 0.85
+      },
+      {
+        "id": 16,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 31,
+          "y1": 499,
+          "x2": 255,
+          "y2": 534
+        },
+        "confidence": 0.8059831261634827,
+        "text": "Who she is, first and foremost, is a Christian. Though she rose to stardom",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 17,
+        "type": "title",
+        "coordinates": {
+          "x1": 279,
+          "y1": 497,
+          "x2": 501,
+          "y2": 531
+        },
+        "confidence": 0.6762803196907043,
+        "text": "How does your faith shape the way you celebrate Christmas?",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 18,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 246,
+          "y1": 947,
+          "x2": 401,
+          "y2": 1049
+        },
+        "confidence": 0.6329482793807983,
+        "text": "‘The gang's all here! Candace and Valeri (far right) celebrated bride Natasha (with new hubby Bradley Steven Perry) on Sept. 14, with (from eft) daughter-in-law Elliott and sons Lev and Maks.",
+        "ocr_confidence": 0.83
+      },
+      {
+        "id": 19,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 527,
+          "y1": 498,
+          "x2": 760,
+          "y2": 531
+        },
+        "confidence": 0.5840713381767273,
+        "text": "Let's talk about your switch in 2022 from working with Hallmark to Great American",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 20,
+        "type": "title",
+        "coordinates": {
+          "x1": 527,
+          "y1": 498,
+          "x2": 760,
+          "y2": 531
+        },
+        "confidence": 0.45223137736320496,
+        "text": "Let's talk about your switch in 2022 from working with Hallmark to Great American",
+        "ocr_confidence": 0.91
+      },
+      {
+        "id": 21,
+        "type": "abandon",
+        "coordinates": {
+          "x1": 31,
+          "y1": 20,
+          "x2": 136,
+          "y2": 37
+        },
+        "confidence": 0.3709122836589813
+      },
+      {
+        "id": 22,
+        "type": "plain text",
+        "coordinates": {
+          "x1": 279,
+          "y1": 497,
+          "x2": 501,
+          "y2": 531
+        },
+        "confidence": 0.35258275270462036,
+        "text": "How does your faith shape the way you celebrate Christmas?",
+        "ocr_confidence": 0.94
+      },
+      {
+        "id": 23,
+        "type": "title",
+        "coordinates": {
+          "x1": 31,
+          "y1": 20,
+          "x2": 136,
+          "y2": 37
+        },
+        "confidence": 0.2919784188270569,
+        "text": "INGOOD FAITH",
+        "ocr_confidence": 0.93
+      }
+    ],
+    "mood": "Faithful",
+    "description": "An interview with Candace Cameron Bure discusses her extensive career, strong faith, and family life, prominently featuring a recent family wedding.",
+    "category": "fashion",
+    "type": "Celebrity_Lifestyle"
+  }
+]

@@ -1,0 +1,3785 @@
+[
+  {
+    "id": "pin_1768365669_0",
+    "keywords": [
+      "magazine",
+      "collage",
+      "editorial",
+      "serif",
+      "asymmetrical",
+      "white space",
+      "luxury",
+      "lifestyle"
+    ],
+    "image_count": 20,
+    "description": "A magazine layout with a collage-style design. Images and text are arranged asymmetrically on each page. Each layout features multiple images, titles, and body text, creating a layered and visually rich composition.",
+    "html_structure_hint": "Masonry layout with fluid columns.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif",
+      "mood": "Sophisticated, high-end, artistic"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365669_0.jpg"
+  },
+  {
+    "id": "pin_1768365673_1",
+    "keywords": [
+      "fashion",
+      "collage",
+      "pastel",
+      "sketch",
+      "feminine"
+    ],
+    "image_count": 12,
+    "description": "A collage style fashion layout with images of clothing designs, sketches, and research photos arranged in an overlapping manner. Text labels highlight key design elements and concepts.",
+    "html_structure_hint": "Grid-like structure with overlapping elements. Use absolute positioning for element placement.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans",
+      "mood": "Conceptual, Artistic"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365673_1.jpg"
+  },
+  {
+    "id": "pin_1768365675_2",
+    "keywords": [
+      "magazine",
+      "layout",
+      "ads",
+      "grid",
+      "photo placeholders"
+    ],
+    "image_count": 42,
+    "description": "The image shows a collection of 14 different magazine ad layouts for half-page ads. Each layout demonstrates different arrangements of photo placeholders and text areas, with variations in the number of photos used (from 1 to 6). Layouts use mostly rectangular placeholders with one exception of using circles in Layout Design #1/2 G. Layouts contain placeholders for a Student Name",
+    "html_structure_hint": "Grid of article containers. Each article is either a grid or flexbox layout.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans",
+      "mood": "informative"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365675_2.jpg"
+  },
+  {
+    "id": "pin_1768365679_3",
+    "keywords": [
+      "beauty",
+      "magazine",
+      "product",
+      "pastel",
+      "feminine",
+      "list"
+    ],
+    "image_count": 1,
+    "description": "A magazine page featuring beauty products arranged artfully in a sink, with a numbered list describing each product.",
+    "html_structure_hint": "2-column layout with main image on left and numbered list on the right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif",
+      "mood": "clean, organized, informative"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365679_3.jpg"
+  },
+  {
+    "id": "pin_1768365690_4",
+    "keywords": [
+      "pastel",
+      "serif",
+      "floral",
+      "editorial",
+      "magazine spread"
+    ],
+    "image_count": 2,
+    "description": "Magazine spread. Left page with text and an image of a man, right page with a pastel colored image with flowers and an ice cream cone. Dominant serif typeface.",
+    "html_structure_hint": "Two column grid. Image on the right takes full column height.",
+    "css_style": {
+      "background_color": "#ADD8E6",
+      "font_style": "Serif",
+      "mood": "calm"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365690_4.jpg"
+  },
+  {
+    "id": "pin_1768365693_5",
+    "keywords": [
+      "cosmetics",
+      "powder",
+      "white",
+      "clean",
+      "typography"
+    ],
+    "image_count": 1,
+    "description": "A large letter 'U' is outlined by cosmetic powder in shades of tan and purple against a white background. The powders are scattered around the letter shape, creating a textured border.",
+    "html_structure_hint": "<div><img></div>",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "None",
+      "mood": "Clean, Minimalist, Modern"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365693_5.jpg"
+  },
+  {
+    "id": "pin_1768365696_6",
+    "keywords": [
+      "makeup",
+      "beauty",
+      "editorial",
+      "serif",
+      "product placement"
+    ],
+    "image_count": 7,
+    "description": "Magazine layout featuring a large portrait on the left, title text, body text, and strategically placed product shots with descriptive labels. The layout uses a vertical column for text and product imagery on the right. A pull quote is present on the top right.",
+    "html_structure_hint": "2-column layout: Left - large image and title. Right - text column with product images interspersed.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif",
+      "mood": "clean, elegant, informative"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365696_6.jpg"
+  },
+  {
+    "id": "pin_1768365699_7",
+    "keywords": [
+      "makeup",
+      "advertisement",
+      "product",
+      "serif",
+      "pastel",
+      "geometric"
+    ],
+    "image_count": 1,
+    "description": "A product advertisement featuring beauty products with a pastel peach background and geometric line accents. The text elements include a bold 'K-Beauty' headline, product names, and a notice section with legal disclaimers. The layout is clean and aims for an elegant, minimalist aesthetic.",
+    "html_structure_hint": "Two-column layout, Image on left, text on right",
+    "css_style": {
+      "background_color": "#F4DDC8",
+      "font_style": "Serif",
+      "mood": "Elegant, Clean, Minimalist"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768365699_7.jpg"
+  },
+  {
+    "id": "pin_1768366072_0",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "minimal",
+      "clean",
+      "serif",
+      "product-focused"
+    ],
+    "description": "Magazine layout featuring four distinct sections, each showcasing different makeup looks with accompanying product images and illustrations. Each section includes a title, short description, price listings and a 'Shop Now' button. Simple layout. The face illustrations and product arrangements create a somewhat consistent design",
+    "html_structure_hint": "Flexbox, vertical sections with image and text blocks",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366072_0.jpg"
+  },
+  {
+    "id": "pin_1768366075_1",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 2,
+    "keywords": [
+      "minimal",
+      "black and white",
+      "serif",
+      "geometric",
+      "marble"
+    ],
+    "description": "A two-page spread with a full-length photo on the left and a framed photo on the right. A subtle gold diagonal line connects both pages. The right-hand photo is framed with a gold border and marble background.",
+    "html_structure_hint": "Grid 2-col, image with border",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366075_1.jpg"
+  },
+  {
+    "id": "pin_1768366078_2",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Square",
+    "image_count": 4,
+    "keywords": [
+      "makeup",
+      "color blocking",
+      "beauty",
+      "editorial",
+      "bold",
+      "contrast"
+    ],
+    "description": "Four makeup looks are showcased using colorful cosmetics. Each look is displayed in a circular crop with product swatches around it. Short descriptive text accompanies each image.",
+    "html_structure_hint": "Grid 2x2 with image containers and text below",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366078_2.jpg"
+  },
+  {
+    "id": "pin_1768366081_3",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "fashion",
+      "modern",
+      "magazine",
+      "bold",
+      "high-fashion",
+      "geometric",
+      "avant-garde"
+    ],
+    "description": "A vertically oriented magazine layout featuring a collage of images primarily focused on fashion accessories like bags, shoes, eyewear, hats, watches, jewelry, and makeup. The title 'ELLE edits' is prominently displayed at the top. Geometric shapes and overlapping layers of images create a dynamic and modern aesthetic. Text elements are strategically placed around the central image.",
+    "html_structure_hint": "Positioned overlapping images, text overlay",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366081_3.jpg"
+  },
+  {
+    "id": "pin_1768366086_4",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 16,
+    "keywords": [
+      "grid",
+      "layout",
+      "ads",
+      "photo",
+      "text"
+    ],
+    "description": "A grid layout showcasing different ad designs. Each cell contains a layout proposal with varying image and text placements.",
+    "html_structure_hint": "Grid 4x4. Each cell: img+text",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366086_4.jpg"
+  },
+  {
+    "id": "pin_1768366088_5",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "product",
+      "clean"
+    ],
+    "description": "Magazine layout with three product image sections arranged around a central text block. Pastel background colors differentiate sections. Minimalist aesthetic with serif typography.",
+    "html_structure_hint": "Grid 2x2 with image spans",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366088_5.jpg"
+  },
+  {
+    "id": "pin_1768366091_6",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "perfume",
+      "beauty",
+      "editorial",
+      "korean",
+      "products"
+    ],
+    "description": "Magazine layout featuring a title, body text and a photo of several perfumes in the upper right quadrant. Text is arranged in columns. A picture of a man is at the bottom left. Overall clean design with limited whitespace.",
+    "html_structure_hint": "Grid layout with image spanning multiple rows/columns",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366091_6.jpg"
+  },
+  {
+    "id": "pin_1768366095_7",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Clean",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "fragrance",
+      "water",
+      "clean",
+      "product shot"
+    ],
+    "description": "The layout consists of two vertically stacked product shots of the same fragrance bottle. Each image has water elements incorporated in the shot, giving it a clean impression.",
+    "html_structure_hint": "Flex column, 2 images",
+    "css_style": {
+      "background_color": "#333333",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366095_7.jpg"
+  },
+  {
+    "id": "pin_1768366097_8",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Luxury",
+    "layout_ratio": "Horizontal",
+    "image_count": 2,
+    "keywords": [
+      "bvlgari",
+      "skincare",
+      "minimalist",
+      "white",
+      "serif",
+      "product",
+      "luxury"
+    ],
+    "description": "A two-page spread. The left page features a large, close-up image of a white, creamy texture. A black bar at the bottom contains short text. The right page features product shots of three BVLGARI skincare items against a white background, along with the brand's logo at the top and descriptive text at the bottom.",
+    "html_structure_hint": "Grid 2-col, Image left, content right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366097_8.jpg"
+  },
+  {
+    "id": "pin_1768366101_9",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "product",
+      "clean",
+      "serif",
+      "white space",
+      "two-page spread"
+    ],
+    "description": "Two-page magazine spread. The left page features a product shot against a bright white background. The right page has a large black rectangle at the top containing the title and season, with text below in a smaller font. Clean and minimal layout.",
+    "html_structure_hint": "Grid 2-col, Image left, Text Right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366101_9.jpg"
+  },
+  {
+    "id": "pin_1768366104_10",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Pastel, Whimsical, Gift-oriented",
+    "layout_ratio": "Horizontal",
+    "image_count": 15,
+    "keywords": [
+      "pastel",
+      "beauty gifts",
+      "illustrations",
+      "price tags",
+      "serif fonts"
+    ],
+    "description": "A double-page spread with a pastel background and illustrations. Product images are arranged around the page, connected by ribbons or illustrations. Prices are highlighted. Text is minimal and uses serif fonts.",
+    "html_structure_hint": "Grid layout with floated elements, image overlays and text elements",
+    "css_style": {
+      "background_color": "#E0FFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366104_10.jpg"
+  },
+  {
+    "id": "pin_1768366110_11",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 11,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "circular",
+      "numbered"
+    ],
+    "description": "Circular layout with fashion items arranged around a central text block. Pastel color palette with a clean and minimalist aesthetic. Items are numbered for reference.",
+    "html_structure_hint": "Flexbox-based circular layout",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366110_11.jpg"
+  },
+  {
+    "id": "pin_1768366113_12",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Editorial, High-Fashion",
+    "layout_ratio": "Horizontal",
+    "image_count": 10,
+    "keywords": [
+      "fashion",
+      "magazine",
+      "grid",
+      "bold typography",
+      "editorial",
+      "paris"
+    ],
+    "description": "A two-page magazine spread featuring a collection of fashion images arranged in a horizontal grid at the top. '10 Hot Stories' headline in bold font with a bright yellow block highlighting. Below the images, the article title 'March of the Paris Rebels' spans both pages with a serif font. Text content is present on both pages, and a small square with text on the right page.",
+    "html_structure_hint": "Grid 2-col, Image grid at top",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366113_12.jpg"
+  },
+  {
+    "id": "pin_1768366119_13",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Edgy",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "hair",
+      "beauty",
+      "tribal",
+      "metallic",
+      "products",
+      "modern"
+    ],
+    "description": "Magazine layout featuring a bold title, multiple model shots with interesting hair, product images arranged asymmetrically, and text blocks providing information about the products and hair styling.",
+    "html_structure_hint": "Grid-based layout with images and text sections.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366119_13.jpg"
+  },
+  {
+    "id": "pin_1768366122_14",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "product advertisement",
+      "green",
+      "beverage",
+      "celebrity",
+      "birthday"
+    ],
+    "description": "A vertical layout featuring a celebrity holding a green tea beverage. The background includes the brand logo and text overlays.",
+    "html_structure_hint": "Flex column, with image and text overlays using absolute positioning.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366122_14.jpg"
+  },
+  {
+    "id": "pin_1768366125_15",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Pastel, Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "makeup",
+      "pastel",
+      "minimal",
+      "beauty products",
+      "numbered steps"
+    ],
+    "description": "Magazine layout showing four different makeup styles demonstrated on the same model.  Each style is numbered and accompanied by a beauty product with a brief description. Layout features a grid-like structure with ample whitespace.",
+    "html_structure_hint": "Grid 2x2 interpolated with product details below.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366125_15.jpg"
+  },
+  {
+    "id": "pin_1768366128_16",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Elegant",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "nude",
+      "nail polish",
+      "beauty",
+      "column",
+      "serif"
+    ],
+    "description": "Magazine layout featuring a column of nail polish bottles stacked on top of each other on one side, and the same height column of text on the other side. The top of the nail polish column is cropped with a hand and fingers of model with painted nude nail polish",
+    "html_structure_hint": "Grid 2-col, image and text",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366128_16.jpg"
+  },
+  {
+    "id": "pin_1768366131_17",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 5,
+    "keywords": [
+      "beauty",
+      "skincare",
+      "clean",
+      "product",
+      "advertorial",
+      "serif"
+    ],
+    "description": "A product advertorial for Liz Earle. The top half features a product display. Below are product descriptions and a prize draw announcement.  The layout is clean and uses a serif font.",
+    "html_structure_hint": "Grid 3-col with a header image",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366131_17.jpg"
+  },
+  {
+    "id": "pin_1768366135_18",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Clean, Pastel, Feminine",
+    "layout_ratio": "Vertical",
+    "image_count": 5,
+    "keywords": [
+      "beauty",
+      "perfume",
+      "cosmetics",
+      "pastel colors",
+      "numbers",
+      "product photography",
+      "clean"
+    ],
+    "description": "A vertically oriented layout featuring five beauty products numbered 1 to 5. The products are arranged in a slightly overlapping and staggered fashion.  Text descriptions related to each product are placed near their respective numbers. The background is white.",
+    "html_structure_hint": "Absolute positioning; Float layout",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366135_18.jpg"
+  },
+  {
+    "id": "pin_1768366138_19",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Pastel, Floral, Serene",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "skincare",
+      "pastel",
+      "floral",
+      "product-placement",
+      "beauty",
+      "white",
+      "blue"
+    ],
+    "description": "A product placement ad for Bio-essence, featuring an arrangement of skincare products surrounded by blue floral watercolor illustrations. A thin white border frames the top and sides. Text is placed at the bottom.",
+    "html_structure_hint": "Container with image and text block.",
+    "css_style": {
+      "background_color": "#F2EFEF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366138_19.jpg"
+  },
+  {
+    "id": "pin_1768366142_20",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Dreamy, Nostalgic, Girlish",
+    "layout_ratio": "Horizontal",
+    "image_count": 7,
+    "keywords": [
+      "pastel",
+      "soft",
+      "editorial",
+      "vintage",
+      "90s",
+      "coming-of-age",
+      "whimsical"
+    ],
+    "description": "Two-page magazine spread featuring a fashion editorial. The left page includes a full-body shot of the model and the text of the designer's inspiration. The right page contains product shots styled in a collage arrangement with captions. Pink color palette with sans-serif headlines and serif body copy.",
+    "html_structure_hint": "Grid 2-col, uneven. Image collage on right",
+    "css_style": {
+      "background_color": "#FAF0E6",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366142_20.jpg"
+  },
+  {
+    "id": "pin_1768366145_21",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "makeup",
+      "armani",
+      "beauty",
+      "glossy",
+      "advertisement"
+    ],
+    "description": "Two-page magazine spread showcasing Giorgio Armani beauty products. Features a large central image of a model with makeup. Sidebars contain product descriptions and images. Structured with a clear hierarchy and typography.",
+    "html_structure_hint": "Grid 2-col with sidebar sections",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366145_21.jpg"
+  },
+  {
+    "id": "pin_1768366148_22",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Elegant",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "makeup",
+      "beauty",
+      "cosmetics",
+      "japanese",
+      "serif",
+      "editorial",
+      "product"
+    ],
+    "description": "A magazine layout showcasing various makeup products and techniques. Multiple product shots are arranged around a central image of a model. Text descriptions are placed near each product image. The layout has a clean, modern aesthetic with a focus on the products and model.",
+    "html_structure_hint": "Grid layout with varying column sizes for images and text. Relative positioning for product placement.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366148_22.jpg"
+  },
+  {
+    "id": "pin_1768366152_23",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "modern",
+      "floral",
+      "geometric",
+      "abstract"
+    ],
+    "description": "A vertical magazine layout featuring a collage-style image with a model portrait, floral elements, geometric shapes, and abstract textures. The overall composition is balanced with negative space.",
+    "html_structure_hint": "Flexbox with image and text section",
+    "css_style": {
+      "background_color": "#F0F0F0",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366152_23.jpg"
+  },
+  {
+    "id": "pin_1768366155_24",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 11,
+    "keywords": [
+      "minimal",
+      "skincare",
+      "snail",
+      "eye cream",
+      "product",
+      "white background",
+      "grid"
+    ],
+    "description": "Magazine layout promoting eye cream. Features product images, textual descriptions, benefit highlights, and related products. Organized into sections with clear headings.",
+    "html_structure_hint": "Flexbox, Grid 2-col interpolated",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366155_24.jpg"
+  },
+  {
+    "id": "pin_1768366159_25",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Pastel, Minimalist, Artistic",
+    "layout_ratio": "Horizontal",
+    "image_count": 6,
+    "keywords": [
+      "pastel",
+      "editorial",
+      "serif",
+      "pink",
+      "illustration",
+      "grid"
+    ],
+    "description": "Double-page magazine spreads featuring a blend of text and illustration, characterized by a pastel pink color scheme and serif typography. Layout is grid-based, with imagery varying from full-page illustrations to smaller, contextual images placed alongside blocks of text.",
+    "html_structure_hint": "Grid 2-col, Images interpolated with text",
+    "css_style": {
+      "background_color": "#FCE4EC",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366159_25.jpg"
+  },
+  {
+    "id": "pin_1768366162_26",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "beauty",
+      "makeup",
+      "brush",
+      "gray",
+      "feather"
+    ],
+    "description": "Single centered product shot with a minimalist aesthetic. Brush with a feather on a gray background.",
+    "html_structure_hint": "Single column, image-centered",
+    "css_style": {
+      "background_color": "#808080",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366162_26.jpg"
+  },
+  {
+    "id": "pin_1768366165_27",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "minimal",
+      "clean",
+      "serif",
+      "list",
+      "grid"
+    ],
+    "description": "Magazine layout featuring a main image with smaller images interspersed within the text columns. The text is organized into columns, creating a structured and clean look.",
+    "html_structure_hint": "Grid 2-col with interspersed images",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366165_27.jpg"
+  },
+  {
+    "id": "pin_1768366168_28",
+    "category": "Travel",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 6,
+    "keywords": [
+      "minimal",
+      "nature",
+      "serif",
+      "clean",
+      "magazine"
+    ],
+    "description": "Magazine spread layout with large hero images on the right page, text blocks on the left page, serif typography, and a light background. Uses a modular grid structure with interspersed image and text blocks.",
+    "html_structure_hint": "Grid 2-col, image right, text left, alternating",
+    "css_style": {
+      "background_color": "#F5F5DC",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366168_28.jpg"
+  },
+  {
+    "id": "pin_1768366171_29",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "moody",
+      "dark",
+      "glass",
+      "product",
+      "nature"
+    ],
+    "description": "The layout prominently features a single, high-quality product shot. The shot has dark blues, with natural greens in the background and reflection at the bottom.  The image contains perfume bottles in front of a tropical rainforest.",
+    "html_structure_hint": "Full width single image",
+    "css_style": {
+      "background_color": "#0A243A",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366171_29.jpg"
+  },
+  {
+    "id": "pin_1768366174_30",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Fresh",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "hair care",
+      "product placement",
+      "tip",
+      "curly hair",
+      "grid layout"
+    ],
+    "description": "Magazine layout showcasing hair care products. It uses a grid-like structure to display product images and corresponding text descriptions, cut tips, and style tips. It uses columns and rows to display products for 'Prep' and 'Style'.",
+    "html_structure_hint": "Grid 2-col, staggered",
+    "css_style": {
+      "background_color": "#F5F5DC",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366174_30.jpg"
+  },
+  {
+    "id": "pin_1768366177_31",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Modern",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "fragmented",
+      "portrait",
+      "black background",
+      "event",
+      "awards"
+    ],
+    "description": "Vertical magazine layout featuring a fragmented portrait of a person created from various pieces, overlaid with event information on a black background.",
+    "html_structure_hint": "Absolute positioning divs interpolated.",
+    "css_style": {
+      "background_color": "#000000",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366177_31.jpg"
+  },
+  {
+    "id": "pin_1768366181_32",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Clean",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "eye",
+      "minimalist",
+      "geometric",
+      "white space"
+    ],
+    "description": "Full-page image of a face divided into geometric shapes by white space. The text is placed on the left side of the image, small, and serif font.",
+    "html_structure_hint": "Image with text overlay, absolute positioning for text",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366181_32.jpg"
+  },
+  {
+    "id": "pin_1768366183_33",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 11,
+    "keywords": [
+      "minimal",
+      "grid",
+      "fashion",
+      "model",
+      "portrait",
+      "serif"
+    ],
+    "description": "Magazine layout featuring portraits of models arranged in a grid-like fashion. Each model's image is accompanied by short text detailing their age, background, and career highlights. The overall aesthetic is clean and minimalist with a focus on showcasing the models' faces. There are names scrawled on the page, possibly hand-written.",
+    "html_structure_hint": "Grid 3-col, image + description boxes",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366183_33.jpg"
+  },
+  {
+    "id": "pin_1768366187_34",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Informative",
+    "layout_ratio": "Horizontal",
+    "image_count": 9,
+    "keywords": [
+      "skincare",
+      "product",
+      "serif",
+      "column",
+      "reviews"
+    ],
+    "description": "Two-page spread featuring a variety of skincare products. The layout is organized into columns, with each product highlighted along with a brief description and review. Images of the products are placed prominently within their respective sections. A large 'skin care' title spans the top of the pages.",
+    "html_structure_hint": "Grid layout, multiple columns, image and text blocks",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366187_34.jpg"
+  },
+  {
+    "id": "pin_1768366191_35",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "editorial",
+      "clean",
+      "grid"
+    ],
+    "description": "Magazine layout with pastel peach background, featuring asymmetrical grid of images and large typography blocks. The layout incorporates four model images interspersed with large, black letters spelling out a word.",
+    "html_structure_hint": "Grid 2-col interpolated, image overlaps, absolute text",
+    "css_style": {
+      "background_color": "#F4C4B6",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366191_35.jpg"
+  },
+  {
+    "id": "pin_1768366194_36",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "grid",
+      "clean",
+      "ecommerce"
+    ],
+    "description": "A clean e-commerce website layout featuring a large hero image on the right, product displays in grids, pastel color blocks, and a newsletter signup form.",
+    "html_structure_hint": "Grid 2-col interpolated, Product grid 3-col",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366194_36.jpg"
+  },
+  {
+    "id": "pin_1768366197_37",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Vibrant",
+    "layout_ratio": "Square",
+    "image_count": 7,
+    "keywords": [
+      "fashion",
+      "social media",
+      "square",
+      "pastel",
+      "illustrations"
+    ],
+    "description": "A grid of square fashion-themed social media posts. The layouts are balanced between text and images with pastel color palettes and playful illustration elements.",
+    "html_structure_hint": "Grid 5-col",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366197_37.jpg"
+  },
+  {
+    "id": "pin_1768366200_38",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "monochrome",
+      "clean",
+      "simple"
+    ],
+    "description": "The layout features a single, vertically oriented image dominating the space, with text likely placed sparsely around the edges to maintain a minimalist aesthetic.",
+    "html_structure_hint": "Flexbox, image full height, text aside",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366200_38.jpg"
+  },
+  {
+    "id": "pin_1768366202_39",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Avant-Garde",
+    "layout_ratio": "Horizontal",
+    "image_count": 5,
+    "keywords": [
+      "collage",
+      "bold",
+      "graphic",
+      "beauty",
+      "editorial"
+    ],
+    "description": "A two-page spread featuring a collage style with multiple images and overlaid text. The left page has a white background, and the right page has a black background. Images are abstract and graphically enhanced.",
+    "html_structure_hint": "Two columns, overlaid image elements, absolute positioning for text",
+    "css_style": {
+      "background_color": "#FFFFFF, #000000",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366202_39.jpg"
+  },
+  {
+    "id": "pin_1768366205_40",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "circles",
+      "beauty"
+    ],
+    "description": "Vertical layout with large text headings, interspersed circular images, and pastel color scheme. The layout uses rounded shapes and simple fonts for a clean design.",
+    "html_structure_hint": "Flexbox with multiple columns, overlapping elements",
+    "css_style": {
+      "background_color": "#FAEBD7",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366205_40.jpg"
+  },
+  {
+    "id": "pin_1768366209_41",
+    "category": "Beauty",
+    "type": "Text-Heavy",
+    "mood": "Vintage, Playful, Provocative",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "vintage",
+      "blonde",
+      "hair",
+      "serif",
+      "text-heavy",
+      "retro"
+    ],
+    "description": "Magazine ad featuring product placement and a model. The layout uses large typography in the upper portion. The text is arranged in a column format surrounding images. The color palette is warm. Uses serif fonts",
+    "html_structure_hint": "Grid with staggered image placement",
+    "css_style": {
+      "background_color": "#F5DEB3",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366209_41.jpg"
+  },
+  {
+    "id": "pin_1768366212_42",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Editorial",
+    "layout_ratio": "Vertical",
+    "image_count": 15,
+    "keywords": [
+      "fashion",
+      "coat",
+      "collage",
+      "editorial",
+      "garment"
+    ],
+    "description": "A fashion magazine layout featuring a collage of models wearing different coats.  The images are loosely organized around illustrated coat hangers.  Text annotations label designers and styles. A cartoon illustration is also present.",
+    "html_structure_hint": "Grid-like arrangement with floating elements.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366212_42.jpg"
+  },
+  {
+    "id": "pin_1768366216_43",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "lipstick",
+      "eyeshadow",
+      "red",
+      "brown",
+      "beige"
+    ],
+    "description": "A visually rich magazine layout showcasing various beauty products. The arrangement uses swatches and product displays to create a colorful and engaging spread. The layout is primarily based on image placements with text callouts scattered throughout, highlighting product names and prices.",
+    "html_structure_hint": "Grid-like structure with floated elements and absolute positioning for text overlays.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366216_43.jpg"
+  },
+  {
+    "id": "pin_1768366220_44",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Modern",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "vogue",
+      "cover",
+      "portrait",
+      "phones",
+      "editorial"
+    ],
+    "description": "Vogue Singapore cover featuring a celebrity portrait surrounded by numerous phone screens displaying images. Title text is at the top. Text is minimal.",
+    "html_structure_hint": "Full-bleed image, overlaid text, z-index for layering.",
+    "css_style": {
+      "background_color": "#f5f5dc",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366220_44.jpg"
+  },
+  {
+    "id": "pin_1768366223_45",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 5,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "bold",
+      "editorial",
+      "modern",
+      "lipstick",
+      "eyes"
+    ],
+    "description": "Magazine layout with vertically stacked makeup close-up images overlapping a text block with title 'Don't Be Shy'. Images are arranged asymmetrically. The background is white.",
+    "html_structure_hint": "Stack of images over text block with CTA",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366223_45.jpg"
+  },
+  {
+    "id": "pin_1768366226_46",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "flatlay",
+      "pastel",
+      "product",
+      "clean"
+    ],
+    "description": "A single product shot with surrounding ingredients and tools, presented in a flat lay arrangement against a pastel pink background.",
+    "html_structure_hint": "Single image centered",
+    "css_style": {
+      "background_color": "#F2B8B5",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366226_46.jpg"
+  },
+  {
+    "id": "pin_1768366229_47",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean",
+    "layout_ratio": "Horizontal",
+    "image_count": 2,
+    "keywords": [
+      "minimal",
+      "serif",
+      "clean",
+      "bright",
+      "grid",
+      "two-column"
+    ],
+    "description": "A two-page magazine spread. The left page features an image of lipstick swatches and the title 'ELLE beauty' with the 'Awards 2010' text. The right page showcases a grid of circular beauty product samples with the 'ELLE BEAUTY AWARDS 2010' text and a small paragraph about a specific product.",
+    "html_structure_hint": "Grid 2-col, image on left, grid on right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366229_47.jpg"
+  },
+  {
+    "id": "pin_1768366232_48",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "pink",
+      "eye",
+      "editorial",
+      "products"
+    ],
+    "description": "A beauty magazine layout featuring a model with pink eyeshadow and various makeup products arranged at the bottom. Text is placed to the right of the model's face.",
+    "html_structure_hint": "Grid 1-col, Split content",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366232_48.jpg"
+  },
+  {
+    "id": "pin_1768366235_49",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Clean",
+    "layout_ratio": "Vertical",
+    "image_count": 9,
+    "keywords": [
+      "grid",
+      "minimal",
+      "skincare",
+      "product",
+      "serif"
+    ],
+    "description": "A grid layout featuring 9 squares each showcasing a different face mask product. Each square contains an image of the product and associated text information below. The page title is placed at the top, followed by the mask section name, description, and footer.",
+    "html_structure_hint": "Grid 3x3, image with text blocks, footer",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366235_49.jpg"
+  },
+  {
+    "id": "pin_1768366238_50",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "portrait",
+      "monochrome",
+      "magazine",
+      "minimal"
+    ],
+    "description": "Magazine cover featuring a black and white portrait of a woman, with various text elements scattered around the image. The title is large and stylized in pink, with smaller text blocks providing headlines and article teasers.",
+    "html_structure_hint": "Stack with text overlays, basic CSS grid",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366238_50.jpg"
+  },
+  {
+    "id": "pin_1768366241_51",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "white",
+      "rose",
+      "luxury",
+      "serif"
+    ],
+    "description": "A double-page magazine spread dominated by a large image of a white rose and Dior product imagery. Text is placed to the left of the product image. The overall color scheme is white and gold, conveying luxury.",
+    "html_structure_hint": "Grid 2-col, image on right, text on left",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366241_51.jpg"
+  },
+  {
+    "id": "pin_1768366244_52",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Horizontal",
+    "image_count": 12,
+    "keywords": [
+      "collage",
+      "bright colors",
+      "geometric shapes",
+      "overlapping",
+      "retro"
+    ],
+    "description": "A two-page magazine spread with a collage aesthetic. The left page features fashion clothing items and black and white rose and butterfly graphic elements. The right page shows portraits of women with colored stripes overlaid. Bright geometric shapes are used throughout both pages.",
+    "html_structure_hint": "Two column layout with image collage, absolute positioning for text and shapes.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366244_52.jpg"
+  },
+  {
+    "id": "pin_1768366248_53",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "fashion",
+      "sale",
+      "minimal",
+      "pastel",
+      "serif",
+      "elegant"
+    ],
+    "description": "A vertical layout featuring a large central image and three smaller images arranged in a row at the bottom. The text 'Fashion SALE' is at the top, with 'FLAT 20%' below. A 'SHOP NOW' button is at the very bottom.",
+    "html_structure_hint": "Flexbox with image grid",
+    "css_style": {
+      "background_color": "#F0E6D9",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366248_53.jpg"
+  },
+  {
+    "id": "pin_1768366252_54",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 15,
+    "keywords": [
+      "minimal",
+      "clean",
+      "serif",
+      "product",
+      "neutral"
+    ],
+    "description": "Clean and minimalist layout.  Hero image at the top, followed by product categories, bestsellers, a philosophy section with a blurred background image, 'As Seen On' section, a blog section, and an Instagram feed.  Black footer with white text.",
+    "html_structure_hint": "Sections stacked vertically, grid for products and instagram feed",
+    "css_style": {
+      "background_color": "#FAFAF7",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366252_54.jpg"
+  },
+  {
+    "id": "pin_1768366255_55",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Bright, Informative",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "haircare",
+      "products",
+      "serif",
+      "grid",
+      "orange",
+      "white"
+    ],
+    "description": "A magazine layout featuring hair products. Top section includes a title and a model image. Body features product photos with descriptions, arranged in a column.",
+    "html_structure_hint": "Grid layout with image and text blocks",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366255_55.jpg"
+  },
+  {
+    "id": "pin_1768366258_56",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "black and white",
+      "serif",
+      "bold typography",
+      "negative space"
+    ],
+    "description": "A magazine spread with a full-page image on the left featuring abstract white paint strokes on a black background. The right page features large, bold serif typography for the title and a block of smaller paragraph text below.",
+    "html_structure_hint": "Grid 2-col, img left, text right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366258_56.jpg"
+  },
+  {
+    "id": "pin_1768366261_57",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Modern, Artistic, Bold",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "beauty",
+      "modern",
+      "white space",
+      "editorial",
+      "typography"
+    ],
+    "description": "A magazine layout featuring a collage-style image with fragmented facial features. The masthead 'ELLE beauty' is prominently displayed. Text is strategically placed to complement the image.",
+    "html_structure_hint": "<div> <img> <h1> </div>",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366261_57.jpg"
+  },
+  {
+    "id": "pin_1768366265_58",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Square",
+    "image_count": 4,
+    "keywords": [
+      "seasonal",
+      "illustration",
+      "beauty products",
+      "whimsical",
+      "colorfull"
+    ],
+    "description": "A grid layout showcases beauty products within illustrated seasonal landscapes. Each quadrant represents a different season with corresponding colors and activities.",
+    "html_structure_hint": "Grid 2x2, with images as main content",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366265_58.jpg"
+  },
+  {
+    "id": "pin_1768366267_59",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "rainbow",
+      "prism",
+      "light",
+      "science",
+      "vibrant",
+      "educational"
+    ],
+    "description": "A single full-bleed image showcasing a light dispersion experiment. Rainbow light is shown on a white piece of paper",
+    "html_structure_hint": "Full width image with border",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366267_59.jpg"
+  },
+  {
+    "id": "pin_1768366270_60",
+    "category": "Beauty",
+    "type": "Text-Heavy",
+    "mood": "Playful",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "cosmetics",
+      "text",
+      "sink",
+      "bathroom",
+      "products"
+    ],
+    "description": "A single image of a sink filled with various beauty products serves as the background for text describing beauty muses and the stories behind their namesake lipsticks or products. Numbered annotations point to different items in the sink. The layout is busy with text, but anchored by the central image.",
+    "html_structure_hint": "Single Column with Image Background, Numbered List overlay",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366270_60.jpg"
+  },
+  {
+    "id": "pin_1768366273_61",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "monochrome",
+      "product",
+      "grid"
+    ],
+    "description": "Split screen with a clean product layout. The left side features white products on a white background, while the right side showcases similar products in dark tones against a black background, creating a stark contrast. The products are arranged in a structured, almost grid-like manner, emphasizing symmetry and precision.",
+    "html_structure_hint": "Grid 2-col, image-only",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366273_61.jpg"
+  },
+  {
+    "id": "pin_1768366277_62",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 15,
+    "keywords": [
+      "moodboard",
+      "collage",
+      "minimal",
+      "tape",
+      "monochrome"
+    ],
+    "description": "A vertical magazine layout featuring a collage-style moodboard with various black and white photographs and text snippets, seemingly taped to a white background. The layout has a hand-crafted, scrapbook feel.",
+    "html_structure_hint": "Grid or Masonry layout, with cards interpolated.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366277_62.jpg"
+  },
+  {
+    "id": "pin_1768366280_63",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "playing card",
+      "surreal",
+      "modern",
+      "geometric"
+    ],
+    "description": "The layout consists of the same image stacked and rotated to create a playing card effect. A decorative border surrounds each iteration of the image. The image features elements of fashion, travel, and dining.",
+    "html_structure_hint": "Stack of Flexbox card-like sections with border.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366280_63.jpg"
+  },
+  {
+    "id": "pin_1768366283_64",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "texture",
+      "white space",
+      "clean"
+    ],
+    "description": "The layout features a large, stylized 'C' lettermark in white, overlaid on a background of textured, semi-transparent red liquid makeup. The composition is clean and minimalistic, emphasizing the texture and form of the makeup.",
+    "html_structure_hint": "<div class='relative'><img /><text class='absolute inset-0'></text></div>",
+    "css_style": {
+      "background_color": "#ffffff",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366283_64.jpg"
+  },
+  {
+    "id": "pin_1768366287_65",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "product",
+      "serif",
+      "clean"
+    ],
+    "description": "Magazine layout featuring three product images with pastel color backgrounds. Text content is placed between the images. The layout is clean and minimalist.",
+    "html_structure_hint": "Grid 1-col, interspersed image blocks",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366287_65.jpg"
+  },
+  {
+    "id": "pin_1768366289_66",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Industrial",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "dark",
+      "industrial",
+      "studio",
+      "black"
+    ],
+    "description": "A single, dominant photograph fills the space, shot in a studio setting with a dark background and dramatic lighting. The focus is on the product, set against a stark backdrop.",
+    "html_structure_hint": "Single Image block, background color",
+    "css_style": {
+      "background_color": "#000000",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366289_66.jpg"
+  },
+  {
+    "id": "pin_1768366292_67",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Square",
+    "image_count": 12,
+    "keywords": [
+      "grid",
+      "lego",
+      "cartoon"
+    ],
+    "description": "A magazine layout with a grid arrangement of 12 images. Each image is a square shape and features characters.",
+    "html_structure_hint": "Grid 3x4",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366292_67.jpg"
+  },
+  {
+    "id": "pin_1768366295_68",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 12,
+    "keywords": [
+      "beauty",
+      "collage",
+      "white space",
+      "product",
+      "serif"
+    ],
+    "description": "A collage-style layout with various model portraits and product shots arranged irregularly on a white background. Text overlays are scattered throughout, providing details about the featured products. The overall impression is clean and modern.",
+    "html_structure_hint": "absolute positioning over base image",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366295_68.jpg"
+  },
+  {
+    "id": "pin_1768366298_69",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "cosmetics",
+      "white space",
+      "texture",
+      "typography"
+    ],
+    "description": "A minimalist layout with a large white space shape of a beauty product and scattered cosmetics powders around it. The background is solid white, emphasizing the textures and colors of the powders.",
+    "html_structure_hint": "Single image with overlay typography; consider using position absolute on powder",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366298_69.jpg"
+  },
+  {
+    "id": "pin_1768366301_70",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 10,
+    "keywords": [
+      "luxury",
+      "gifts",
+      "grid",
+      "numbered",
+      "fashion"
+    ],
+    "description": "A vertical layout showcasing 10 gift ideas. Each item is numbered with a large, stylized number and accompanied by a product image and a brief description with a 'Shop Now' link. The header features a prominent title, 'The Gift Edit.'",
+    "html_structure_hint": "Grid 2-col, numbered items",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366301_70.jpg"
+  },
+  {
+    "id": "pin_1768366304_71",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 20,
+    "keywords": [
+      "winter",
+      "minimal",
+      "serif",
+      "grid",
+      "landscape",
+      "snow"
+    ],
+    "description": "Magazine layout with a clean, minimalist aesthetic. Uses a grid-based system with a balance of images and text. The overall color palette is muted, reflecting a winter theme. Images are often full-bleed or span multiple columns. Headings are large and bold in a serif typeface.",
+    "html_structure_hint": "Grid 2-col with variations, Images full-bleed",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366304_71.jpg"
+  },
+  {
+    "id": "pin_1768366307_72",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "minimal",
+      "collage",
+      "beauty",
+      "serif",
+      "pastel",
+      "abstract"
+    ],
+    "description": "Magazine layout featuring a collage of three female faces blended with abstract shapes and textures in pastel colors. The title is a large cursive script at the top, followed by categories. Text is sparsely placed at the top right and bottom, with minimal other elements.",
+    "html_structure_hint": "Flexbox / Absolute Positioning",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366307_72.jpg"
+  },
+  {
+    "id": "pin_1768366311_73",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "collage",
+      "geometric",
+      "clean",
+      "white space"
+    ],
+    "description": "A vertically oriented layout with a large collage image at the top and text information including website and key words at the bottom. The background is primarily white.",
+    "html_structure_hint": "Flexbox with image above text content",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366311_73.jpg"
+  },
+  {
+    "id": "pin_1768366314_74",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "product",
+      "clean",
+      "serif",
+      "white space"
+    ],
+    "description": "Magazine layout featuring a large image of various makeup products with descriptive text blocks positioned around the image. The header is at the top, followed by a paragraph of introductory text.",
+    "html_structure_hint": "Flex-col with sections, image grid, text blocks",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366314_74.jpg"
+  },
+  {
+    "id": "pin_1768366318_75",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Artsy",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "collage",
+      "pastel",
+      "surreal",
+      "beauty",
+      "magazine"
+    ],
+    "description": "A collage style beauty magazine cover with a pink background. Features layered images, including a face with exaggerated features (lips as eyewear), and overlaid text snippets. The overall effect is abstract and avant-garde.",
+    "html_structure_hint": "Overlapping divs, absolute positioning",
+    "css_style": {
+      "background_color": "#F4B9C6",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366318_75.jpg"
+  },
+  {
+    "id": "pin_1768366321_76",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Pastel, Floral, Delicate",
+    "layout_ratio": "Vertical",
+    "image_count": 10,
+    "keywords": [
+      "floral",
+      "pastel",
+      "korean beauty",
+      "product display",
+      "limited edition"
+    ],
+    "description": "Vertical layout showcasing Mamonde's 2017 Holiday Edition. Features floral decorations, product close-ups, pricing, and promotional text. The page is divided into sections for each product.",
+    "html_structure_hint": "Flex column, image grid, text blocks",
+    "css_style": {
+      "background_color": "#F8E7E1",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366321_76.jpg"
+  },
+  {
+    "id": "pin_1768366325_77",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Horizontal",
+    "image_count": 15,
+    "keywords": [
+      "editorial",
+      "grid",
+      "blue",
+      "black",
+      "metallic",
+      "product-focused"
+    ],
+    "description": "A two-page magazine spread featuring product showcases. The left side focuses on black and blue fashion accessories, while the right side highlights turquoise and aqua-colored beauty products. Both sides use a scattered layout.",
+    "html_structure_hint": "Two columns, multiple divs with absolute positioning",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366325_77.jpg"
+  },
+  {
+    "id": "pin_1768366328_78",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 12,
+    "keywords": [
+      "collage",
+      "instagram",
+      "summer",
+      "pink",
+      "palm trees",
+      "wine",
+      "neon"
+    ],
+    "description": "Collage layout featuring various photos associated with InStyle magazine's summer glamour issue. Photos are arranged in a scattered fashion with slight overlaps, evoking a scrapbooking or Instagram feed style. Pink floral elements are interspersed with the images. The 'InStyle' logo is prominently displayed in neon.",
+    "html_structure_hint": "Absolute positioning collage with floating elements",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366328_78.jpg"
+  },
+  {
+    "id": "pin_1768366331_79",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "fashion",
+      "products",
+      "catalog",
+      "serif"
+    ],
+    "description": "A vertical magazine layout featuring numbered fashion items from a catalog, each with an associated product image and descriptive text.",
+    "html_structure_hint": "Column layout, image and text blocks",
+    "css_style": {
+      "background_color": "#f0f0f0",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366331_79.jpg"
+  },
+  {
+    "id": "pin_1768366334_80",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Vintage",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "vintage",
+      "retro",
+      "cherry",
+      "red",
+      "yellow",
+      "serif"
+    ],
+    "description": "The layout is dominated by a single, full-bleed image. The title 'Cherry' is placed at the top, in a large, script-style font. The image is a portrait of a woman holding a bowl of cherries.",
+    "html_structure_hint": "<div> <image> <h1>",
+    "css_style": {
+      "background_color": "#F0E68C",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366334_80.jpg"
+  },
+  {
+    "id": "pin_1768366337_81",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Modern",
+    "layout_ratio": "Vertical",
+    "image_count": 15,
+    "keywords": [
+      "magazine",
+      "fashion",
+      "modern",
+      "asian",
+      "editorial"
+    ],
+    "description": "A vertical magazine layout featuring multiple images scattered around the page. Text blocks are strategically placed with a vertical title running along the right edge.",
+    "html_structure_hint": "Grid, images scattered around, text blocks with vertical right side title.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366337_81.jpg"
+  },
+  {
+    "id": "pin_1768366341_82",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Festive",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "stocking",
+      "stuffers",
+      "beauty",
+      "minis",
+      "red",
+      "christmas"
+    ],
+    "description": "A red stocking shape filled with various beauty products on a white background, with the stocking outline defined by the red background.",
+    "html_structure_hint": "Stack",
+    "css_style": {
+      "background_color": "#FF0000",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366341_82.jpg"
+  },
+  {
+    "id": "pin_1768366343_83",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "grid",
+      "clean",
+      "neutral"
+    ],
+    "description": "A vertical layout with blocks of text and images arranged in a grid-like structure. Predominantly light pastel colors with brown accents. The arrangement is clean and airy.",
+    "html_structure_hint": "Grid 2-col interpolated, Image + Text blocks",
+    "css_style": {
+      "background_color": "#FAF0E6",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366343_83.jpg"
+  },
+  {
+    "id": "pin_1768366347_84",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "haircare",
+      "pastel",
+      "serif",
+      "organic",
+      "text",
+      "editorial"
+    ],
+    "description": "Magazine layout featuring two distinct images of hair products on a white background with watercolor splashes, followed by text columns describing hair trends. Title at the top. Bottom has the magazine details.",
+    "html_structure_hint": "Grid 1-col with image and text blocks interpolated.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366347_84.jpg"
+  },
+  {
+    "id": "pin_1768366350_85",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Modern, Abstract",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "abstract",
+      "beauty",
+      "serif",
+      "fragmented"
+    ],
+    "description": "The layout features a fragmented collage of a woman's face, with sections of eyes and lips overlapping. The background is a light, off-white tone. The brand name 'CHANEL' is prominently displayed at the top in bold, sans-serif font, and contact information for Saks Fifth Avenue is printed at the bottom. The image is a composition of several face elements.",
+    "html_structure_hint": "Absolute positioning of divs over base image.",
+    "css_style": {
+      "background_color": "#f5f5f5",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366350_85.jpg"
+  },
+  {
+    "id": "pin_1768366354_86",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Chic",
+    "layout_ratio": "Vertical",
+    "image_count": 10,
+    "keywords": [
+      "hair",
+      "tucked",
+      "celebrity",
+      "tutorial",
+      "hairstyle"
+    ],
+    "description": "Magazine layout showcasing 8 tucked-in hairstyles. Features a large central image, celebrity photos with descriptions and instructions, and text arranged in columns.",
+    "html_structure_hint": "Grid 2-col, image carousel sectioned",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366354_86.jpg"
+  },
+  {
+    "id": "pin_1768366357_87",
+    "category": "Lifestyle",
+    "type": "Typo-centric",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 0,
+    "keywords": [
+      "minimal",
+      "sale",
+      "christmas",
+      "typographic"
+    ],
+    "description": "A typographic layout promoting a Christmas sale. 'CHRISTMAS' is arched at the top, followed by 'SPECIAL' in a banner. 'SALE' is the largest text. '50% OFF' is smaller below it. 'FOR A LIMITED TIME' is curved along the bottom. Background is dark.",
+    "html_structure_hint": "<div><h1></h1><h2></h2><p></p></div>",
+    "css_style": {
+      "background_color": "#333333",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366357_87.jpg"
+  },
+  {
+    "id": "pin_1768366360_88",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "products",
+      "advertorial",
+      "modern",
+      "clean"
+    ],
+    "description": "Magazine layout featuring a large portrait on the left, product images stacked on the right, and text flowing around the images. The layout is vertically oriented.",
+    "html_structure_hint": "Grid 2-col, Image/Text balance",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366360_88.jpg"
+  },
+  {
+    "id": "pin_1768366364_89",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 10,
+    "keywords": [
+      "beauty",
+      "products",
+      "clean",
+      "grid",
+      "columnar"
+    ],
+    "description": "A magazine layout with a clean, grid-based structure. The page is divided into sections, featuring product shots and brief articles with shopper stories.",
+    "html_structure_hint": "Grid 2-col with product rows",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366364_89.jpg"
+  },
+  {
+    "id": "pin_1768366367_90",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Elegant",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "editorial",
+      "serif",
+      "floral",
+      "columns"
+    ],
+    "description": "Magazine layout featuring a title 'Editor's Letter' with accompanying text, several images, and a border of floral patterns.",
+    "html_structure_hint": "Grid 2-col, image overlay",
+    "css_style": {
+      "background_color": "#F5F5DC",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366367_90.jpg"
+  },
+  {
+    "id": "pin_1768366370_91",
+    "category": "Beauty",
+    "type": "Text-Heavy",
+    "mood": "Clean",
+    "layout_ratio": "Vertical",
+    "image_count": 9,
+    "keywords": [
+      "skincare",
+      "product",
+      "serif",
+      "columns",
+      "informational"
+    ],
+    "description": "Magazine layout for skincare products featuring multiple product images and corresponding textual descriptions organized in columns. Utilizes product photography and concise descriptions.",
+    "html_structure_hint": "Grid layout with multiple columns, product images with text blocks",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366370_91.jpg"
+  },
+  {
+    "id": "pin_1768366374_92",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Abstract",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "collage",
+      "geometric",
+      "vintage",
+      "retro",
+      "circles",
+      "overlapped"
+    ],
+    "description": "Collage layout featuring two overlapping images within circles, red and blue accent colors, and minimalist typography at the bottom. The composition utilizes geometric shapes and overlapping elements to create an abstract and artistic design.",
+    "html_structure_hint": "Absolute positioning; Overlap divs",
+    "css_style": {
+      "background_color": "#F0E6D2",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366374_92.jpg"
+  },
+  {
+    "id": "pin_1768366377_93",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "minimal",
+      "clean",
+      "white space",
+      "image card"
+    ],
+    "description": "Magazine layout featuring a large title, two images with shadow effect, and a block of text. The layout is predominantly white with a grey color swatch on the right side. The images are landscape oriented and show nature scenes.",
+    "html_structure_hint": "Flex column, image cards, text block",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366377_93.jpg"
+  },
+  {
+    "id": "pin_1768366380_94",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Calm",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "pastel",
+      "abstract",
+      "soft",
+      "brushstroke",
+      "painterly"
+    ],
+    "description": "Abstract background image with pastel brushstrokes in shades of blue, pink, and purple. Predominantly vertical orientation with a soft, calming aesthetic.",
+    "html_structure_hint": "Full bleed image.",
+    "css_style": {
+      "background_color": "#E0BBE4",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366380_94.jpg"
+  },
+  {
+    "id": "pin_1768366383_95",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Natural, Light, Modern",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "food",
+      "adaptogens",
+      "wellness",
+      "herbal"
+    ],
+    "description": "Two-page magazine spread featuring a large image on the right side and a column of text with headings on the left. The image is an artistic shot of ingredients. Color palette is muted with pastel undertones.",
+    "html_structure_hint": "Grid 2-col; img right, text left",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366383_95.jpg"
+  },
+  {
+    "id": "pin_1768366387_96",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "minimal",
+      "serum",
+      "haircare",
+      "clean",
+      "modern"
+    ],
+    "description": "A clean, modern ad layout featuring a large abstract image of fluid hair on the left, product shot on the bottom right, and concise text centered in the top right. The background is a clean white space.",
+    "html_structure_hint": "Grid 2-col, image left, text and small image right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366387_96.jpg"
+  },
+  {
+    "id": "pin_1768366390_97",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "grid",
+      "product"
+    ],
+    "description": "Magazine spread with a clean, minimalist design. It features multiple product shots and short descriptive text blocks arranged in a grid-like structure. The color palette is muted and pastel-focused.  Text is primarily serif typeface.",
+    "html_structure_hint": "Grid 2-col, image top, text bottom",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366390_97.jpg"
+  },
+  {
+    "id": "pin_1768366393_98",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "serif",
+      "earthy",
+      "high-contrast"
+    ],
+    "description": "Two-column layout, left with full-bleed image and overlaid yellow text, right with a yellow header, text, and button on an earthy background.  Header with minimal navigation.",
+    "html_structure_hint": "Grid 2-col, Image overlay text",
+    "css_style": {
+      "background_color": "#73783C",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366393_98.jpg"
+  },
+  {
+    "id": "pin_1768366396_99",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Informative",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "robots",
+      "elderly",
+      "technology",
+      "clean"
+    ],
+    "description": "Magazine layout featuring a large image on the top right side with accompanying text wrapping around. The bottom contains smaller graphics for related items.",
+    "html_structure_hint": "Grid with image and text columns.",
+    "css_style": {
+      "background_color": "#B0E2FF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366396_99.jpg"
+  },
+  {
+    "id": "pin_1768366399_100",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 2,
+    "keywords": [
+      "minimal",
+      "nature",
+      "serif",
+      "clean",
+      "green"
+    ],
+    "description": "Vertical layout featuring a large abstract illustration of leaves at the top, large simple text, smaller descriptive text in the middle, and real estate image at the bottom. Clean background with serif fonts.",
+    "html_structure_hint": "Flexbox layout with image at top, text in the middle, image at bottom",
+    "css_style": {
+      "background_color": "#F5F5DC",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366399_100.jpg"
+  },
+  {
+    "id": "pin_1768366402_101",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "pink",
+      "product",
+      "beauty"
+    ],
+    "description": "Product shot featuring two skincare bottles surrounded by water droplets and flowers on a pink background. The layout is clean and minimalist, focusing on the product's presentation.",
+    "html_structure_hint": "<div><image/><text/></div>",
+    "css_style": {
+      "background_color": "#FAD0C4",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366402_101.jpg"
+  },
+  {
+    "id": "pin_1768366405_102",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Modern",
+    "layout_ratio": "Horizontal",
+    "image_count": 8,
+    "keywords": [
+      "magazine",
+      "modern",
+      "editorial",
+      "image",
+      "text",
+      "yellow",
+      "orange",
+      "serif"
+    ],
+    "description": "Collection of magazine layouts featuring a mix of images and text. Each layout uses a consistent grid system with varying emphasis on imagery and typography. Images are often full-bleed or dominant elements, balanced with text blocks and color accents.",
+    "html_structure_hint": "Grid 2-col, image+text",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366405_102.jpg"
+  },
+  {
+    "id": "pin_1768366407_103",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "clean",
+      "white space",
+      "watercolor",
+      "geometric"
+    ],
+    "description": "A full-page fashion image with a minimalist aesthetic. Features a model against a white background, accented with a watercolor-style rectangle and a bold, geometric square.",
+    "html_structure_hint": "Single image, watercolor overlay, geometric shape",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366407_103.jpg"
+  },
+  {
+    "id": "pin_1768366410_104",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "minimal",
+      "pastel",
+      "product"
+    ],
+    "description": "Image features makeup products arranged with curved shapes and pastel background.",
+    "html_structure_hint": "Flex items, styled divs for background shapes",
+    "css_style": {
+      "background_color": "#F2E8D5",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366410_104.jpg"
+  },
+  {
+    "id": "pin_1768366413_105",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 10,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "clean",
+      "product shot"
+    ],
+    "description": "Two-page spread. Left page features product shots and descriptions under the 'ÅRETS BESTE' series. Right page continues similar layout with different products. Images are clean and well-lit. Text blocks are concise. There is a focus on showcasing product in a minimal setting.",
+    "html_structure_hint": "Grid 2-col, article with images",
+    "css_style": {
+      "background_color": "#FFF0EB",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366413_105.jpg"
+  },
+  {
+    "id": "pin_1768366416_106",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "clean"
+    ],
+    "description": "A clean, minimalist layout featuring a central model image surrounded by product shots. Large typography highlights the discount. The background is a soft, neutral color.",
+    "html_structure_hint": "Grid-based, with central image, product images scattered around. Heading section for Discount.",
+    "css_style": {
+      "background_color": "#F5F5DC",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366416_106.jpg"
+  },
+  {
+    "id": "pin_1768366420_107",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "vintage",
+      "abstract",
+      "portrait"
+    ],
+    "description": "Abstract collage portrait layout with fragmented face elements and text overlay.",
+    "html_structure_hint": "Div with absolute positioned elements",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366420_107.jpg"
+  },
+  {
+    "id": "pin_1768366423_108",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Glamorous",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "vintage",
+      "hair",
+      "beauty",
+      "retro",
+      "editorial"
+    ],
+    "description": "Magazine layout featuring a large portrait of a model with vintage hairstyle. Smaller images of hair products and hairstyles are scattered on the right, along with text and price information.",
+    "html_structure_hint": "Grid-based layout with overlapping images and text.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366423_108.jpg"
+  },
+  {
+    "id": "pin_1768366426_109",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Bold",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "editorial",
+      "green",
+      "red lipstick",
+      "paper"
+    ],
+    "description": "Close-up image of a woman's face peering through a ripped green paper background. The focus is on her red lips.",
+    "html_structure_hint": "Single image with background",
+    "css_style": {
+      "background_color": "#5CB85C",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366426_109.jpg"
+  },
+  {
+    "id": "pin_1768366428_110",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Informative",
+    "layout_ratio": "Vertical",
+    "image_count": 10,
+    "keywords": [
+      "makeup brushes",
+      "guide",
+      "beauty",
+      "descriptions",
+      "black and white"
+    ],
+    "description": "A vertical layout showcasing various makeup brushes with descriptions of their uses. The layout uses a clean, white background and positions each brush with its corresponding text in a structured manner.",
+    "html_structure_hint": "Flex column, image and text blocks aligned.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366428_110.jpg"
+  },
+  {
+    "id": "pin_1768366431_111",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "beauty",
+      "k-beauty",
+      "makeup",
+      "minimal",
+      "product shot",
+      "modern"
+    ],
+    "description": "Magazine ad layout featuring a product shot of a beauty cushion, bold typography, and a notice section with smaller text. The background is a pastel peach color with geometric lines.",
+    "html_structure_hint": "Flex layout, image on top, text block below, accent color for the title",
+    "css_style": {
+      "background_color": "#F5DDC7",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366431_111.jpg"
+  },
+  {
+    "id": "pin_1768366434_112",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 7,
+    "keywords": [
+      "minimal",
+      "product",
+      "serif",
+      "list",
+      "men's skincare"
+    ],
+    "description": "Magazine spread featuring 7 skincare products for men. Each product has a numbered image and a corresponding text block. Clean white background with serif typography.",
+    "html_structure_hint": "Grid 2-col, product cards with image + description",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366434_112.jpg"
+  },
+  {
+    "id": "pin_1768366438_113",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Conceptual",
+    "layout_ratio": "Horizontal",
+    "image_count": 12,
+    "keywords": [
+      "fashion",
+      "research",
+      "collage",
+      "mood board",
+      "femininity",
+      "sketch"
+    ],
+    "description": "A collage-style layout with multiple images of clothing, sketches, and inspiration. The layout is divided into two sections, 'Research Development' and 'Look 4 Mastectomy'.  Various images overlap to create a layered effect.",
+    "html_structure_hint": "Grid-like with overlapping elements; collage style",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366438_113.jpg"
+  },
+  {
+    "id": "pin_1768366441_114",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Clean, Modern",
+    "layout_ratio": "Horizontal",
+    "image_count": 4,
+    "keywords": [
+      "eyeshadow",
+      "makeup",
+      "cosmetics",
+      "clean",
+      "modern",
+      "serif",
+      "palette"
+    ],
+    "description": "A two-page spread with a large close-up of a woman's face on the left and product shots of eyeshadow palettes on the right. The left side features prominent typography. The right side uses a grid-like arrangement for product showcase.",
+    "html_structure_hint": "Grid 2-col; Image left, product grid right",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366441_114.jpg"
+  },
+  {
+    "id": "pin_1768366444_115",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Informative",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "brows",
+      "beauty",
+      "grid",
+      "serif",
+      "images",
+      "text",
+      "collage"
+    ],
+    "description": "Magazine page layout with a large title and a grid-like structure featuring three images with descriptions.  A text block introduces the topic.",
+    "html_structure_hint": "Grid 2x2, image cards",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366444_115.jpg"
+  },
+  {
+    "id": "pin_1768366447_116",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean",
+    "layout_ratio": "Vertical",
+    "image_count": 12,
+    "keywords": [
+      "product placement",
+      "skincare",
+      "aging",
+      "modern",
+      "split layout"
+    ],
+    "description": "Magazine layout divided into three sections, each featuring skincare products for a different age group (20s, 30s, 40s). Each section has images of the product along with a short description and key benefits. The layout is clean and modern, with clear typography and a focus on product presentation.",
+    "html_structure_hint": "Grid 3-row split, image + text",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366447_116.jpg"
+  },
+  {
+    "id": "pin_1768366451_117",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 4,
+    "keywords": [
+      "minimal",
+      "serif",
+      "grid",
+      "monochrome"
+    ],
+    "description": "A vertically oriented layout featuring four images arranged in a grid-like structure with thin black borders around each image. The images are mostly monochromatic with a touch of brown in some, and are styled with a clean, minimalist aesthetic. Typography is simple and elegant, placed within the top image area.",
+    "html_structure_hint": "Grid 2-col interpolated",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366451_117.jpg"
+  },
+  {
+    "id": "pin_1768366454_118",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Playful",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "orange",
+      "internet",
+      "speed",
+      "bold typography",
+      "illustration"
+    ],
+    "description": "Square layout with an orange background. Features the 'dipelnet' logo at the top left. A tilted image of a man in driving pose appears on the right. Bold, sans-serif turquoise text is placed at the center and bottom left. Small 'icone' icon on top-right corner.",
+    "html_structure_hint": "Grid 2x2, content centered",
+    "css_style": {
+      "background_color": "#FF7733",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366454_118.jpg"
+  },
+  {
+    "id": "pin_1768366457_119",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "food",
+      "ice cream",
+      "bright",
+      "clean",
+      "pastel"
+    ],
+    "description": "Magazine layout featuring 4 ice cream scoops on spoons, arranged horizontally against a clean white background.",
+    "html_structure_hint": "Grid 4-col, image gallery",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366457_119.jpg"
+  },
+  {
+    "id": "pin_1768366460_120",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 9,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "pale",
+      "grid",
+      "pantone",
+      "dogwood"
+    ],
+    "description": "A 3x3 grid layout featuring various images in a pastel pink palette, including flamingos, sand dunes, flowers, and abstract textures, centered around a Pantone color swatch.",
+    "html_structure_hint": "Grid 3x3",
+    "css_style": {
+      "background_color": "#F2E7E1",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366460_120.jpg"
+  },
+  {
+    "id": "pin_1768366463_121",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Luxury",
+    "layout_ratio": "Horizontal",
+    "image_count": 4,
+    "keywords": [
+      "hair",
+      "products",
+      "awards",
+      "beauty",
+      "editorial"
+    ],
+    "description": "A magazine spread featuring a large central image of two models. The left and right sides feature columns displaying hair product awards with product shots and descriptions.  'COLOUR LOCKDOWN' is vertically displayed on the left side.",
+    "html_structure_hint": "Grid 2-col, main image centered, sidebar text & images",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366463_121.jpg"
+  },
+  {
+    "id": "pin_1768366466_122",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "perfume",
+      "product",
+      "gradient"
+    ],
+    "description": "A magazine layout featuring a single, high-quality image of a perfume bottle. The bottle is centrally positioned against a gradient background, allowing the product to be the primary focus.",
+    "html_structure_hint": "<div><img src='...'></div>",
+    "css_style": {
+      "background_color": "#36393F",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366466_122.jpg"
+  },
+  {
+    "id": "pin_1768366469_123",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "perfume",
+      "watercolor",
+      "infographic",
+      "classic"
+    ],
+    "description": "A magazine layout featuring perfume bottles illustrated in watercolor style, each annotated with information. The layout is vertical and utilizes a clean, informative design.",
+    "html_structure_hint": "Grid 2-col, image annotations, descriptive text blocks.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366469_123.jpg"
+  },
+  {
+    "id": "pin_1768366481_124",
+    "category": "Travel",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 15,
+    "keywords": [
+      "minimal",
+      "travel",
+      "serif",
+      "clean",
+      "grid"
+    ],
+    "description": "Magazine layout featuring a clean, minimalist design with a balanced distribution of text and images. Predominantly white background. Consistent grid layout.",
+    "html_structure_hint": "Grid 2-col auto-fit, image interspersed",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366481_124.jpg"
+  },
+  {
+    "id": "pin_1768366485_125",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "beauty",
+      "products",
+      "clean",
+      "white space",
+      "serif",
+      "list"
+    ],
+    "description": "Magazine layout featuring a list of skincare products. Main image on top-right, text blocks and product images arranged in a vertical column. A bottom section features sunscreens. White background and plenty of whitespace create a clean aesthetic.",
+    "html_structure_hint": "Grid 2-col list-based",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366485_125.jpg"
+  },
+  {
+    "id": "pin_1768366489_126",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "clean",
+      "minimal",
+      "product shot",
+      "foundation",
+      "brush"
+    ],
+    "description": "A vertically oriented image with swatches of foundation in various shades, accompanied by a makeup brush. The background is pure white, emphasizing the product colors and textures.",
+    "html_structure_hint": "Full-width image section",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366489_126.jpg"
+  },
+  {
+    "id": "pin_1768366491_127",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Playful",
+    "layout_ratio": "Horizontal",
+    "image_count": 10,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "product",
+      "editorial",
+      "hand-drawn",
+      "numbers"
+    ],
+    "description": "A two-page magazine spread featuring a collage of makeup products and model photos. The layout incorporates handwritten fonts and graphic elements, creating a playful and slightly chaotic aesthetic. Product shots are numbered with short descriptions below.",
+    "html_structure_hint": "Grid layout with image collage and numbered lists.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366491_127.jpg"
+  },
+  {
+    "id": "pin_1768366494_128",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Modern",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "collage",
+      "editorial",
+      "fashion",
+      "abstract",
+      "white space"
+    ],
+    "description": "A magazine layout featuring an abstract collage of a model's face with geometric shapes. The title 'THE SPECIAL MODEL' is prominently displayed below the image, followed by supporting text.",
+    "html_structure_hint": "Flexbox, overlapping divs",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366494_128.jpg"
+  },
+  {
+    "id": "pin_1768366497_129",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean",
+    "layout_ratio": "Horizontal",
+    "image_count": 4,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "aging",
+      "jewelry",
+      "serif"
+    ],
+    "description": "A magazine layout featuring beauty tips to look younger. It includes images of jewelry, eyeshadow, and lipstick. The text is organized into columns with clear headings.",
+    "html_structure_hint": "Grid 2-col with image floats",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366497_129.jpg"
+  },
+  {
+    "id": "pin_1768366500_130",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Artsy",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "collage",
+      "sunflowers",
+      "portrait",
+      "serif",
+      "handwritten"
+    ],
+    "description": "Collage style layout with overlapping images, text snippets, and handwritten notes. Features a large title set vertically and central portrait image. Bordered with loose sketchy box",
+    "html_structure_hint": "Stack of overlapping divs with absolute positioning, z-index for layering.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366500_130.jpg"
+  },
+  {
+    "id": "pin_1768366504_131",
+    "category": "Beauty",
+    "type": "Typo-centric",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "serif",
+      "white space",
+      "large typography"
+    ],
+    "description": "Minimalist magazine layout with large serif typography dominating the space. A single, abstract, colored graphic element sits above the text. Secondary text is positioned to the bottom right of the main title. White background.",
+    "html_structure_hint": "Stack: heading, image, paragraph",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366504_131.jpg"
+  },
+  {
+    "id": "pin_1768366507_132",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "product",
+      "hand wash",
+      "minimal",
+      "clean",
+      "bubbles"
+    ],
+    "description": "The layout features a product shot of a hand wash bottle against a backdrop of blurred bubbles. Text is layered on the image in a clear and simple style. The product image takes center stage with text overlays.",
+    "html_structure_hint": "Grid 1-col with text overlays",
+    "css_style": {
+      "background_color": "#86c2c3",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366507_132.jpg"
+  },
+  {
+    "id": "pin_1768366510_133",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Fresh, Natural, Trendy",
+    "layout_ratio": "Vertical",
+    "image_count": 5,
+    "keywords": [
+      "beauty",
+      "editorial",
+      "magazine",
+      "bronze",
+      "skin",
+      "makeup",
+      "serif",
+      "modern",
+      "elle"
+    ],
+    "description": "Magazine cover with a large central image of a model's face, overlaid with the magazine title and some smaller images and text blocks. The layout is slightly asymmetric with text placed around the main image.",
+    "html_structure_hint": "Grid, overlapping elements, image full-bleed",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366510_133.jpg"
+  },
+  {
+    "id": "pin_1768366513_134",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Casual",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "magazine",
+      "interview",
+      "collage",
+      "editorial"
+    ],
+    "description": "Magazine layout featuring portraits of interviewees arranged in a collage style. Text is interspersed among the images, providing quotes and attributions.",
+    "html_structure_hint": "Grid layout with varying column spans for images and text.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366513_134.jpg"
+  },
+  {
+    "id": "pin_1768366517_135",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Clean, Fresh, Minimalist",
+    "layout_ratio": "Horizontal",
+    "image_count": 7,
+    "keywords": [
+      "serum",
+      "makeup",
+      "steps",
+      "fresh",
+      "beauty products",
+      "celebrity",
+      "skin care"
+    ],
+    "description": "Two-page magazine layout. The left page features an image of beauty serum bottles surrounded by flowers, with text about the product. The right page is divided into sections featuring a model's face, other beauty products, and steps for creating a new look, and a section about celebrity endorsements. A thin vertical strip has the word 'Beauty' running downwards.",
+    "html_structure_hint": "Grid 2-col, multiple containers inside",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366517_135.jpg"
+  },
+  {
+    "id": "pin_1768366521_136",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Artsy, Collage, Textured",
+    "layout_ratio": "Horizontal",
+    "image_count": 4,
+    "keywords": [
+      "collage",
+      "magazine",
+      "interview",
+      "questions",
+      "black and white",
+      "texture",
+      "serif"
+    ],
+    "description": "Two-page spread with a collage of images on the right-hand side, juxtaposed with a text-heavy interview on the left. The text is formatted in a Q&A style. The background is mostly white. A large title spans across both pages.",
+    "html_structure_hint": "Grid 2-col, images overlapping, text in columns",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366521_136.jpg"
+  },
+  {
+    "id": "pin_1768366525_137",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Edgy, Dark, Ethereal",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "ghost",
+      "makeup",
+      "fall",
+      "runway",
+      "dark",
+      "ethereal"
+    ],
+    "description": "Collage layout featuring various beauty product shots and runway model images, centered around a 'ghost story' theme. Text is interspersed throughout, with a prominent title. The layout is asymmetrical and uses clipping masks.",
+    "html_structure_hint": "Collage with absolute positioning, grid layout",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366525_137.jpg"
+  },
+  {
+    "id": "pin_1768366529_138",
+    "category": "Lifestyle",
+    "type": "Text-Heavy",
+    "mood": "Historical, Ornate, Decorative",
+    "layout_ratio": "Vertical",
+    "image_count": 0,
+    "keywords": [
+      "ornate",
+      "typography",
+      "vintage",
+      "decorative",
+      "illustration"
+    ],
+    "description": "Vertical layout featuring elaborate decorative borders and ornate typography.  The text is centered, and the surrounding illustrations are intricate and symmetrical.",
+    "html_structure_hint": "Container with title section, main text content, and decorative footer.",
+    "css_style": {
+      "background_color": "#F5F5DC",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366529_138.jpg"
+  },
+  {
+    "id": "pin_1768366532_139",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Classic",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "vintage",
+      "editorial",
+      "products",
+      "faces",
+      "celebrity",
+      "retro"
+    ],
+    "description": "Magazine layout featuring beauty products and celebrity looks. Three large circular images of celebrities are prominently placed, surrounded by text descriptions and product displays. The layout is clean and organized, with a focus on showcasing the beauty products and associated looks.",
+    "html_structure_hint": "Grid layout with celebrity image components and product descriptions.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366532_139.jpg"
+  },
+  {
+    "id": "pin_1768366535_140",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "minimal",
+      "clean",
+      "grid",
+      "serif"
+    ],
+    "description": "Clean and minimalist website layout for a fashion brand. Features a grid-based structure with a mix of images and text blocks. Uses a neutral color palette with occasional pops of color.",
+    "html_structure_hint": "Grid 3-col alternating images/text",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366535_140.jpg"
+  },
+  {
+    "id": "pin_1768366538_141",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Artsy, Avant-garde, Collage",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "collage",
+      "editorial",
+      "fashion",
+      "magazine",
+      "multiple images",
+      "Avant-garde",
+      "grunge"
+    ],
+    "description": "A vertically oriented magazine layout with a collage style. Features multiple overlapping images of models, clothing and accessories. Title text with subtitle positioned in the left section. The overall style is unconventional and artistic.",
+    "html_structure_hint": "Complex overlapping absolute positioning.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366538_141.jpg"
+  },
+  {
+    "id": "pin_1768366541_142",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Artsy, Avant-Garde",
+    "layout_ratio": "Horizontal",
+    "image_count": 2,
+    "keywords": [
+      "collage",
+      "geometric",
+      "makeup",
+      "art",
+      "editorial"
+    ],
+    "description": "A two-page magazine spread with a collage-like design. The left page features a black background with a collage of faces and makeup products. The right page has a light background, also with a collage of faces and makeup arranged in geometric patterns. Text elements are minimal and placed near the bottom of each page.",
+    "html_structure_hint": "Flex 2-col, images layered using absolute positioning",
+    "css_style": {
+      "background_color": "#000000, #f5f5dc",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366541_142.jpg"
+  },
+  {
+    "id": "pin_1768366544_143",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Square",
+    "image_count": 12,
+    "keywords": [
+      "grid",
+      "product",
+      "flags",
+      "international"
+    ],
+    "description": "A grid layout showcasing beauty products, each positioned over a different country's flag. The grid is a 3x4 layout with each cell dedicated to a different product and flag combination.",
+    "html_structure_hint": "Grid 3x4",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366544_143.jpg"
+  },
+  {
+    "id": "pin_1768366547_144",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Luxury",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "revlon",
+      "lipstick",
+      "eyeliner",
+      "nail polish",
+      "model",
+      "text-overlay",
+      "product-focused"
+    ],
+    "description": "A vertical magazine layout featuring a model and several Revlon products, including lipstick, nail polish, and eyeliner. The layout is asymetrical, with images of the products, text descriptions, and pricing information. Floral elements frame the image, adding a touch of luxury. ",
+    "html_structure_hint": "Grid, image overlaps, text blocks.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366547_144.jpg"
+  },
+  {
+    "id": "pin_1768366550_145",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "holographic",
+      "portrait",
+      "magazine"
+    ],
+    "description": "Magazine cover with a large portrait taking up most of the space. Text is positioned at the top and bottom right. A holographic frame surrounds the whole design.",
+    "html_structure_hint": "relative text positioning on image container",
+    "css_style": {
+      "background_color": "#F0D9E5",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366550_145.jpg"
+  },
+  {
+    "id": "pin_1768366554_146",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Luxury",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "luxury",
+      "cosmetics",
+      "chanel",
+      "nail polish",
+      "product",
+      "editorial"
+    ],
+    "description": "Close-up shot of Chanel nail polish bottles artfully arranged against a galaxy background with folded paper patterns.",
+    "html_structure_hint": "<div><img/></div>",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366554_146.jpg"
+  },
+  {
+    "id": "pin_1768366557_147",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Elegant",
+    "layout_ratio": "Horizontal",
+    "image_count": 7,
+    "keywords": [
+      "flowers",
+      "home",
+      "portraits",
+      "interior",
+      "serif",
+      "columnar"
+    ],
+    "description": "A two-page spread featuring a celebrity profile with multiple images of the subject and their home. The layout is column-based, with the text flowing around the images.  Images vary in size and aspect ratio, creating a dynamic composition.",
+    "html_structure_hint": "Grid 2-col with interspersed images",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366557_147.jpg"
+  },
+  {
+    "id": "pin_1768366560_148",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "clean",
+      "skincare",
+      "minimal",
+      "green",
+      "white",
+      "simple",
+      "product"
+    ],
+    "description": "A clean and minimalist beauty product advertisement layout with product and ingredient images, descriptions of benefits, and usage instructions. The layout uses a grid-like structure with plenty of white space.",
+    "html_structure_hint": "Flexbox, grid-cols-3, cards",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366560_148.jpg"
+  },
+  {
+    "id": "pin_1768366563_149",
+    "category": "Lifestyle",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "dark background",
+      "food",
+      "product showcase"
+    ],
+    "description": "Single, centered image with a dark background. Focus is on the product with clean presentation.",
+    "html_structure_hint": "Fullscreen image, single block",
+    "css_style": {
+      "background_color": "#000000",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366563_149.jpg"
+  },
+  {
+    "id": "pin_1768366566_150",
+    "category": "Fashion",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 6,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "serif",
+      "grid",
+      "circles",
+      "e-commerce"
+    ],
+    "description": "A clean and minimalist e-commerce website layout using circles and pastel colors to highlight images. Sections are clearly divided. Vertical typography is used on the sides.",
+    "html_structure_hint": "Grid layout, image circles, product cards.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366566_150.jpg"
+  },
+  {
+    "id": "pin_1768366569_151",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Square",
+    "image_count": 1,
+    "keywords": [
+      "minimal",
+      "clean",
+      "perfume",
+      "product shot",
+      "luxury",
+      "nature"
+    ],
+    "description": "A product shot featuring a perfume bottle with flowers and water droplets, set against a soft light background. The label is prominently displayed.",
+    "html_structure_hint": "Single image, centered.",
+    "css_style": {
+      "background_color": "#E0E9F2",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366569_151.jpg"
+  },
+  {
+    "id": "pin_1768366572_152",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Retro, Glamorous",
+    "layout_ratio": "Vertical",
+    "image_count": 12,
+    "keywords": [
+      "timeline",
+      "red lipstick",
+      "vintage",
+      "celebrity",
+      "beauty trends"
+    ],
+    "description": "A vertical magazine layout showcasing the evolution of red lipstick trends across different decades, from the 1920s to the 2010s. Each decade is represented by images of iconic celebrities and makeup looks, accompanied by short descriptions. The layout uses arrows and lines to create a visual timeline.",
+    "html_structure_hint": "CSS Grid with defined rows/columns, potentially using absolute positioning for timeline arrows.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366572_152.jpg"
+  },
+  {
+    "id": "pin_1768366576_153",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Pastel",
+    "layout_ratio": "Square",
+    "image_count": 12,
+    "keywords": [
+      "beauty",
+      "makeup",
+      "pastel",
+      "grid",
+      "product",
+      "portrait"
+    ],
+    "description": "A 3x4 grid layout featuring a mix of product shots and portraits, predominantly in pastel color schemes. Every third square is a text placeholder.",
+    "html_structure_hint": "Grid 3-col, alternating image and text",
+    "css_style": {
+      "background_color": "#E6B8AF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366576_153.jpg"
+  },
+  {
+    "id": "pin_1768366579_154",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Surreal",
+    "layout_ratio": "Horizontal",
+    "image_count": 20,
+    "keywords": [
+      "collage",
+      "makeup",
+      "beauty",
+      "editorial",
+      "modern",
+      "geometric"
+    ],
+    "description": "A magazine spread featuring two distinct layouts. The left side has a white background and a collage of lips and beauty products around a model's face. The right side is set against a black background with a similar collage aesthetic, showcasing different eye makeup and products.",
+    "html_structure_hint": "Two columns, with absolutely positioned elements within each column to create the collage effect.",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366579_154.jpg"
+  },
+  {
+    "id": "pin_1768366582_155",
+    "category": "Travel",
+    "type": "Balanced",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 3,
+    "keywords": [
+      "serif",
+      "travel",
+      "exploration",
+      "pink"
+    ],
+    "description": "Magazine spread featuring a prominent image of an old brick building and street scene. It contains two smaller images of a winding road and a stylized map illustration. The text is arranged in multiple columns with large initial caps and a mix of body text and captions. The background uses a muted pink color.",
+    "html_structure_hint": "Grid 2-col, image + text",
+    "css_style": {
+      "background_color": "#F5D7D4",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366582_155.jpg"
+  },
+  {
+    "id": "pin_1768366586_156",
+    "category": "Beauty",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "skincare",
+      "pastel",
+      "serif",
+      "grid",
+      "product"
+    ],
+    "description": "A vertically oriented magazine layout featuring a skincare routine. The layout uses a muted color palette and a grid-like structure to showcase different skincare products and steps. Each product is highlighted with an image and a short description. Large numbers mark each step of the routine.",
+    "html_structure_hint": "Grid 1-col with interpolated sections",
+    "css_style": {
+      "background_color": "#F0F0F0",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366586_156.jpg"
+  },
+  {
+    "id": "pin_1768366590_157",
+    "category": "Lifestyle",
+    "type": "Balanced",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 20,
+    "keywords": [
+      "minimal",
+      "clean",
+      "serif",
+      "white space",
+      "grid",
+      "modern"
+    ],
+    "description": "Magazine layout featuring a clean and minimalist design with a grid-based structure. Each page contains a balance of text and images, using large headings and ample whitespace for a modern aesthetic.",
+    "html_structure_hint": "Grid 2-col interpolated with sections",
+    "css_style": {
+      "background_color": "#F5F5F5",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366590_157.jpg"
+  },
+  {
+    "id": "pin_1768366593_158",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Minimalist",
+    "layout_ratio": "Vertical",
+    "image_count": 8,
+    "keywords": [
+      "minimal",
+      "pastel",
+      "product",
+      "grid",
+      "geometric"
+    ],
+    "description": "A magazine layout featuring Laneige two-tone products. The layout is structured with a grid-like arrangement of product images, color swatches, and short text descriptions. Pastel backgrounds and clean lines contribute to a minimalist aesthetic. The bottom features two rectangular video previews",
+    "html_structure_hint": "Grid 2-col interpolated, card-style layout",
+    "css_style": {
+      "background_color": "#F5EDED",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366593_158.jpg"
+  },
+  {
+    "id": "pin_1768366596_159",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Vibrant",
+    "layout_ratio": "Vertical",
+    "image_count": 1,
+    "keywords": [
+      "pastel",
+      "nail polish",
+      "balloons",
+      "Paris"
+    ],
+    "description": "A beauty ad featuring nail polish bottles inside clear balloons, arranged against a cityscape backdrop. The colors are pastel and playful.",
+    "html_structure_hint": "Full-screen image",
+    "css_style": {
+      "background_color": "#E0EBF3",
+      "font_style": "Sans"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366596_159.jpg"
+  },
+  {
+    "id": "pin_1768366598_160",
+    "category": "Fashion",
+    "type": "Image-Heavy",
+    "mood": "Futuristic",
+    "layout_ratio": "Square",
+    "image_count": 10,
+    "keywords": [
+      "collage",
+      "space",
+      "editorial",
+      "futuristic"
+    ],
+    "description": "Collage-style editorial layout with overlapping images related to space and fashion. A large centered image of a woman's face dominates the composition, surrounded by other fashion images, space-related elements (astronauts, rockets, space backgrounds), and product images. Title and short paragraph of text placed at the bottom right.",
+    "html_structure_hint": "Positioned divs with z-index, overlapping",
+    "css_style": {
+      "background_color": "#A68A5F",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366598_160.jpg"
+  },
+  {
+    "id": "pin_1768366602_161",
+    "category": "Beauty",
+    "type": "Image-Heavy",
+    "mood": "Modern, Editorial",
+    "layout_ratio": "Vertical",
+    "image_count": 7,
+    "keywords": [
+      "collage",
+      "eyeliner",
+      "beauty",
+      "high-fashion",
+      "editorial",
+      "white background",
+      "product placement"
+    ],
+    "description": "A collage-style layout with multiple model faces showcasing different eyeliner looks. The faces are cropped and overlap. Text elements are present, including product descriptions and magazine section title.",
+    "html_structure_hint": "Overlapping absolute positioned divs",
+    "css_style": {
+      "background_color": "#FFFFFF",
+      "font_style": "Serif"
+    },
+    "image_path": "/home/enjoy/final/src/rag/dataset/images/pin_1768366602_161.jpg"
+  }
+]

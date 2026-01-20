@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Deep Tech Edition</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'base-navy': '#202a44',      // Main Background
+                        'deep-navy': '#151b2e',      // Darker Background
+                        'card-navy': '#2a3555',      // Card Background
+                        'accent-orange': '#ff751f',  // Accent Color
+                        'text-main': '#FFFFFF',
+                        'text-sub': '#94A3B8',       // Slate 400
+                        'border-color': 'rgba(255, 255, 255, 0.08)',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'Pretendard', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px -3px rgba(255, 117, 31, 0.4)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #202a44;
+            color: #FFFFFF;
+            font-family: 'Manrope', 'Pretendard', sans-serif;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #151b2e; }
+        ::-webkit-scrollbar-thumb { background: #364366; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff751f; }
+
+        /* Components */
+        .bento-card {
+            background: rgba(42, 53, 85, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .bento-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .tech-input {
+            background: #151b2e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        .tech-input:focus {
+            border-color: #ff751f;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 117, 31, 0.15);
+        }
+        .tech-input::placeholder {
+            color: #5f6b85;
+        }
+
+        .accent-btn {
+            background: #ff751f;
+            color: white;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 117, 31, 0.3);
+        }
+        .accent-btn:hover {
+            background: #ff853a;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 117, 31, 0.4);
+        }
+        .accent-btn:active { transform: translateY(0); }
+        .accent-btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #94A3B8;
+            transition: all 0.2s;
+        }
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .status-badge {
+            background: rgba(255, 117, 31, 0.1);
+            color: #ff751f;
+            border: 1px solid rgba(255, 117, 31, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Scan Overlay Animation */
+        .scan-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(255, 117, 31, 0.15), transparent);
+            transform: translateY(-100%);
+            animation: scan 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            pointer-events: none;
+            display: none;
+            z-index: 20;
+        }
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+    </style>
+</head>
+
+<body class="bg-base-navy min-h-screen flex flex-col p-6 md:p-8 max-w-[1920px] mx-auto w-full overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="relative z-10 mb-8 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/5 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-2 py-1 mb-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-accent-orange shadow-[0_0_8px_#ff751f]"></div>
+                <span class="text-[10px] font-mono font-bold text-accent-orange tracking-widest uppercase">System Online</span>
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-white">
+                AURA <span class="font-light text-white/40">STUDIO</span>
+            </h1>
+        </div>
+        
+        <nav class="flex items-center gap-1 p-1 bg-deep-navy rounded-full border border-white/5">
+            <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-white/10 shadow-sm transition-colors">Workspace</a>
+            <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-text-sub hover:text-white transition-colors">History</a>
+            <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-text-sub hover:text-white transition-colors">Settings</a>
+        </nav>
+    </header>
+
+    <div class="relative z-10 grid lg:grid-cols-12 gap-8 items-start h-full">
+        
+        <!-- Left: Workspace -->
+        <div class="lg:col-span-7 flex flex-col gap-5">
+            
+            <!-- Dashboard Stats / Controls Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bento-card p-4 flex flex-col justify-between h-24 md:col-span-2">
+                    <span class="text-[10px] text-text-sub font-mono uppercase">Total Pages</span>
+                    <span class="text-2xl font-bold text-white" id="page-counter-badge">01</span>
+                </div>
+                <div class="bento-card p-1 md:col-span-2 flex items-center justify-center cursor-pointer hover:bg-white/5 transition group" onclick="addPage()">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-accent-orange/10 flex items-center justify-center text-accent-orange group-hover:scale-110 transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <span class="font-bold text-sm">Add New Page</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Container -->
+            <div id="articles-container" class="space-y-5">
+                <!-- Cards injected here -->
+            </div>
+
+            <!-- Generate Action (Floating Bottom Bar style) -->
+            <div class="sticky bottom-6 mt-4">
+                <div class="bento-card p-4 bg-deep-navy/90 backdrop-blur-xl border-accent-orange/30 flex items-center justify-between shadow-glow">
+                    <div class="flex items-center gap-3 px-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-xs font-mono text-text-sub">AI_MODEL_READY</span>
+                    </div>
+                    <button onclick="generateMagazine()" id="generateBtn" class="accent-btn px-8 py-3 rounded-xl text-sm tracking-wide flex items-center gap-2">
+                        <span>Generate Layout</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Preview & Status -->
+        <div class="lg:col-span-5 sticky top-8">
+            <div class="bento-card overflow-hidden h-[calc(100vh-140px)] min-h-[600px] flex flex-col relative border-white/10 bg-[#151b2e] shadow-2xl">
+                <!-- Window Header -->
+                <div class="px-5 py-3 border-b border-white/5 flex justify-between items-center bg-base-navy">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-eye text-text-sub text-xs"></i>
+                        <span class="font-mono text-[10px] text-text-sub uppercase tracking-wider">Live Preview</span>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                    </div>
+                </div>
+                
+                <!-- Empty State -->
+                <div id="empty-state" class="flex-grow flex flex-col items-center justify-center p-12 text-center">
+                    <div class="w-24 h-24 rounded-3xl bg-base-navy border border-white/5 flex items-center justify-center mb-6 shadow-inner">
+                        <i class="fa-solid fa-cube text-3xl text-white/10"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-white">Preview Offline</h3>
+                    <p class="text-text-sub font-medium text-xs max-w-[240px] leading-relaxed">
+                        Add content blocks to the workspace to initialize the real-time rendering engine.
+                    </p>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-state" class="hidden absolute inset-0 bg-[#151b2e]/95 backdrop-blur-md z-20 flex flex-col items-center justify-center p-12">
+                    <div class="w-full max-w-xs mb-8">
+                        <div class="flex justify-between text-[10px] font-mono text-accent-orange mb-2">
+                            <span>PROCESSING...</span>
+                            <span id="loading-percent">0%</span>
+                        </div>
+                        <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                            <div id="loading-bar" class="h-full bg-accent-orange w-0 transition-all duration-300 shadow-[0_0_10px_#ff751f]"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2 w-full max-w-xs">
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-base-navy border border-white/5 transition-all duration-500" id="step-1">
+                            <div class="w-2 h-2 rounded-full bg-white/10 transition-colors duration-300"></div>
+                            <span class="text-xs text-text-sub font-mono transition-colors duration-300">Vision Analysis</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-base-navy border border-white/5 transition-all duration-500" id="step-2">
+                            <div class="w-2 h-2 rounded-full bg-white/10 transition-colors duration-300"></div>
+                            <span class="text-xs text-text-sub font-mono transition-colors duration-300">Grid Calculation</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-base-navy border border-white/5 transition-all duration-500" id="step-3">
+                            <div class="w-2 h-2 rounded-full bg-white/10 transition-colors duration-300"></div>
+                            <span class="text-xs text-text-sub font-mono transition-colors duration-300">Typography Engine</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-base-navy border border-white/5 transition-all duration-500" id="step-4">
+                            <div class="w-2 h-2 rounded-full bg-white/10 transition-colors duration-300"></div>
+                            <span class="text-xs text-text-sub font-mono transition-colors duration-300">Finalizing Render</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Frame -->
+                <iframe id="result-frame" class="w-full flex-grow border-none hidden bg-white"></iframe>
+                
+                <!-- Download Bar -->
+                <div id="download-area" class="hidden px-6 py-4 border-t border-white/5 bg-base-navy flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]"></div>
+                        <span class="font-mono text-[10px] text-white tracking-wider">RENDER_COMPLETE</span>
+                    </div>
+                    <a id="download-btn" class="text-xs font-bold text-accent-orange hover:text-white transition cursor-pointer flex items-center gap-2">
+                        Download HTML <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Template -->
+    <template id="pageTemplate">
+        <div class="article-card bento-card p-6 relative group hover:border-white/20">
+            <!-- Header -->
+            <div class="flex justify-between items-start mb-6 border-b border-white/5 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono font-bold text-accent-orange px-2 py-1 rounded bg-accent-orange/10 border border-accent-orange/20 page-number-label">01</span>
+                    <span class="text-sm font-semibold text-white/80">Page Configuration</span>
+                </div>
+                <button onclick="removeTopLevelPage(this)" class="icon-btn w-7 h-7 rounded flex items-center justify-center text-text-sub hover:text-red-400 hover:bg-red-400/10 hover:border-red-400/20" title="Remove">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Inputs -->
+                <div class="space-y-4">
+                    <!-- Layout Toggle -->
+                    <div class="grid grid-cols-2 gap-2 p-1 bg-deep-navy rounded-xl border border-white/5">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="layout_group" value="cover" checked onchange="setLayoutType(this, 'cover')" class="hidden peer">
+                            <span class="flex items-center justify-center py-2 rounded-lg text-xs font-bold text-text-sub peer-checked:bg-card-navy peer-checked:text-white peer-checked:border peer-checked:border-white/10 transition-all">Cover</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="layout_group" value="article" onchange="setLayoutType(this, 'article')" class="hidden peer">
+                            <span class="flex items-center justify-center py-2 rounded-lg text-xs font-bold text-text-sub peer-checked:bg-card-navy peer-checked:text-white peer-checked:border peer-checked:border-white/10 transition-all">Article</span>
+                        </label>
+                        <input type="hidden" name="layout_type" value="cover">
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold text-text-sub uppercase tracking-wider ml-1">Headline</label>
+                        <input type="text" name="title" class="tech-input w-full px-4 py-3 rounded-xl font-bold" placeholder="Enter page title...">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold text-text-sub uppercase tracking-wider ml-1">Content</label>
+                        <textarea name="body" rows="4" class="tech-input w-full px-4 py-3 rounded-xl resize-none leading-relaxed" placeholder="Type content here..." oninput="updateTextCount(this)"></textarea>
+                        
+                        <div class="flex justify-between px-1">
+                            <span class="text-[10px] font-mono text-text-sub/50 status-text">READY</span>
+                            <span class="text-[10px] font-mono text-text-sub"><span class="current-count text-white">0</span>/<span class="max-count">150</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="flex flex-col h-full">
+                    <label class="text-[10px] font-bold text-text-sub uppercase tracking-wider ml-1 mb-1.5">Visual Assets</label>
+                    <div class="file-upload-zone flex-grow border border-dashed border-white/10 bg-deep-navy rounded-xl relative hover:border-accent-orange/50 transition-all cursor-pointer group flex flex-col items-center justify-center overflow-hidden min-h-[220px]">
+                        <input type="file" name="images" accept="image/*" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" onchange="previewImages(this)">
+                        
+                        <!-- Scanline -->
+                        <div class="scan-overlay z-10"></div>
+
+                        <div class="placeholder-content text-center pointer-events-none transition-all duration-300 group-hover:scale-95 group-hover:opacity-100 opacity-60">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mx-auto mb-3 border border-white/5 group-hover:border-accent-orange/30 group-hover:shadow-[0_0_15px_rgba(255,117,31,0.2)] transition-all">
+                                <i class="fa-solid fa-cloud-arrow-up text-white/40 group-hover:text-accent-orange transition-colors"></i>
+                            </div>
+                            <span class="text-xs font-bold text-white block mb-0.5">Click or Drop</span>
+                            <span class="text-[10px] font-mono text-text-sub">JPG, PNG</span>
+                        </div>
+
+                        <!-- Previews -->
+                        <div class="image-previews hidden absolute inset-0 bg-deep-navy p-3 overflow-auto grid grid-cols-2 gap-3 z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        let pageCount = 0;
+
+        // --- Core Functions ---
+
+        function getMaxTextLength(layoutType, imageCount) {
+            if (layoutType === 'cover') return 150;
+            const base = 2500;
+            const reduction = (imageCount - 1) * 300;
+            return Math.max(600, base - reduction);
+        }
+
+        function updateRecommendation(card) {
+            const layoutType = card.querySelector('[name="layout_type"]').value;
+            const files = card.querySelector('input[type="file"]').files;
+            const imageCount = files ? files.length : 0;
+            const bodyText = card.querySelector('[name="body"]').value;
+            const currentCount = bodyText.length;
+
+            const maxCount = getMaxTextLength(layoutType, imageCount);
+            const currentCountEl = card.querySelector('.current-count');
+            const maxCountEl = card.querySelector('.max-count');
+            const statusEl = card.querySelector('.status-text');
+
+            currentCountEl.textContent = currentCount;
+            maxCountEl.textContent = maxCount;
+
+            if (currentCount > maxCount) {
+                statusEl.textContent = "OVERFLOW";
+                statusEl.className = "text-[10px] font-mono text-red-400 font-bold status-text";
+                currentCountEl.classList.add('text-red-400');
+            } else {
+                statusEl.textContent = "OPTIMAL";
+                statusEl.className = "text-[10px] font-mono text-green-400 status-text";
+                currentCountEl.classList.remove('text-red-400');
+            }
+        }
+
+        function updateTextCount(textarea) {
+            const card = textarea.closest('.article-card');
+            updateRecommendation(card);
+        }
+
+        window.onload = function () {
+            addPage();
+        };
+
+        function addPage() {
+            pageCount++;
+            const template = document.getElementById('pageTemplate');
+            const clone = template.content.cloneNode(true);
+            const card = clone.querySelector('.article-card');
+
+            const radioName = `layout_group_${Date.now()}`;
+            card.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.name = radioName;
+            });
+
+            card.id = `card-${Date.now()}`;
+            card.querySelector('.page-number-label').textContent = String(pageCount).padStart(2, '0');
+            
+            // Entrance
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            
+            document.getElementById('articles-container').appendChild(clone);
+            
+            // Update Header Badge
+            document.getElementById('page-counter-badge').textContent = String(pageCount).padStart(2, '0');
+
+            requestAnimationFrame(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        }
+
+        function removeTopLevelPage(btn) {
+            const container = document.getElementById('articles-container');
+            if (container.children.length > 1) {
+                const card = btn.closest('.article-card');
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    card.remove();
+                    pageCount = container.children.length;
+                    // Renumber
+                    Array.from(container.children).forEach((c, idx) => {
+                        c.querySelector('.page-number-label').textContent = String(idx + 1).padStart(2, '0');
+                    });
+                    document.getElementById('page-counter-badge').textContent = String(pageCount).padStart(2, '0');
+                }, 200);
+            } else {
+                // Shake effect
+                btn.classList.add('animate-pulse', 'text-red-500');
+                setTimeout(() => btn.classList.remove('animate-pulse', 'text-red-500'), 500);
+            }
+        }
+
+        function setLayoutType(radio, type) {
+            const card = radio.closest('.article-card');
+            const hiddenInput = card.querySelector('[name="layout_type"]');
+            hiddenInput.value = type;
+            updateRecommendation(card);
+        }
+
+        function previewImages(input) {
+            const zone = input.closest('.file-upload-zone');
+            const placeholder = zone.querySelector('.placeholder-content');
+            const previews = zone.querySelector('.image-previews');
+            const scanOverlay = zone.querySelector('.scan-overlay');
+
+            previews.innerHTML = '';
+
+            if (input.files && input.files.length > 0) {
+                placeholder.classList.add('hidden');
+                previews.classList.remove('hidden');
+                scanOverlay.style.display = 'block'; // Start Scan
+
+                Array.from(input.files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = "w-full h-24 object-cover rounded-lg border border-white/10 hover:border-white/30 transition-all";
+                        previews.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                });
+
+                // Auto hide scan after 1.5s
+                setTimeout(() => {
+                   scanOverlay.style.display = 'none';
+                }, 1500);
+
+            } else {
+                placeholder.classList.remove('hidden');
+                previews.classList.add('hidden');
+                scanOverlay.style.display = 'none';
+            }
+            updateRecommendation(input.closest('.article-card'));
+        }
+
+        // --- Generate Logic (Real Backend) ---
+
+        async function generateMagazine() {
+            const btn = document.getElementById('generateBtn');
+            const loadingState = document.getElementById('loading-state');
+            const emptyState = document.getElementById('empty-state');
+            const resultFrame = document.getElementById('result-frame');
+            const downloadArea = document.getElementById('download-area');
+            const loadingBar = document.getElementById('loading-bar');
+            
+            // Check visuals
+            const cards = document.querySelectorAll('.article-card');
+            let hasError = false;
+            cards.forEach((card, index) => {
+                const files = card.querySelector('input[type="file"]').files;
+                if (files.length === 0) {
+                    const zone = card.querySelector('.file-upload-zone');
+                    zone.classList.add('border-red-500', 'bg-red-500/10');
+                    setTimeout(() => zone.classList.remove('border-red-500', 'bg-red-500/10'), 1000);
+                    hasError = true;
+                }
+            });
+            if (hasError) return;
+
+            // Start UI
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+            emptyState.classList.add('hidden');
+            resultFrame.classList.add('hidden');
+            downloadArea.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+
+            // --- Real Backend Logic ---
+            try {
+                // Prepare FormData
+                const formData = new FormData();
+                const pagesData = [];
+                let globalImageIndex = 0;
+
+                Array.from(cards).forEach((card, index) => {
+                    const title = card.querySelector('[name="title"]').value || "Untitled";
+                    const body = card.querySelector('[name="body"]').value || "";
+                    const fileInput = card.querySelector('input[type="file"]');
+                    const imageIndices = [];
+
+                    if (fileInput.files) {
+                        Array.from(fileInput.files).forEach(file => {
+                            formData.append('files', file);
+                            imageIndices.push(globalImageIndex++);
+                        });
+                    }
+
+                    pagesData.push({
+                        id: `p${Date.now()}_${index}`,
+                        title: title,
+                        body: body,
+                        image_indices: imageIndices,
+                        layout_type: card.querySelector('[name="layout_type"]').value
+                    });
+                });
+
+                formData.append('pages_data', JSON.stringify(pagesData));
+
+                // Improved Loading Feedback
+                let loadProgress = 0;
+                // Decaying increment logic
+                const progressInterval = setInterval(() => {
+                    let increment = 0;
+                    if (loadProgress < 30) increment = 5;       // Fast start
+                    else if (loadProgress < 60) increment = 2;  // Medium
+                    else if (loadProgress < 80) increment = 1;  // Slow
+                    else if (loadProgress < 95) increment = 0.2;// Very slow
+                    else if (loadProgress < 99) increment = 0.05; // Crawling
+
+                    if (loadProgress < 99) {
+                        loadProgress += increment;
+                        const displayProgress = Math.floor(loadProgress);
+                        
+                        document.getElementById('loading-percent').innerText = `${displayProgress}%`;
+                        loadingBar.style.width = `${displayProgress}%`;
+                        
+                        // Highlight steps based on simulated progress
+                        if (displayProgress > 20) highlightStep('step-1');
+                        if (displayProgress > 50) highlightStep('step-2');
+                        if (displayProgress > 80) highlightStep('step-3');
+                    }
+                }, 200);
+
+                function highlightStep(id) {
+                    const el = document.getElementById(id);
+                    el.classList.remove('border-transparent');
+                    el.classList.add('bg-white/5', 'border-white/10');
+                    el.querySelector('div').classList.remove('bg-white/10');
+                    el.querySelector('div').classList.add('bg-accent-orange', 'shadow-glow');
+                    el.querySelector('span').classList.add('text-white');
+                }
+
+                // Send to Real Server
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                clearInterval(progressInterval);
+
+                if (!response.ok) throw new Error("서버 분석 중 오류가 발생했습니다.");
+
+                const data = await response.json();
+
+                // Finish Loading Animation
+                document.getElementById('loading-percent').innerText = `100%`;
+                loadingBar.style.width = `100%`;
+                highlightStep('step-4'); // Final step
+                await new Promise(r => setTimeout(r, 500)); 
+
+                // Display Result
+                if (data.results && data.results.length > 0) {
+                    let combinedHTML = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Magazine</title></head><body style="margin:0;padding:0;background:#f5f5f5;">';
+                    data.results.forEach((result) => {
+                        if (result.rendered_html) {
+                            combinedHTML += `<div style="page-break-after:always;margin:20px auto;max-width:794px;">${result.rendered_html}</div>`;
+                        }
+                    });
+                    combinedHTML += '</body></html>';
+
+                    const blob = new Blob([combinedHTML], { type: 'text/html' });
+                    const downloadUrl = URL.createObjectURL(blob);
+                    
+                    const downloadBtn = document.getElementById('download-btn');
+                    downloadBtn.href = downloadUrl;
+                    downloadBtn.download = `AURA_RESULT_${Date.now()}.html`;
+
+                    // Inject to iframe
+                    resultFrame.srcdoc = combinedHTML;
+                    
+                    loadingState.classList.add('hidden');
+                    resultFrame.classList.remove('hidden');
+                    downloadArea.classList.remove('hidden');
+                } else {
+                    alert("디자인 생성에 실패했습니다 (No results returned).");
+                    loadingState.classList.add('hidden');
+                    emptyState.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error(error);
+                alert("에러 발생: " + error.message);
+                loadingState.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<span>Generate Layout</span><i class="fa-solid fa-arrow-right"></i>`;
+            }
+        }
+    </script>
+</body>
+</html>
