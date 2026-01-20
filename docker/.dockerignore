@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Git
+.git/
+.gitignore
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 불필요한 폴더
+extra/
+files/
+.gemini/
+image_data/
+
+# 문서
+README.md
+*.md
+image.png
+
+# 로그
+*.log
+
+# 테스트
+test_*.py
+*_test.py
