@@ -19,6 +19,10 @@ docker build -f docker/Dockerfile -t aura-server .
 
 **주의:** `-f docker/Dockerfile` 옵션으로 Dockerfile 위치 지정
 
+**syntax error시**
+sed -i 's/\r$//' docker-build.sh
+sed -i 's/\r$//' docker-run.sh
+
 ### 2. 컨테이너 실행
 
 **방법 1: 스크립트 사용 (추천)**
