@@ -415,6 +415,5 @@ class Config:
 
 <div align="center">
 
-**AI로 만든 ❤️**
 
 </div>
