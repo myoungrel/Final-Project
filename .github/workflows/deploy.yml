@@ -3,6 +3,7 @@ name: AURA CI/CD Pipeline
 on:
   push:
     branches: [ "main" ] # main 브랜치에 '푸시'되거나 '머지'될 때 실행
+  workflow_dispatch: 
 
 jobs:
   deploy:
