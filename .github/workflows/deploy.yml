@@ -1,0 +1,26 @@
+name: AURA CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ] # main 브랜치에 '푸시'되거나 '머지'될 때 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/final_aura
+            # 서버에서 최신 main 코드를 가져와서 배포
+            git fetch origin
+            git reset --hard origin/main
+            chmod +x deploy.sh
+            ./deploy.sh
