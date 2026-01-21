@@ -36,3 +36,5 @@ mcp>=0.9.0
 # Utilities
 # ============================================================
 python-dotenv>=1.0.0
+itsdangerous>=2.0.0
+python-multipart>=0.0.6
