@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Login</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'base-navy': '#202a44',
+                        'deep-navy': '#151b2e',
+                        'card-navy': '#2a3555',
+                        'accent-orange': '#ff751f',
+                        'text-main': '#FFFFFF',
+                        'text-sub': '#94A3B8',
+                        'border-color': 'rgba(255, 255, 255, 0.08)',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'Pretendard', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px -3px rgba(255, 117, 31, 0.4)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #202a44;
+            color: #FFFFFF;
+            font-family: 'Manrope', 'Pretendard', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #151b2e; }
+        ::-webkit-scrollbar-thumb { background: #364366; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff751f; }
+
+        .login-card {
+            background: rgba(42, 53, 85, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .tech-input {
+            background: #151b2e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        .tech-input:focus {
+            border-color: #ff751f;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 117, 31, 0.15);
+        }
+        .tech-input::placeholder {
+            color: #5f6b85;
+        }
+
+        .accent-btn {
+            background: #ff751f;
+            color: white;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 117, 31, 0.3);
+        }
+        .accent-btn:hover {
+            background: #ff853a;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 117, 31, 0.4);
+        }
+        .accent-btn:active { transform: translateY(0); }
+        .accent-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Animated background gradient */
+        .bg-animated {
+            background: linear-gradient(135deg, #202a44 0%, #151b2e 50%, #1a2238 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles effect */
+        .particle {
+            position: absolute;
+            background: rgba(255, 117, 31, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-50px) translateX(-50px); }
+            75% { transform: translateY(-150px) translateX(100px); }
+        }
+    </style>
+</head>
+
+<body class="bg-animated min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+
+    <!-- Floating particles -->
+    <div class="particle" style="width: 100px; height: 100px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 5s;"></div>
+    <div class="particle" style="width: 80px; height: 80px; top: 80%; left: 20%; animation-delay: 10s;"></div>
+
+    <!-- Login Container -->
+    <div class="login-card w-full max-w-md p-8 relative z-10">
+        <!-- Logo/Header -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 mb-4 bg-accent-orange/10 border border-accent-orange/20 rounded-full">
+                <div class="w-2 h-2 rounded-full bg-accent-orange shadow-[0_0_8px_#ff751f] animate-pulse"></div>
+                <span class="text-[10px] font-mono font-bold text-accent-orange tracking-widest uppercase">Secure Access</span>
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-white mb-2">
+                AURA <span class="font-light text-white/40">STUDIO</span>
+            </h1>
+            <p class="text-sm text-text-sub font-medium">Advanced Layout Generation System</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-red-400 text-sm"></i>
+                <span class="text-xs text-red-400 font-mono" id="error-text">Invalid credentials</span>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-4">
+            <div class="space-y-1.5">
+                <label class="text-[10px] font-bold text-text-sub uppercase tracking-wider ml-1">Username</label>
+                <div class="relative">
+                    <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-text-sub text-sm"></i>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="tech-input w-full pl-11 pr-4 py-3 rounded-xl font-medium" 
+                        placeholder="Enter your username"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+            </div>
+
+            <div class="space-y-1.5">
+                <label class="text-[10px] font-bold text-text-sub uppercase tracking-wider ml-1">Password</label>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-sub text-sm"></i>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="tech-input w-full pl-11 pr-4 py-3 rounded-xl font-medium" 
+                        placeholder="Enter your password"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                id="loginBtn" 
+                class="accent-btn w-full py-3.5 rounded-xl text-sm tracking-wide flex items-center justify-center gap-2 mt-6"
+            >
+                <span>Access System</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <!-- Footer Info -->
+        <div class="mt-6 pt-6 border-t border-white/5">
+            <div class="flex items-center justify-center gap-2 text-[10px] font-mono text-text-sub">
+                <i class="fa-solid fa-shield-halved text-accent-orange"></i>
+                <span>Protected by AURA Security Protocol</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMessage = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+
+        // Hardcoded credentials
+        const VALID_CREDENTIALS = {
+            'admin': 'admin123',
+            'user': 'user123',
+            'demo': 'demo123'
+        };
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Hide previous errors
+            errorMessage.classList.add('hidden');
+
+            // Disable button
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
+
+            // Simulate network delay
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            // Check credentials
+            if (VALID_CREDENTIALS[username] && VALID_CREDENTIALS[username] === password) {
+                // Success - send to backend to set session
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+
+                    if (response.ok) {
+                        // Success animation
+                        loginBtn.innerHTML = '<i class="fa-solid fa-check"></i> Access Granted';
+                        loginBtn.classList.remove('accent-btn');
+                        loginBtn.classList.add('bg-green-500');
+                        
+                        // Redirect after short delay
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 500);
+                    } else {
+                        throw new Error('Server error');
+                    }
+                } catch (error) {
+                    showError('Server connection failed');
+                    resetButton();
+                }
+            } else {
+                // Failed
+                showError('Invalid username or password');
+                resetButton();
+                
+                // Shake animation
+                loginForm.classList.add('animate-pulse');
+                setTimeout(() => loginForm.classList.remove('animate-pulse'), 500);
+            }
+        });
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+        }
+
+        function resetButton() {
+            loginBtn.disabled = false;
+            loginBtn.innerHTML = '<span>Access System</span><i class="fa-solid fa-arrow-right"></i>';
+        }
+    </script>
+</body>
+</html>

@@ -10,14 +10,14 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Python 의존성 복사 및 설치 (레이어 캐싱 최적화)
-COPY ../requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 애플리케이션 코드 복사
-COPY ../*.py .
-COPY ../static ./static
-COPY ../datas ./datas
-COPY ../tool ./tool
+COPY *.py .
+COPY static ./static
+COPY datas ./datas
+COPY tool ./tool
 
 # 비root 사용자 생성 및 권한 설정
 RUN useradd -m -u 1000 aura && \

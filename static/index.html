@@ -157,10 +157,16 @@
             </h1>
         </div>
         
-        <nav class="flex items-center gap-1 p-1 bg-deep-navy rounded-full border border-white/5">
-            <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-white/10 shadow-sm transition-colors">Workspace</a>
-            <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-text-sub hover:text-white transition-colors">History</a>
-            <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-text-sub hover:text-white transition-colors">Settings</a>
+        <nav class="flex items-center gap-2">
+            <div class="flex items-center gap-1 p-1 bg-deep-navy rounded-full border border-white/5">
+                <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-white/10 shadow-sm transition-colors">Workspace</a>
+                <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-text-sub hover:text-white transition-colors">History</a>
+                <a href="#" class="px-6 py-2.5 rounded-full text-xs font-bold text-text-sub hover:text-white transition-colors">Settings</a>
+            </div>
+            <a href="/logout" class="px-4 py-2.5 rounded-full text-xs font-bold text-white bg-red-500/80 hover:bg-red-500 border border-red-500/30 transition-all flex items-center gap-2 shadow-sm hover:shadow-md">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
         </nav>
     </header>
 
@@ -320,7 +326,7 @@
                         
                         <div class="flex justify-between px-1">
                             <span class="text-[10px] font-mono text-text-sub/50 status-text">READY</span>
-                            <span class="text-[10px] font-mono text-text-sub"><span class="current-count text-white">0</span>/<span class="max-count">150</span></span>
+                            <span class="text-[10px] font-mono text-text-sub"><span class="current-count text-white">0</span>/<span class="max-count">700</span></span>
                         </div>
                     </div>
                 </div>
@@ -356,10 +362,8 @@
         // --- Core Functions ---
 
         function getMaxTextLength(layoutType, imageCount) {
-            if (layoutType === 'cover') return 150;
-            const base = 2500;
-            const reduction = (imageCount - 1) * 300;
-            return Math.max(600, base - reduction);
+            if (layoutType === 'cover') return 700;
+            return 3000; // Article type: fixed 3000 chars
         }
 
         function updateRecommendation(card) {
