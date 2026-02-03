@@ -17,10 +17,10 @@ except ImportError:
     
 class AURAClient:
     def __init__(self):
-        # Resolve absolute path to mcp_server.py
+        # Resolve absolute path to mcp_server_langgraph.py
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        # Assuming mcp_server.py is in the parent directory of tool/
-        default_server = os.path.join(os.path.dirname(script_dir), "mcp_server.py")
+        # mcp_server_langgraph.py is in the parent directory of tool/
+        default_server = os.path.join(os.path.dirname(script_dir), "mcp_server_langgraph.py")
         self.server_script = os.getenv("MCP_SERVER_SCRIPT", default_server) 
         self.is_connected = False
 
