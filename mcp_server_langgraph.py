@@ -46,10 +46,6 @@ class MagazineState(TypedDict):
     design_summary: str
     layout_summary: str
     
-    # Guard Node Outputs
-    intent_valid: Optional[bool]     # 의도 분류 결과
-    content_safe: Optional[bool]     # 콘텐츠 필터 결과
-    
     # Retry Control
     retry_count: int                  # 재시도 횟수 (max 3)
     quality_fix_hints: Optional[str]  # 품질 검사 실패 시 수정 힌트
@@ -64,42 +60,9 @@ class MagazineState(TypedDict):
     final_html: Optional[str]
 
 # ============================================================
-# NODE 0: Intent Classifier (Guard)
+# Intent Classification and Content Filter moved to main.py
+# They now run before Vision Analysis and RAG search
 # ============================================================
-def intent_classifier_node(state: MagazineState) -> MagazineState:
-    """의도 분류: 잡지 관련 요청인지 확인"""
-    headline = state.get("headline", "")[:30]
-    image_count = state.get("image_count", 0)
-    
-    print(f"🎯 [Intent Classifier] Analyzing request...", file=sys.stderr)
-    print(f"   📝 Headline: \"{headline}...\"", file=sys.stderr)
-    print(f"   🖼️  Images: {image_count}", file=sys.stderr)
-    print(f"   ✅ Result: MAGAZINE_LAYOUT_REQUEST → PASS", file=sys.stderr)
-    
-    state["intent_valid"] = True
-    return state
-
-# ============================================================
-# NODE 0.5: Content Filter (Guard)
-# ============================================================
-def content_filter_node(state: MagazineState) -> MagazineState:
-    """콘텐츠 필터링: 부적절 콘텐츠 확인"""
-    headline = state.get("headline", "")
-    body = state.get("body", "")
-    
-    # 텍스트 길이 정보
-    headline_len = len(headline)
-    body_len = len(body)
-    
-    print(f"🛡️  [Content Filter] Scanning content...", file=sys.stderr)
-    print(f"   📝 Headline length: {headline_len} chars", file=sys.stderr)
-    print(f"   📄 Body length: {body_len} chars", file=sys.stderr)
-    print(f"   🔍 PII Detection: CLEAR", file=sys.stderr)
-    print(f"   🔍 Inappropriate Content: CLEAR", file=sys.stderr)
-    print(f"   ✅ Result: CONTENT_SAFE → PASS", file=sys.stderr)
-    
-    state["content_safe"] = True
-    return state
 
 # ============================================================
 # NODE 1: Image Analyzer
@@ -890,6 +853,11 @@ def html_quality_checker_node(state: MagazineState) -> MagazineState:
             print(f"   - {issue}", file=sys.stderr)
         print(f"   Suggested fixes: {fixes}", file=sys.stderr)
         
+        # Max retries 도달 시 현재 HTML을 final_html로 설정
+        if retry_count >= 3:
+            print(f"⚠️ [Node 6] Max retries reached. Accepting current HTML as final.", file=sys.stderr)
+            state["final_html"] = html
+        
         state["quality_fix_hints"] = "; ".join(fixes)
         state["retry_count"] = retry_count + 1
     
@@ -912,8 +880,7 @@ def quality_check_router(state: MagazineState) -> str:
     if quality_result.get("passed", False):
         return "end"
     elif retry_count >= 3:
-        print(f"❌ [Router] Max retries (3) reached. Returning current HTML.", file=sys.stderr)
-        state["final_html"] = state.get("html_output", "")  # 강제 반환
+        print(f"🔚 [Router] Max retries (3) reached. Ending workflow.", file=sys.stderr)
         return "end"
     else:
         print(f"🔄 [Router] Retrying HTML generation... (attempt {retry_count + 1}/3)", file=sys.stderr)
@@ -925,11 +892,7 @@ def quality_check_router(state: MagazineState) -> str:
 def build_magazine_graph():
     graph = StateGraph(MagazineState)
     
-    # Guard nodes
-    graph.add_node("intent_classifier", intent_classifier_node)
-    graph.add_node("content_filter", content_filter_node)
-    
-    # Processing nodes
+    # Processing nodes (Intent and Filter now run in main.py)
     graph.add_node("image_analyzer", image_analyzer_node)
     graph.add_node("layout_planner", layout_planner_node)
     graph.add_node("typography_styler", typography_styler_node)
@@ -937,12 +900,8 @@ def build_magazine_graph():
     graph.add_node("validator", validator_node)
     graph.add_node("html_quality_checker", html_quality_checker_node)
     
-    # Entry point
-    graph.set_entry_point("intent_classifier")
-    
-    # Guard edges
-    graph.add_edge("intent_classifier", "content_filter")
-    graph.add_edge("content_filter", "image_analyzer")
+    # Entry point (starts with Image Analyzer)
+    graph.set_entry_point("image_analyzer")
     
     # Processing edges
     graph.add_edge("image_analyzer", "layout_planner")
@@ -1040,8 +999,6 @@ def generate_magazine_layout(
         "vision_summary": vision_summary,
         "design_summary": design_summary,
         "layout_summary": layout_summary,
-        "intent_valid": None,
-        "content_safe": None,
         "retry_count": 0,              # 재시도 카운터 초기화
         "quality_fix_hints": None,     # 품질 수정 힌트 초기화
         "image_analysis": None,

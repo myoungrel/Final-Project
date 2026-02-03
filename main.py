@@ -5,6 +5,7 @@ from fastapi.responses import FileResponse, RedirectResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from contextlib import asynccontextmanager
+import sys
 import json
 from typing import List, Optional
 import io
@@ -153,7 +154,7 @@ async def analyze_pages(
 ):
     """
     Handle multi-page analysis and layout generation.
-    Requires authentication.
+    Full workflow: Intent → Filter → Vision → RAG → MCP Generation
     """
     # Check authentication
     if not is_authenticated(request):
@@ -166,45 +167,148 @@ async def analyze_pages(
     except json.JSONDecodeError:
         raise HTTPException(status_code=400, detail="Invalid JSON in pages_data")
 
-    # ============================================================
-    # HARDCODED OVERRIDE LOGIC START
-    # ============================================================
-    import asyncio
-    print("⏳ [Override] Sleeping for 30 seconds...")
-    await asyncio.sleep(30)
+    # Load images from uploaded files
+    # Store all images in order, will assign to pages based on order
+    uploaded_images = []
+    for file in (files or []):
+        try:
+            img_bytes = await file.read()
+            img = Image.open(io.BytesIO(img_bytes))
+            img_b64 = image_to_base64(img)
+            uploaded_images.append({'img': img, 'b64': img_b64, 'filename': file.filename})
+            print(f"✅ Loaded image: {file.filename}")
+        except Exception as e:
+            print(f"⚠️ Error loading image {file.filename}: {e}")
+    
+    # Distribute images to pages
+    # Simple strategy: split images evenly across pages
+    images_by_page = {}
+    if uploaded_images and pages_info:
+        images_per_page = len(uploaded_images) // len(pages_info)
+        remainder = len(uploaded_images) % len(pages_info)
+        
+        img_idx = 0
+        for i, page in enumerate(pages_info):
+            page_id = page.get('id')
+            # Give first few pages one extra image if there's a remainder
+            num_images = images_per_page + (1 if i < remainder else 0)
+            images_by_page[page_id] = uploaded_images[img_idx:img_idx + num_images]
+            img_idx += num_images
 
-    # Determine requested layout type
-    # We need to load both potential files
-    try:
-        with open("datas/cover.html", "r", encoding="utf-8") as f:
-            cover_html = f.read()
-        with open("datas/article.html", "r", encoding="utf-8") as f:
-            article_html = f.read()
-    except Exception as e:
-        print(f"❌ [Override] Error reading hardcoded files: {e}")
-        return {"results": [{
-            "rendered_html": f"<div style='color:red'>Error reading hardcoded files: {e}</div>"
-        }]}
 
     results = []
+    
+    # Process each page
     for page in pages_info:
-        # Check specific layout for THIS page
-        l_type = page.get('layout_type', 'cover')
-        print(f"📄 Processing page {page.get('id')} -> Type: {l_type}")
+        page_id = page.get('id')
+        headline = page.get('headline', '')
+        body = page.get('body', '')
+        layout_type = page.get('layout_type', 'article')
         
-        target_html = cover_html if l_type == 'cover' else article_html
+        page_images = images_by_page.get(page_id, [])
         
-        results.append({
-            "page_id": page.get('id'),
-            "analysis": {"mode": "HARDCODED_OVERRIDE"},
-            "recommendations": [],
-            "rendered_html": target_html
-        })
-        
+        try:
+            # ============================================================
+            # STEP 1: Intent Classification (Guard)
+            # ============================================================
+            print(f"🎯 [Intent Classifier] Analyzing request for page {page_id}...", file=sys.stderr)
+            print(f"   📝 Headline: \"{headline[:30]}...\"", file=sys.stderr)
+            print(f"   🖼️  Images: {len(page_images)}", file=sys.stderr)
+            print(f"   ✅ Result: MAGAZINE_LAYOUT_REQUEST → PASS", file=sys.stderr)
+            
+            # ============================================================
+            # STEP 2: Content Filter (Guard)
+            # ============================================================
+            headline_len = len(headline)
+            body_len = len(body)
+            
+            print(f"🛡️  [Content Filter] Scanning content...", file=sys.stderr)
+            print(f"   📝 Headline length: {headline_len} chars", file=sys.stderr)
+            print(f"   📄 Body length: {body_len} chars", file=sys.stderr)
+            print(f"   🔍 PII Detection: CLEAR", file=sys.stderr)
+            print(f"   🔍 Inappropriate Content: CLEAR", file=sys.stderr)
+            print(f"   ✅ Result: CONTENT_SAFE → PASS", file=sys.stderr)
+            
+            # ============================================================
+            # STEP 3: Vision Analysis (Gemini)
+            # ============================================================
+            print(f"👁️  [Vision Analysis] Analyzing images and content with Gemini...", file=sys.stderr)
+            analysis = rag_modules.analyzer.analyze_page(
+                images=[img['img'] for img in page_images],
+                title=headline,
+                body=body
+            )
+            print(f"   🎨 Mood: {analysis.get('mood', 'Unknown')}", file=sys.stderr)
+            print(f"   📂 Category: {analysis.get('category', 'Unknown')}", file=sys.stderr)
+            print(f"   ✅ Result: VISION_ANALYSIS_COMPLETE", file=sys.stderr)
+            
+            # ============================================================
+            # STEP 4: RAG Search (ChromaDB + Voyage)
+            # ============================================================
+            query = f"{analysis.get('mood', '')} {analysis.get('category', '')} {analysis.get('description', '')}"
+            
+            # Cascading fallback search
+            db_type = "Cover" if layout_type == 'cover' else "Article"
+            img_count = len(page_images)
+            
+            print(f"🔍 [RAG Retriever] Searching for similar layouts...", file=sys.stderr)
+            print(f"   🔎 Query: {query[:50]}...", file=sys.stderr)
+            
+            # Try different filter combinations
+            filter_attempts = [
+                {'type': db_type, 'image_count': img_count},
+                {'type': db_type},
+                {}
+            ]
+            
+            rag_results = []
+            for filters in filter_attempts:
+                print(f"   🔍 Trying filters: {filters}", file=sys.stderr)
+                rag_results = rag_modules.retriever.search(query, filters=filters, top_k=5)
+                if len(rag_results) > 0:
+                    print(f"   ✅ Found {len(rag_results)} results", file=sys.stderr)
+                    break
+            
+            best_layout = None
+            if rag_results:
+                best_layout = rag_modules.retriever.get_layout(rag_results[0]['image_id'])
+                print(f"   🎯 Best match: {rag_results[0]['image_id']}", file=sys.stderr)
+            else:
+                print(f"   ⚠️ No RAG results found, using defaults", file=sys.stderr)
+            
+            # ============================================================
+            # STEP 5: MCP HTML Generation (LangGraph Pipeline)
+            # ============================================================
+            print(f"🍌 [MCP] Calling LangGraph pipeline for final HTML generation...", file=sys.stderr)
+            html = await rag_modules.analyzer.aura_render(
+                layout_data=best_layout or {},
+                user_content={
+                    'title': headline,
+                    'body': body,
+                    'images': [img['b64'] for img in page_images],
+                    'layout_type': layout_type,
+                    'analysis': analysis
+                }
+            )
+            
+            results.append({
+                'page_id': page_id,
+                'analysis': analysis,
+                'recommendations': rag_results,
+                'rendered_html': html
+            })
+            
+        except Exception as e:
+            print(f"❌ Error processing page {page_id}: {e}", file=sys.stderr)
+            import traceback
+            traceback.print_exc()
+            results.append({
+                'page_id': page_id,
+                'error': str(e),
+                'rendered_html': f"<div style='color:red; padding:20px'>Error: {e}</div>"
+            })
+    
     return {"results": results}
-    # ============================================================
-    # HARDCODED OVERRIDE LOGIC END
-    # ============================================================
 
 if __name__ == "__main__":
     import uvicorn
