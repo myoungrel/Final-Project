@@ -180,20 +180,22 @@ async def analyze_pages(
         except Exception as e:
             print(f"⚠️ Error loading image {file.filename}: {e}")
     
-    # Distribute images to pages
-    # Simple strategy: split images evenly across pages
+    # Distribute images to pages based on image_indices from frontend
+    # This respects which images were uploaded to each page card
     images_by_page = {}
     if uploaded_images and pages_info:
-        images_per_page = len(uploaded_images) // len(pages_info)
-        remainder = len(uploaded_images) % len(pages_info)
-        
-        img_idx = 0
-        for i, page in enumerate(pages_info):
+        for page in pages_info:
             page_id = page.get('id')
-            # Give first few pages one extra image if there's a remainder
-            num_images = images_per_page + (1 if i < remainder else 0)
-            images_by_page[page_id] = uploaded_images[img_idx:img_idx + num_images]
-            img_idx += num_images
+            image_indices = page.get('image_indices', [])
+            
+            # Assign only the images specified by indices
+            page_images = []
+            for idx in image_indices:
+                if 0 <= idx < len(uploaded_images):
+                    page_images.append(uploaded_images[idx])
+            
+            images_by_page[page_id] = page_images
+            print(f"📄 Page {page_id}: Assigned {len(page_images)} image(s) from indices {image_indices}", file=sys.stderr)
 
 
     results = []
