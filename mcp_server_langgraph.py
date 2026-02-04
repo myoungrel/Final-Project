@@ -25,7 +25,7 @@ class MockConfig:
     def get_llm(self, temperature=0.7):
         from langchain_google_genai import ChatGoogleGenerativeAI
         return ChatGoogleGenerativeAI(
-            model="gemini-2.5-pro",
+            model="gemini-2.5-flash",
             google_api_key=os.getenv("GOOGLE_API_KEY"),
             temperature=temperature
         )
